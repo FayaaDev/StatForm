@@ -33,12 +33,7 @@ export function createFeedbackFormComposer(localization = "en") {
 			ar: "نموذج الملاحظات",
 		}),
 	);
-	composer.startSlide({
-		buttonText: translate(localization, {
-			en: "Start",
-			ar: "ابدأ",
-		}),
-	});
+
 
 	// Feedback question
 	composer.slide({ pageProgress: "1/1" });

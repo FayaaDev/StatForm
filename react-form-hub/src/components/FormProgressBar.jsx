@@ -124,7 +124,7 @@ const FormProgressBar = ({
                     justify-content: flex-start;
                     gap: 12px;
                     width: max-content;
-                    min-width: 100%;
+                    margin: 0 auto;
                     padding: 5px 0;
                 }
 

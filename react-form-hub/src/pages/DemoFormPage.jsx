@@ -4,10 +4,24 @@ import FormRenderer from "../components/FormRenderer";
 import { createDemoFormComposer } from "../forms/DemoForm";
 import { getFormOptions } from "../forms/formUtils";
 
+import FormProgressBar from "../components/FormProgressBar";
+import { useFormController } from "../hooks/useFormController.js";
+
 const DemoFormPage = () => {
 	const { currentLang } = useOutletContext();
 	const [composer, setComposer] = useState(null);
 	const [options, setOptions] = useState(null);
+
+	const {
+		setFormInstance,
+		containerProps,
+		activeSlideIndex,
+		slides,
+		jumpToSlide
+	} = useFormController({
+		formId: "demo-form-container",
+		currentLang
+	});
 
 	useEffect(() => {
 		// Create composer and options based on current language
@@ -23,11 +37,24 @@ const DemoFormPage = () => {
 	}
 
 	return (
-		<FormRenderer
-			composer={composer}
-			options={options}
-			id="demo-form-container"
-		/>
+		<>
+			<FormProgressBar
+				currentSlideIndex={activeSlideIndex}
+				totalSlides={slides.length}
+				excludeStart={1}
+				excludeEnd={0}
+				onStepClick={jumpToSlide}
+				currentLang={currentLang}
+			/>
+			<div {...containerProps}>
+				<FormRenderer
+					composer={composer}
+					options={options}
+					id="demo-form-container"
+					onMount={setFormInstance}
+				/>
+			</div>
+		</>
 	);
 };
 

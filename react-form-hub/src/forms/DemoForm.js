@@ -45,12 +45,7 @@ export function createDemoFormComposer(localization = "en") {
 			ar: "هذا نموذج تجريبي بسيط لعرض إمكانيات Forms.md.",
 		}),
 	);
-	composer.startSlide({
-		buttonText: translate(localization, {
-			en: "Get Started",
-			ar: "ابدأ",
-		}),
-	});
+
 
 	// Slide 0: Name Selection
 	composer.slide({ pageProgress: "0/6" });
@@ -63,12 +58,12 @@ export function createDemoFormComposer(localization = "en") {
 			localization === "ar"
 				? ["أحمد محمد", "فاطمة علي", "محمد حسن", "سارة أحمد", "علي محمود"]
 				: [
-						"Ahmed Mohammed",
-						"Fatima Ali",
-						"Mohammed Hassan",
-						"Sarah Ahmed",
-						"Ali Mahmoud",
-					],
+					"Ahmed Mohammed",
+					"Fatima Ali",
+					"Mohammed Hassan",
+					"Sarah Ahmed",
+					"Ali Mahmoud",
+				],
 		required: true,
 	});
 

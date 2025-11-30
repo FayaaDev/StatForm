@@ -44,12 +44,7 @@ export function createBurnoutSurveyComposer(localization = "en") {
             ar: "يرجى الإجابة على الأسئلة التالية حول مشاعرك تجاه عملك.",
         })
     );
-    composer.startSlide({
-        buttonText: translate(localization, {
-            en: "Start Survey",
-            ar: "ابدأ الاستبيان",
-        }),
-    });
+
 
     const choices = localization === "ar"
         ? ["أبداً", "نادراً", "أحياناً", "غالباً", "دائماً"]
