@@ -12,8 +12,10 @@ export function createNeurologyHistoryFormComposer(localization = "en") {
 		...getSharedFormConfig(localization),
 		postUrl: null, // No submission for this template generator
 		restartButton: "hide",
+		pageProgress: "hide", // Hide default progress bar
 		thankYouScreenTitle: "",
 		thankYouScreenDescription: "",
+		paddingInlineTop: 120, // Adjusted space for the fixed progress header
 	});
 
 	// Header
@@ -30,6 +32,8 @@ export function createNeurologyHistoryFormComposer(localization = "en") {
 			ar: "نموذج مرض الصرع",
 		}),
 	);
+
+
 
 	// 1. Onset
 	composer.slide({ pageProgress: "1/37" });
