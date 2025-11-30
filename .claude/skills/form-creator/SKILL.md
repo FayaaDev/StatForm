@@ -27,6 +27,7 @@ Use this skill when you need to:
 
 - **Forms.md Documentation:** https://docs.forms.md/
 - **React Hub README:** `react-form-hub/README_FORM_HUB.md`
+- **Library Override Guide:** `react-form-hub/LIBRARY_HACK_GUIDE.md` - Technical details on how useFormController works
 - **Example Forms:** `react-form-hub/src/forms/DemoForm.js`, `FeedbackForm.js`, `TesterForm.js`
 
 ## React Form Hub Architecture
@@ -138,13 +139,39 @@ Create `react-form-hub/src/pages/YourFormPage.jsx`:
 import { useOutletContext } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FormRenderer from "../components/FormRenderer";
+import FormProgressBar from "../components/FormProgressBar";
 import { createYourFormComposer } from "../forms/YourFormName.js";
 import { getFormOptions } from "../forms/formUtils.js";
+import { useFormController } from "../hooks/useFormController.js";
 
 const YourFormPage = () => {
 	const { currentLang } = useOutletContext();
 	const [composer, setComposer] = useState(null);
 	const [options, setOptions] = useState(null);
+
+	// NEW: Initialize the form controller hook
+	const {
+		setFormInstance,
+		containerProps,
+		activeSlideIndex,
+		slides,
+		jumpToSlide
+	} = useFormController({
+		formId: "your-form-container",
+		currentLang: currentLang,
+
+		// Optional: Custom hotkeys for quick navigation
+		hotkeys: {
+			y: { en: "Yes", ar: "نعم" },
+			n: { en: "No", ar: "لا" }
+		},
+
+		// Optional: Custom handler for last slide's Next button
+		onLastSlideNext: (e, lastSlide) => {
+			alert("Form completed!");
+			// Add your custom completion logic here
+		}
+	});
 
 	useEffect(() => {
 		const newComposer = createYourFormComposer(currentLang);
@@ -158,12 +185,30 @@ const YourFormPage = () => {
 		return <div>Loading...</div>;
 	}
 
+	const totalSlides = slides.length;
+
 	return (
-		<FormRenderer
-			composer={composer}
-			options={options}
-			id="your-form-container"
-		/>
+		<>
+			{/* NEW: Progress bar component */}
+			<FormProgressBar
+				currentSlideIndex={activeSlideIndex}
+				totalSlides={totalSlides}
+				excludeStart={0}  // Number of intro slides to exclude
+				excludeEnd={0}    // Number of final slides to exclude
+				onStepClick={jumpToSlide}
+				currentLang={currentLang}
+			/>
+
+			{/* Form container with controller props */}
+			<div {...containerProps}>
+				<FormRenderer
+					composer={composer}
+					options={options}
+					id="your-form-container"
+					onMount={setFormInstance}
+				/>
+			</div>
+		</>
 	);
 };
 
@@ -172,9 +217,13 @@ export default YourFormPage;
 
 **Key Points:**
 
-- Use `useOutletContext()` to get `currentLang` from parent layout
-- Recreate composer when language changes (in `useEffect` dependency array)
-- Use unique container ID for each form
+- **Import `useFormController`** - This hook manages form lifecycle, keyboard shortcuts, and button behavior
+- **Import `FormProgressBar`** - Shows numbered progress circles at the top
+- **Spread `{...containerProps}`** on the wrapping div - Prevents keyboard events from interfering with text inputs
+- **Pass `setFormInstance` to `onMount`** - Connects the form instance to the controller
+- **Optional hotkeys** - Define keyboard shortcuts for common choices (e.g., Y/N)
+- **Optional `onLastSlideNext`** - Customize what happens when clicking Next on the last slide
+- **Progress bar integration** - Shows user's position in the form with clickable navigation
 
 ### Step 3: Add Route
 
@@ -301,6 +350,143 @@ composer.slide({
 // Note: Start slides are NOT used in this project - forms begin directly with the first question slide
 // Final slide (usually auto-generated for submit)
 ```
+
+## Form Controller Hook (`useFormController`)
+
+The `useFormController` hook provides advanced form control capabilities, implementing the "Nuclear Option" strategy to override the library's built-in behaviors.
+
+### What It Does
+
+The hook uses a **MutationObserver** to watch the form DOM and:
+- **Tracks active slides** - Monitors which slide is currently displayed
+- **Manages button behavior** - Removes or replaces the "Next" button on the last slide
+- **Enables hotkeys** - Allows custom keyboard shortcuts for choices
+- **Prevents event conflicts** - Stops keyboard events from interfering with text inputs
+
+### Hook Parameters
+
+```javascript
+const {
+	formInstance,        // The Forms.md instance
+	setFormInstance,     // Function to connect form instance (pass to onMount)
+	containerProps,      // Props to spread on wrapper div
+	activeSlideIndex,    // Current slide index (0-based)
+	slides,              // Array of all slide DOM elements
+	jumpToSlide          // Function to navigate to specific slide
+} = useFormController({
+	formId: "my-form-container",  // REQUIRED: Must match FormRenderer id
+	currentLang: "en",             // REQUIRED: Current language ("en" or "ar")
+
+	// OPTIONAL: Custom keyboard shortcuts
+	hotkeys: {
+		y: { en: "Yes", ar: "نعم" },
+		n: { en: "No", ar: "لا" }
+	},
+
+	// OPTIONAL: Custom handler for last slide's Next button
+	onLastSlideNext: (e, lastSlide) => {
+		// Your completion logic here
+		console.log("Form finished!");
+	}
+});
+```
+
+### Integration Checklist
+
+1. ✅ Import the hook: `import { useFormController } from "../hooks/useFormController.js"`
+2. ✅ Call hook with matching `formId`
+3. ✅ Spread `{...containerProps}` on parent div
+4. ✅ Pass `setFormInstance` to `FormRenderer` `onMount` prop
+5. ✅ Use `activeSlideIndex` and `slides` for progress tracking
+
+### Hotkey System
+
+Custom hotkeys override the default A/B/C choice navigation:
+
+```javascript
+hotkeys: {
+	y: { en: "Yes", ar: "نعم" },     // Press 'Y' to select "Yes"
+	n: { en: "No", ar: "لا" },       // Press 'N' to select "No"
+	s: { en: "Sometimes", ar: "أحيانًا" }  // Press 'S' for "Sometimes"
+}
+```
+
+**How it works:**
+- When user presses the key, the hook finds the label containing that text
+- Automatically clicks the corresponding input
+- Works across language changes
+
+### Last Slide Customization
+
+By default, the hook removes the "Next" button on the last slide. To customize:
+
+```javascript
+onLastSlideNext: (e, lastSlide) => {
+	e.preventDefault();  // Prevent default navigation
+
+	// Show completion message
+	alert("Thank you for completing the form!");
+
+	// Redirect to another page
+	window.location.href = "/thank-you";
+
+	// Or trigger custom logic
+	saveFormData();
+}
+```
+
+## Progress Bar Component (`FormProgressBar`)
+
+The `FormProgressBar` component displays a fixed navigation bar at the top of the page with numbered circles representing each form slide.
+
+### Features
+
+- **Numbered circles** - Shows step numbers (1, 2, 3...)
+- **Visual states** - Completed (filled), Active (highlighted), Pending (outline)
+- **Clickable navigation** - Jump to any slide by clicking its circle
+- **Auto-scrolling** - Automatically scrolls to keep active step visible
+- **Scroll arrows** - Navigate overflowed steps with left/right arrows
+- **RTL support** - Works correctly in Arabic mode
+
+### Component Props
+
+```javascript
+<FormProgressBar
+	currentSlideIndex={activeSlideIndex}  // Current slide (from useFormController)
+	totalSlides={slides.length}           // Total number of slides
+	excludeStart={0}                      // Skip first N slides (e.g., intro)
+	excludeEnd={0}                        // Skip last N slides (e.g., thank you)
+	onStepClick={jumpToSlide}             // Navigation handler (from useFormController)
+	currentLang={currentLang}             // Current language for labels
+/>
+```
+
+### Excluding Slides from Progress
+
+If your form has non-question slides (intro, thank you page), exclude them:
+
+```javascript
+// Form structure: [intro] [Q1] [Q2] [Q3] [thank you]
+<FormProgressBar
+	currentSlideIndex={activeSlideIndex}
+	totalSlides={slides.length}
+	excludeStart={1}  // Skip the intro slide
+	excludeEnd={1}    // Skip the thank you slide
+	onStepClick={jumpToSlide}
+	currentLang={currentLang}
+/>
+// Progress bar will show: 1, 2, 3 (for Q1, Q2, Q3 only)
+```
+
+### Styling
+
+The progress bar is fixed at the top with:
+- Background: `rgba(255, 255, 255, 0.95)` with backdrop blur
+- Active color: `#09595c` (PHA teal)
+- Height: Auto (approximately 60px with padding)
+- Z-index: 900 (above form content)
+
+**Note:** Ensure your form content has sufficient top padding (100px recommended) to avoid overlapping with the fixed progress bar.
 
 ## Shared Configuration
 

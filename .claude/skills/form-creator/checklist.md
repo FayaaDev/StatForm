@@ -34,13 +34,22 @@ Use this checklist when adding a new form to the React Form Hub.
 - [ ] Create file: `react-form-hub/src/pages/YourFormPage.jsx`
 - [ ] Import dependencies: `useOutletContext`, `useEffect`, `useState`
 - [ ] Import `FormRenderer` component
+- [ ] Import `FormProgressBar` component
+- [ ] Import `useFormController` hook
 - [ ] Import your composer function and `getFormOptions`
 - [ ] Get `currentLang` from outlet context
 - [ ] Create state for `composer` and `options`
+- [ ] Initialize `useFormController` with formId and currentLang
+- [ ] Configure optional hotkeys if needed (e.g., Y/N shortcuts)
+- [ ] Configure optional `onLastSlideNext` handler if needed
+- [ ] Destructure hook returns: `setFormInstance`, `containerProps`, `activeSlideIndex`, `slides`, `jumpToSlide`
 - [ ] Set up `useEffect` with `[currentLang]` dependency
 - [ ] Create composer and options in useEffect
 - [ ] Add loading state check
-- [ ] Render `FormRenderer` with unique container ID
+- [ ] Render `FormProgressBar` with required props
+- [ ] Wrap `FormRenderer` in a div with `{...containerProps}`
+- [ ] Pass `setFormInstance` to `FormRenderer` `onMount` prop
+- [ ] Render `FormRenderer` with unique container ID (must match hook's formId)
 - [ ] Export component as default
 
 ### 3. Routing Configuration
@@ -73,12 +82,20 @@ Use this checklist when adding a new form to the React Form Hub.
 - [ ] All fields render correctly
 - [ ] Field validation works (required fields, email format, etc.)
 - [ ] Progress indicators display correctly
-- [ ] Start button works
+- [ ] **Progress bar** displays at top with correct number of steps
+- [ ] **Progress bar** updates active step as you navigate
+- [ ] **Progress bar** allows clicking to jump to different slides
+- [ ] **Progress bar** auto-scrolls to keep active step visible
+- [ ] **Progress bar** scroll arrows work when steps overflow
+- [ ] Start button works (if using one)
 - [ ] Navigation between slides works (Next/Previous)
-- [ ] Keyboard navigation works (Enter to advance, A-Z for choices)
+- [ ] Keyboard navigation works (Enter to advance)
+- [ ] **Custom hotkeys work** (if configured, e.g., Y/N)
+- [ ] Default A-Z hotkeys work for choice inputs (if not overridden)
+- [ ] **Last slide Next button** behaves correctly (removed or custom handler triggers)
 - [ ] Conditional fields show/hide correctly
 - [ ] Conditional slides skip correctly (if using jumpCondition)
-- [ ] Submit button appears on final slide
+- [ ] Submit button appears on final slide (if applicable)
 - [ ] Form submission works (check endpoint receives data)
 
 ### Internationalization

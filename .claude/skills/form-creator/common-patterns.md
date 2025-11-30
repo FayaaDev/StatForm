@@ -431,6 +431,227 @@ serviceAspects.forEach((aspect) => {
 
 ---
 
+## Progress Bar with Intro/Outro Slides
+
+When your form has non-question slides (intro, thank you), exclude them from the progress bar:
+
+```javascript
+const YourFormPage = () => {
+	const { currentLang } = useOutletContext();
+	const [composer, setComposer] = useState(null);
+	const [options, setOptions] = useState(null);
+
+	const {
+		setFormInstance,
+		containerProps,
+		activeSlideIndex,
+		slides,
+		jumpToSlide
+	} = useFormController({
+		formId: "survey-container",
+		currentLang: currentLang
+	});
+
+	// ... useEffect and loading logic ...
+
+	return (
+		<>
+			{/*
+				Form structure: [intro slide] [Q1] [Q2] [Q3] [Q4] [Q5] [thank you slide]
+				Total: 7 slides
+				Questions: 5 slides (indices 1-5)
+				Progress bar will show: 1, 2, 3, 4, 5
+			*/}
+			<FormProgressBar
+				currentSlideIndex={activeSlideIndex}
+				totalSlides={slides.length}
+				excludeStart={1}  // Skip intro slide
+				excludeEnd={1}    // Skip thank you slide
+				onStepClick={jumpToSlide}
+				currentLang={currentLang}
+			/>
+			<div {...containerProps}>
+				<FormRenderer
+					composer={composer}
+					options={options}
+					id="survey-container"
+					onMount={setFormInstance}
+				/>
+			</div>
+		</>
+	);
+};
+```
+
+---
+
+## Custom Hotkeys for Yes/No Forms
+
+Create keyboard shortcuts for faster form completion:
+
+```javascript
+const {
+	setFormInstance,
+	containerProps,
+	activeSlideIndex,
+	slides,
+	jumpToSlide
+} = useFormController({
+	formId: "yes-no-form",
+	currentLang: currentLang,
+
+	// Define custom hotkeys
+	hotkeys: {
+		y: { en: "Yes", ar: "نعم" },
+		n: { en: "No", ar: "لا" },
+		s: { en: "Sometimes", ar: "أحيانًا" }
+	}
+});
+```
+
+**In your form definition:**
+
+```javascript
+// Each choice question should include the hotkey text
+composer.choiceInput("question1", {
+	question: translate(localization, {
+		en: "Do you agree?",
+		ar: "هل توافق؟"
+	}),
+	choices: [
+		translate(localization, { en: "Yes", ar: "نعم" }),        // Press 'Y'
+		translate(localization, { en: "No", ar: "لا" }),         // Press 'N'
+		translate(localization, { en: "Sometimes", ar: "أحيانًا" })  // Press 'S'
+	],
+	required: true
+});
+```
+
+**How it works:**
+- User presses 'Y' → automatically selects "Yes"
+- Works across both languages automatically
+- Doesn't interfere with typing in text inputs
+
+---
+
+## Custom Last Slide Handler
+
+Control what happens when the user clicks "Next" on the final slide:
+
+```javascript
+const [showThankYou, setShowThankYou] = useState(false);
+
+const {
+	setFormInstance,
+	containerProps,
+	activeSlideIndex,
+	slides,
+	jumpToSlide
+} = useFormController({
+	formId: "feedback-form",
+	currentLang: currentLang,
+
+	// Custom completion handler
+	onLastSlideNext: (e, lastSlide) => {
+		e.preventDefault();
+
+		// Option 1: Show inline thank you message
+		setShowThankYou(true);
+
+		// Option 2: Redirect to another page
+		// window.location.href = "/thank-you";
+
+		// Option 3: Trigger custom analytics
+		// trackEvent('form_completed', { formId: 'feedback-form' });
+
+		// Option 4: Show custom modal
+		// openModal({ type: 'success', message: 'Form submitted!' });
+	}
+});
+
+return (
+	<>
+		{showThankYou ? (
+			<div style={{ textAlign: 'center', padding: '50px' }}>
+				<h1>{currentLang === 'ar' ? 'شكراً لك!' : 'Thank You!'}</h1>
+				<p>
+					{currentLang === 'ar'
+						? 'تم إرسال ردودك بنجاح.'
+						: 'Your responses have been submitted successfully.'}
+				</p>
+			</div>
+		) : (
+			<>
+				<FormProgressBar {...progressBarProps} />
+				<div {...containerProps}>
+					<FormRenderer {...rendererProps} />
+				</div>
+			</>
+		)}
+	</>
+);
+```
+
+---
+
+## Progress Bar with Minimal Setup
+
+Simplest integration (no intro/outro slides, default behavior):
+
+```javascript
+import { useOutletContext } from "react-router-dom";
+import { useEffect, useState } from "react";
+import FormRenderer from "../components/FormRenderer";
+import FormProgressBar from "../components/FormProgressBar";
+import { useFormController } from "../hooks/useFormController.js";
+import { createYourFormComposer } from "../forms/YourForm.js";
+import { getFormOptions } from "../forms/formUtils.js";
+
+const YourFormPage = () => {
+	const { currentLang } = useOutletContext();
+	const [composer, setComposer] = useState(null);
+	const [options, setOptions] = useState(null);
+
+	const { setFormInstance, containerProps, activeSlideIndex, slides, jumpToSlide } =
+		useFormController({
+			formId: "your-form",
+			currentLang: currentLang
+		});
+
+	useEffect(() => {
+		setComposer(createYourFormComposer(currentLang));
+		setOptions(getFormOptions(currentLang));
+	}, [currentLang]);
+
+	if (!composer || !options) return <div>Loading...</div>;
+
+	return (
+		<>
+			<FormProgressBar
+				currentSlideIndex={activeSlideIndex}
+				totalSlides={slides.length}
+				excludeStart={0}
+				excludeEnd={0}
+				onStepClick={jumpToSlide}
+				currentLang={currentLang}
+			/>
+			<div {...containerProps}>
+				<FormRenderer
+					composer={composer}
+					options={options}
+					id="your-form"
+					onMount={setFormInstance}
+				/>
+			</div>
+		</>
+	);
+};
+
+export default YourFormPage;
+```
+
+---
+
 ## Tips for Using These Patterns
 
 1. **Always localize:** Use `translate()` for all user-facing text
@@ -440,6 +661,9 @@ serviceAspects.forEach((aspect) => {
 5. **Descriptions:** Add helpful context with `description` property
 6. **Testing:** Test conditional logic thoroughly in both languages
 7. **Accessibility:** Ensure form works with keyboard navigation
+8. **Progress bar exclusions:** Count your intro/outro slides carefully when setting excludeStart/excludeEnd
+9. **Hotkey consistency:** Use the same choice text across all questions for hotkeys to work reliably
+10. **Container props:** Always spread `{...containerProps}` on the div wrapping FormRenderer
 
 ## Combining Patterns
 
