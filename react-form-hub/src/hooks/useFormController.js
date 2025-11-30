@@ -8,6 +8,8 @@ export const useFormController = ({
     currentLang = 'en'
 }) => {
     const [formInstance, setFormInstance] = useState(null);
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+    const [slides, setSlides] = useState([]);
 
     // Handle form mount
     const handleMount = useCallback((instance) => {
@@ -15,12 +17,25 @@ export const useFormController = ({
         if (onMount) onMount(instance);
     }, [onMount]);
 
-    // DOM Manipulation Logic (MutationObserver & Button Cleanup)
+    // DOM Manipulation Logic (MutationObserver & Button Cleanup & Slide Tracking)
     useEffect(() => {
         if (!formInstance) return;
 
         const container = document.getElementById(formId);
         if (!container) return;
+
+        const updateSlideState = () => {
+            const allSlides = Array.from(container.querySelectorAll(".fmd-slide"));
+            setSlides(allSlides);
+
+            const activeSlide = container.querySelector(".fmd-slide.fmd-slide-active");
+            if (activeSlide) {
+                const index = allSlides.indexOf(activeSlide);
+                if (index !== -1) {
+                    setActiveSlideIndex(index);
+                }
+            }
+        };
 
         const cleanupButtons = () => {
             // Check if we are on the last slide by checking if our custom button is visible
@@ -86,12 +101,35 @@ export const useFormController = ({
             thankYouScreens.forEach(screen => screen.remove());
         };
 
-        // Initial cleanup
-        const timer = setTimeout(cleanupButtons, 100);
+        // Initial update
+        setTimeout(() => {
+            cleanupButtons();
+            updateSlideState();
+        }, 100);
 
         // Observer for dynamic changes
-        const observer = new MutationObserver(() => {
+        const observer = new MutationObserver((mutations) => {
             cleanupButtons();
+
+            // Check if slide changed
+            let slideChanged = false;
+            mutations.forEach(mutation => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const target = mutation.target;
+                    if (target.classList.contains('fmd-slide')) {
+                        slideChanged = true;
+                    }
+                } else if (mutation.type === 'childList') {
+                    // If slides are added/removed
+                    if (mutation.target === container || mutation.target.closest('.fmd-slide')) {
+                        slideChanged = true;
+                    }
+                }
+            });
+
+            if (slideChanged) {
+                updateSlideState();
+            }
         });
 
         observer.observe(container, {
@@ -102,7 +140,6 @@ export const useFormController = ({
         });
 
         return () => {
-            clearTimeout(timer);
             observer.disconnect();
         };
     }, [formInstance, formId, onLastSlideNext]);
@@ -158,6 +195,29 @@ export const useFormController = ({
         }
     }, []);
 
+    const jumpToSlide = useCallback((index) => {
+        if (!formInstance || !slides[index]) return;
+
+        const targetSlide = slides[index];
+        const currentSlide = slides[activeSlideIndex];
+
+        if (currentSlide === targetSlide) return;
+
+        if (currentSlide) {
+            currentSlide.classList.remove("fmd-slide-active");
+        }
+        targetSlide.classList.add("fmd-slide-active");
+
+        // Trigger internal form update
+        // Note: 1-based index for formInstance logic usually, but let's check what we did before
+        // Before: formInstance.hasNewActiveSlide(targetSlide, circleIndex + 1, false);
+        // circleIndex + 1 was the slide index (since circle 0 -> slide 1)
+        // So here we pass index (which is the actual slide index)
+        formInstance.hasNewActiveSlide(targetSlide, index, false);
+
+        setActiveSlideIndex(index);
+    }, [formInstance, slides, activeSlideIndex]);
+
     return {
         formInstance,
         setFormInstance: handleMount,
@@ -165,6 +225,9 @@ export const useFormController = ({
             onKeyDown: handleInputKeyEvents,
             onKeyPress: handleInputKeyEvents,
             onKeyUp: handleInputKeyEvents
-        }
+        },
+        activeSlideIndex,
+        slides,
+        jumpToSlide
     };
 };
