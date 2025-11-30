@@ -15,7 +15,7 @@ export function createNeurologyHistoryFormComposer(localization = "en") {
 		pageProgress: "hide", // Hide default progress bar
 		thankYouScreenTitle: "",
 		thankYouScreenDescription: "",
-		paddingInlineTop: 120, // Adjusted space for the fixed progress header
+		paddingInlineTop: 120, // Adjusted space for the step progress header
 	});
 
 	// Header

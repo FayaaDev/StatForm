@@ -72,7 +72,7 @@ const NeurologyHistoryFormPage = () => {
         // Initial update
         setTimeout(() => {
             const slides = Array.from(container.querySelectorAll(".fmd-slide"));
-            setSlideCount(Math.max(0, slides.length - 1)); // Exclude header slide
+            setSlideCount(Math.max(0, slides.length - 2)); // Exclude header slide and generate story slide
 
             const activeSlide = container.querySelector(".fmd-slide.fmd-slide-active");
             if (activeSlide) {
@@ -302,7 +302,7 @@ const NeurologyHistoryFormPage = () => {
 
     return (
         <>
-            {/* Fixed Progress Bar */}
+            {/* step Progress Bar */}
             <style>
                 {`
                 #circular-progress-nav {
@@ -314,37 +314,51 @@ const NeurologyHistoryFormPage = () => {
                     background: rgba(255, 255, 255, 0.95);
                     backdrop-filter: blur(8px);
                     border-bottom: 1px solid #e0e0e0;
-                    padding: 15px 0;
+                    padding: 15px 140px;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
                     display: flex;
                     justify-content: center;
+                    align-items: center;
+                    box-sizing: border-box;
                 }
 
                 #progress-scroll-container {
                     width: 100%;
-                    max-width: calc(100% - 300px);
-                    margin: 0 auto;
+                    max-width: calc(100% - 120px); /* Adjust for arrows */
+                    margin: 0 10px;
                     overflow-x: auto;
                     padding: 10px 20px;
                     scroll-behavior: smooth;
-                    scrollbar-width: thin;
+                    scrollbar-width: none; /* Firefox */
+                    -ms-overflow-style: none;  /* IE and Edge */
                 }
 
                 #progress-scroll-container::-webkit-scrollbar {
-                    height: 4px;
+                    display: none; /* Chrome, Safari and Opera */
                 }
 
-                #progress-scroll-container::-webkit-scrollbar-track {
-                    background: transparent;
+                .nav-arrow {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 8px;
+                    color: #09595c;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: transform 0.2s ease, opacity 0.2s;
+                    opacity: 0.7;
                 }
 
-                #progress-scroll-container::-webkit-scrollbar-thumb {
-                    background: rgba(9, 89, 92, 0.2);
-                    border-radius: 4px;
+                .nav-arrow:hover {
+                    transform: scale(1.1);
+                    opacity: 1;
                 }
 
-                #progress-scroll-container::-webkit-scrollbar-thumb:hover {
-                    background: rgba(9, 89, 92, 0.4);
+                .nav-arrow svg {
+                    width: 24px;
+                    height: 24px;
+                    fill: currentColor;
                 }
 
                 .progress-track {
@@ -423,9 +437,22 @@ const NeurologyHistoryFormPage = () => {
                 `}
             </style>
             <div id="circular-progress-nav">
+                <button
+                    className="nav-arrow"
+                    onClick={() => {
+                        const container = document.getElementById('progress-scroll-container');
+                        if (container) container.scrollBy({ left: -200, behavior: 'smooth' });
+                    }}
+                    aria-label="Scroll left"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
+                </button>
+
                 <div id="progress-scroll-container">
-                    <div class="progress-track">
-                        <div class="progress-line-bg"></div>
+                    <div className="progress-track">
+                        <div className="progress-line-bg"></div>
                         <div id="progress-bar-fill"></div>
                         {Array.from({ length: slideCount }).map((_, index) => (
                             <div
@@ -440,6 +467,19 @@ const NeurologyHistoryFormPage = () => {
                         ))}
                     </div>
                 </div>
+
+                <button
+                    className="nav-arrow"
+                    onClick={() => {
+                        const container = document.getElementById('progress-scroll-container');
+                        if (container) container.scrollBy({ left: 200, behavior: 'smooth' });
+                    }}
+                    aria-label="Scroll right"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
+                </button>
             </div>
 
             <div
