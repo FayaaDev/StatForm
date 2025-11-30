@@ -20,6 +20,7 @@ const HomePage = () => {
 		surveyForm: { en: "Survey Form", ar: "نموذج الاستبيان" },
 		burnoutSurvey: { en: "Burnout Survey", ar: "استبيان الاحتراق النفسي" },
 		neurologyHistory: { en: "Neurology History", ar: "التاريخ العصبي" },
+		acuteAbdomen: { en: "Acute Abdomen", ar: "البطن الحاد" },
 		enterName: {
 			en: "Enter Form Name (e.g., Contact)",
 			ar: "أدخل اسم النموذج (مثلاً: تواصل)",
@@ -175,6 +176,9 @@ export default ${formName}FormPage;
 						</Link>
 						<Link to="/neurology-history" className="form-link-card">
 							{txt("neurologyHistory")}
+						</Link>
+						<Link to="/acute-abdomen" className="form-link-card">
+							{txt("acuteAbdomen")}
 						</Link>
 						<Link to="/tester-form" className="form-link-card">
 							نموذج تسليم الأصول
