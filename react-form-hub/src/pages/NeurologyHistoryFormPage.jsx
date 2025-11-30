@@ -135,6 +135,20 @@ const NeurologyHistoryFormPage = () => {
     };
 
     const handleModalConfirm = () => {
+        // Clear all formsmd data for this form
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith("formsmd:neurology-history-form")) {
+                localStorage.removeItem(key);
+            }
+        });
+
+        // Also clear sessionStorage just in case
+        Object.keys(sessionStorage).forEach(key => {
+            if (key.startsWith("formsmd:neurology-history-form")) {
+                sessionStorage.removeItem(key);
+            }
+        });
+
         window.location.reload();
     };
 
