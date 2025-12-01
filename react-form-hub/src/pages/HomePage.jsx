@@ -21,6 +21,7 @@ const HomePage = () => {
 		burnoutSurvey: { en: "Burnout Survey", ar: "استبيان الاحتراق النفسي" },
 		neurologyHistory: { en: "Neurology History", ar: "التاريخ العصبي" },
 		acuteAbdomen: { en: "Acute Abdomen", ar: "البطن الحاد" },
+		chestPain: { en: "Chest Pain History", ar: "تاريخ ألم الصدر" },
 		enterName: {
 			en: "Enter Form Name (e.g., Contact)",
 			ar: "أدخل اسم النموذج (مثلاً: تواصل)",
@@ -180,8 +181,11 @@ export default ${formName}FormPage;
 						<Link to="/acute-abdomen" className="form-link-card">
 							{txt("acuteAbdomen")}
 						</Link>
+						<Link to="/chest-pain" className="form-link-card">
+							{txt("chestPain")}
+						</Link>
 						<Link to="/tester-form" className="form-link-card">
-							نموذج تسليم الأصول
+							Assets Turnover Form
 						</Link>
 					</div>
 					<button className="back-btn" onClick={() => setView("main")}>

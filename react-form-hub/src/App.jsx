@@ -8,6 +8,7 @@ import SurveyFormPage from "./pages/SurveyFormPage";
 import BurnoutSurveyPage from "./pages/BurnoutSurveyPage";
 import NeurologyHistoryFormPage from "./pages/NeurologyHistoryFormPage";
 import AcuteAbodemPage from "./pages/AcuteAbodemPage";
+import ChestPainPage from "./pages/ChestPainPage";
 import "./App.css";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
 					<Route path="burnout-survey" element={<BurnoutSurveyPage />} />
 					<Route path="neurology-history" element={<NeurologyHistoryFormPage />} />
 					<Route path="acute-abdomen" element={<AcuteAbodemPage />} />
+					<Route path="chest-pain" element={<ChestPainPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
