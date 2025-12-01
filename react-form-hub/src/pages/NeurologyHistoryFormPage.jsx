@@ -5,11 +5,13 @@ import FormProgressBar from "../components/FormProgressBar";
 import { createNeurologyHistoryFormComposer } from "../forms/NeurologyHistoryForm.js";
 import { getFormOptions } from "../forms/formUtils.js";
 import { useFormController } from "../hooks/useFormController.js";
+import { useTheme } from "../contexts/ThemeContext";
 
 import { generatePatientStory } from "../utils/gemini.js";
 
 const NeurologyHistoryFormPage = () => {
     const { currentLang } = useOutletContext();
+    const theme = useTheme();
     const [composer, setComposer] = useState(null);
     const [options, setOptions] = useState(null);
 
@@ -48,9 +50,9 @@ const NeurologyHistoryFormPage = () => {
     });
 
     useEffect(() => {
-        const newComposer = createNeurologyHistoryFormComposer(currentLang);
+        const newComposer = createNeurologyHistoryFormComposer(currentLang, theme);
         const newOptions = {
-            ...getFormOptions(currentLang),
+            ...getFormOptions(currentLang, theme),
             // Disable form submission since this is a template generator, not a submittable form
             postUrl: null,
             // Disable restart button on final slide
@@ -62,7 +64,7 @@ const NeurologyHistoryFormPage = () => {
 
         setComposer(newComposer);
         setOptions(newOptions);
-    }, [currentLang]);
+    }, [currentLang, theme]);
 
     const handleGenerateStory = async () => {
         if (!formInstance) return;

@@ -6,12 +6,20 @@
 }
 
 :root {
-	font-family: "Majalla", sans-serif;
+	/* Theme CSS variables (set by ThemeProvider) */
+	--theme-primary: #09595C;
+	--theme-accent: #09595C;
+	--theme-text: #063E40;
+	--theme-background: #ffffff;
+	--theme-foreground: #ffffff;
+	--theme-font-family: "Majalla", sans-serif;
+
+	font-family: var(--theme-font-family);
 	line-height: 1.5;
 	font-weight: 400;
 
-	color: #063e40;
-	background-color: #ffffff;
+	color: var(--theme-text);
+	background-color: var(--theme-background);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -28,8 +36,8 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	background-color: #ffffff;
-	font-family: "Majalla", sans-serif;
+	background-color: var(--theme-background);
+	font-family: var(--theme-font-family);
 }
 
 #root {
@@ -39,18 +47,18 @@ body {
 
 a {
 	font-weight: 500;
-	color: #09595c;
+	color: var(--theme-primary);
 	text-decoration: inherit;
 }
 
 a:hover {
-	color: #063e40;
+	color: var(--theme-text);
 }
 
 h1 {
 	font-size: 2.5em;
 	line-height: 1.1;
-	color: #09595c;
+	color: var(--theme-primary);
 }
 
 button {
@@ -59,14 +67,14 @@ button {
 	padding: 0.6em 1.2em;
 	font-size: 1em;
 	font-weight: 500;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 	cursor: pointer;
 	transition: all 0.3s;
 }
 
 button:focus,
 button:focus-visible {
-	outline: 2px solid #09595c;
+	outline: 2px solid var(--theme-primary);
 }
 
 /* Key hints for choice inputs */

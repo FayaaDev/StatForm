@@ -1,7 +1,7 @@
 import { translate } from "../utils/translate.js";
 import { getSharedFormConfig, GOOGLE_SCRIPT_URL } from "./formUtils.js";
 
-export function createChestPainHistoryFormComposer(localization = "en") {
+export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	if (!window.Composer) {
 		console.error("Composer not loaded yet");
 		return null;
@@ -9,7 +9,7 @@ export function createChestPainHistoryFormComposer(localization = "en") {
 
 	const composer = new window.Composer({
 		id: "chest-pain-history-form",
-		...getSharedFormConfig(localization),
+		...getSharedFormConfig(localization, theme),
 		postUrl: null, // No submission for this template generator
 		restartButton: "hide",
 		pageProgress: "hide", // Hide default progress bar

@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import FormRenderer from "../components/FormRenderer";
 import { createSurveyFormComposer } from "../forms/SurveyForm";
 import { getFormOptions } from "../forms/formUtils";
+import { useTheme } from "../contexts/ThemeContext";
 
 import FormProgressBar from "../components/FormProgressBar";
 import { useFormController } from "../hooks/useFormController.js";
 
 const SurveyFormPage = () => {
 	const { currentLang } = useOutletContext();
+	const theme = useTheme();
 	const [composer, setComposer] = useState(null);
 	const [options, setOptions] = useState(null);
 
@@ -24,13 +26,13 @@ const SurveyFormPage = () => {
 	});
 
 	useEffect(() => {
-		// Create composer and options based on current language
-		const newComposer = createSurveyFormComposer(currentLang);
-		const newOptions = getFormOptions(currentLang);
+		// Create composer and options based on current language and theme
+		const newComposer = createSurveyFormComposer(currentLang, theme);
+		const newOptions = getFormOptions(currentLang, theme);
 
 		setComposer(newComposer);
 		setOptions(newOptions);
-	}, [currentLang]);
+	}, [currentLang, theme]);
 
 	if (!composer || !options) {
 		return <div>Loading...</div>;

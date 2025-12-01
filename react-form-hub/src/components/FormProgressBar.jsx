@@ -98,7 +98,7 @@ const FormProgressBar = ({
                     border: none;
                     cursor: pointer;
                     padding: 8px;
-                    color: #09595c;
+                    color: var(--theme-primary);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -145,7 +145,7 @@ const FormProgressBar = ({
                     top: 50%;
                     left: 0;
                     height: 3px;
-                    background: #09595c;
+                    background: var(--theme-primary);
                     transform: translateY(-50%);
                     z-index: 2;
                     width: 0%;
@@ -174,21 +174,21 @@ const FormProgressBar = ({
                 }
 
                 .progress-circle.active {
-                    border-color: #09595c;
-                    color: #09595c;
+                    border-color: var(--theme-primary);
+                    color: var(--theme-primary);
                     background-color: #f0f9f9;
                 }
 
                 .progress-circle.completed {
-                    background-color: #09595c;
-                    border-color: #09595c;
+                    background-color: var(--theme-primary);
+                    border-color: var(--theme-primary);
                     color: white;
                 }
 
                 .progress-circle:hover {
                     transform: scale(1.1);
-                    border-color: #09595c;
-                    box-shadow: 0 2px 5px rgba(9, 89, 92, 0.2);
+                    border-color: var(--theme-primary);
+                    box-shadow: 0 2px 5px color-mix(in srgb, var(--theme-primary) 20%, transparent);
                 }
                 `}
             </style>

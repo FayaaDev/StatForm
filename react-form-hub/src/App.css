@@ -22,18 +22,18 @@
 	left: 20px;
 	z-index: 1000;
 	padding: 10px 20px;
-	background-color: #09595c;
-	color: #ffffff;
+	background-color: var(--theme-primary);
+	color: var(--theme-foreground);
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 	font-size: 16px;
 	transition: background-color 0.3s;
 }
 
 .lang-toggle:hover {
-	background-color: #063e40;
+	background-color: var(--theme-text);
 }
 
 /* Navigation Menu */
@@ -51,10 +51,10 @@
 .nav-link {
 	padding: 6px 12px;
 	background-color: rgba(245, 245, 245, 0.95);
-	color: #063e40;
+	color: var(--theme-text);
 	text-decoration: none;
 	border-radius: 5px;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 	font-size: 13px;
 	transition: background-color 0.3s;
 	text-align: center;
@@ -82,13 +82,13 @@
 }
 
 .home-page h1 {
-	color: #09595c;
+	color: var(--theme-primary);
 	font-size: 2.5em;
 	margin-bottom: 20px;
 }
 
 .home-page p {
-	color: #063e40;
+	color: var(--theme-text);
 	font-size: 1.2em;
 }
 
@@ -116,7 +116,7 @@
 }
 
 .main-action-btn {
-	background-color: #09595c;
+	background-color: var(--theme-primary);
 	color: white;
 	border: none;
 	padding: 20px 40px;
@@ -127,11 +127,11 @@
 		transform 0.2s,
 		background-color 0.2s;
 	min-width: 200px;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 }
 
 .main-action-btn:hover {
-	background-color: #063e40;
+	background-color: var(--theme-text);
 	transform: translateY(-2px);
 }
 
@@ -154,7 +154,7 @@
 	background-color: #f5f5f5;
 	border-radius: 8px;
 	text-decoration: none;
-	color: #063e40;
+	color: var(--theme-text);
 	font-size: 1.2em;
 	transition: background-color 0.2s;
 	border: 1px solid #e0e0e0;
@@ -180,16 +180,16 @@
 	font-size: 1.1em;
 	border: 2px solid #e0e0e0;
 	border-radius: 8px;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 }
 
 .name-input:focus {
-	border-color: #09595c;
+	border-color: var(--theme-primary);
 	outline: none;
 }
 
 .generate-btn {
-	background-color: #09595c;
+	background-color: var(--theme-primary);
 	color: white;
 	padding: 15px 30px;
 	font-size: 1.1em;
@@ -232,12 +232,12 @@
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
-	font-family: "Majalla", sans-serif;
+	font-family: var(--theme-font-family);
 	font-size: 1em;
 }
 
 .copy-btn {
-	background-color: #09595c;
+	background-color: var(--theme-primary);
 	color: white;
 	border: none;
 }
@@ -254,7 +254,7 @@
 }
 
 .copy-btn:hover {
-	background-color: #063e40;
+	background-color: var(--theme-text);
 }
 
 .reset-btn:hover,

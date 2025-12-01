@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import FormRenderer from "../components/FormRenderer";
 import { createFeedbackFormComposer } from "../forms/FeedbackForm";
 import { getFormOptions } from "../forms/formUtils";
+import { useTheme } from "../contexts/ThemeContext";
 
 import FormProgressBar from "../components/FormProgressBar";
 import { useFormController } from "../hooks/useFormController.js";
 
 const FeedbackFormPage = () => {
 	const { currentLang } = useOutletContext();
+	const theme = useTheme();
 	const [composer, setComposer] = useState(null);
 	const [options, setOptions] = useState(null);
 
@@ -24,13 +26,13 @@ const FeedbackFormPage = () => {
 	});
 
 	useEffect(() => {
-		// Create composer and options based on current language
-		const newComposer = createFeedbackFormComposer(currentLang);
-		const newOptions = getFormOptions(currentLang);
+		// Create composer and options based on current language and theme
+		const newComposer = createFeedbackFormComposer(currentLang, theme);
+		const newOptions = getFormOptions(currentLang, theme);
 
 		setComposer(newComposer);
 		setOptions(newOptions);
-	}, [currentLang]);
+	}, [currentLang, theme]);
 
 	if (!composer || !options) {
 		return <div>Loading...</div>;

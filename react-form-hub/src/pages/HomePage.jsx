@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeContext";
+import { formRegistry } from "../config/formRegistry";
 
 const HomePage = () => {
 	const { currentLang } = useOutletContext();
+	const theme = useTheme();
 	const [view, setView] = useState("main"); // main, review, create
 	const [newFormName, setNewFormName] = useState("");
 	const [generatedFormCode, setGeneratedFormCode] = useState("");
 	const [generatedPageCode, setGeneratedPageCode] = useState("");
+
+	// Filter forms by current theme
+	const availableForms = formRegistry.filter((form) =>
+		form.themes.includes(theme.id)
+	);
 
 	const translations = {
 		welcome: { en: "Welcome to the Form Hub", ar: "مرحباً بك في مركز النماذج" },
@@ -15,13 +23,6 @@ const HomePage = () => {
 		reviewBtn: { en: "Review Forms", ar: "مراجعة النماذج" },
 		backBtn: { en: "Back", ar: "رجوع" },
 		availableForms: { en: "Available Forms", ar: "النماذج المتاحة" },
-		demoForm: { en: "Demo Form", ar: "النموذج التجريبي" },
-		feedbackForm: { en: "Feedback Form", ar: "نموذج الملاحظات" },
-		surveyForm: { en: "Survey Form", ar: "نموذج الاستبيان" },
-		burnoutSurvey: { en: "Burnout Survey", ar: "استبيان الاحتراق النفسي" },
-		neurologyHistory: { en: "Neurology History", ar: "التاريخ العصبي" },
-		acuteAbdomen: { en: "Acute Abdomen", ar: "البطن الحاد" },
-		chestPain: { en: "Chest Pain History", ar: "تاريخ ألم الصدر" },
 		enterName: {
 			en: "Enter Form Name (e.g., Contact)",
 			ar: "أدخل اسم النموذج (مثلاً: تواصل)",
@@ -163,30 +164,15 @@ export default ${formName}FormPage;
 				<div className="review-section">
 					<h2>{txt("availableForms")}</h2>
 					<div className="form-list">
-						<Link to="/demo-form" className="form-link-card">
-							{txt("demoForm")}
-						</Link>
-						<Link to="/feedback-form" className="form-link-card">
-							{txt("feedbackForm")}
-						</Link>
-						<Link to="/survey-form" className="form-link-card">
-							{txt("surveyForm")}
-						</Link>
-						<Link to="/burnout-survey" className="form-link-card">
-							{txt("burnoutSurvey")}
-						</Link>
-						<Link to="/neurology-history" className="form-link-card">
-							{txt("neurologyHistory")}
-						</Link>
-						<Link to="/acute-abdomen" className="form-link-card">
-							{txt("acuteAbdomen")}
-						</Link>
-						<Link to="/chest-pain" className="form-link-card">
-							{txt("chestPain")}
-						</Link>
-						<Link to="/tester-form" className="form-link-card">
-							Assets Turnover Form
-						</Link>
+						{availableForms.map((form) => (
+							<Link
+								key={form.id}
+								to={theme.id === "pha" ? `/pha/${form.path}` : `/${form.path}`}
+								className="form-link-card"
+							>
+								{form.title[currentLang]}
+							</Link>
+						))}
 					</div>
 					<button className="back-btn" onClick={() => setView("main")}>
 						{txt("backBtn")}

@@ -1,7 +1,9 @@
 import { Outlet, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const HubLayout = () => {
+	const theme = useTheme();
 	const [currentLang, setCurrentLang] = useState(() => {
 		return localStorage.getItem("localization") || "ar";
 	});
@@ -31,12 +33,15 @@ const HubLayout = () => {
 		document.documentElement.lang = currentLang;
 	}, [currentLang]);
 
+	// Determine root path based on theme
+	const rootPath = theme.id === "pha" ? "/pha" : "/";
+
 	return (
 		<div className="hub-layout">
 			{/* Logo */}
 			<div className="logo">
-				<Link to="/">
-					<img src="/PHAlogo.png" alt="Logo" />
+				<Link to={rootPath}>
+					<img src={theme.logo.path} alt={theme.logo.alt} />
 				</Link>
 			</div>
 

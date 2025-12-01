@@ -5,9 +5,10 @@ export const GOOGLE_SCRIPT_URL =
 /**
  * Get shared form configuration for Composer
  * @param {string} localization - Language code
+ * @param {Object} theme - Theme object from ThemeContext
  * @returns {Object} Shared configuration
  */
-export function getSharedFormConfig(localization = "en") {
+export function getSharedFormConfig(localization = "en", theme) {
 	return {
 		formStyle: "conversational",
 		fontSize: "lg",
@@ -17,10 +18,10 @@ export function getSharedFormConfig(localization = "en") {
 		paddingInlineBottom: 80,
 		paddingInlineTop: 100,
 		colorScheme: "light",
-		accent: "#09595C",
-		accentForeground: "#ffffff",
-		backgroundColor: "#ffffff",
-		color: "#063E40",
+		accent: theme.colors.accent,
+		accentForeground: theme.colors.foreground,
+		backgroundColor: theme.colors.background,
+		color: theme.colors.text,
 		localization: localization,
 		dir: localization === "ar" ? "rtl" : "ltr",
 	};
@@ -29,9 +30,10 @@ export function getSharedFormConfig(localization = "en") {
 /**
  * Get form options with callbacks for FormRenderer
  * @param {string} localization - Language code
+ * @param {Object} theme - Theme object from ThemeContext
  * @returns {Object} Form options
  */
-export function getFormOptions(localization = "en") {
+export function getFormOptions(localization = "en", theme) {
 	return {
 		colorScheme: "light",
 		formsmdBranding: "hide",
@@ -41,10 +43,10 @@ export function getFormOptions(localization = "en") {
 		pageProgress: "show",
 		paddingInlineBottom: 80,
 		paddingInlineTop: 300,
-		accent: "#09595C",
-		accentForeground: "#ffffff",
-		backgroundColor: "#ffffff",
-		color: "#063E40",
+		accent: theme.colors.accent,
+		accentForeground: theme.colors.foreground,
+		backgroundColor: theme.colors.background,
+		color: theme.colors.text,
 		onSubmit: (data) => {
 			console.log("Form submitted - data object:", data);
 			console.log("Form submitted - JSON:", JSON.stringify(data, null, 2));

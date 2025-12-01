@@ -5,10 +5,12 @@ import FormProgressBar from "../components/FormProgressBar";
 import { createChestPainHistoryFormComposer } from "../forms/ChestPain.js";
 import { getFormOptions } from "../forms/formUtils.js";
 import { useFormController } from "../hooks/useFormController.js";
+import { useTheme } from "../contexts/ThemeContext";
 import { generatePatientStory } from "../utils/gemini.js";
 
 const ChestPainPage = () => {
 	const { currentLang } = useOutletContext();
+	const theme = useTheme();
 	const [composer, setComposer] = useState(null);
 	const [options, setOptions] = useState(null);
 
@@ -46,9 +48,9 @@ const ChestPainPage = () => {
 	});
 
 	useEffect(() => {
-		const newComposer = createChestPainHistoryFormComposer(currentLang);
+		const newComposer = createChestPainHistoryFormComposer(currentLang, theme);
 		const newOptions = {
-			...getFormOptions(currentLang),
+			...getFormOptions(currentLang, theme),
 			postUrl: null,
 			restartButton: "hide",
 			thankYouScreenTitle: "",
@@ -57,7 +59,7 @@ const ChestPainPage = () => {
 
 		setComposer(newComposer);
 		setOptions(newOptions);
-	}, [currentLang]);
+	}, [currentLang, theme]);
 
 	const handleGenerateStory = async () => {
 		if (!formInstance) return;

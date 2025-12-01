@@ -1,12 +1,13 @@
 import { translate } from "../utils/translate.js";
-import { GOOGLE_SCRIPT_URL } from "./formUtils.js";
+import { GOOGLE_SCRIPT_URL, getSharedFormConfig } from "./formUtils.js";
 
 /**
  * Creates the Burnout Survey composer
  * @param {string} localization - Language code ('en' or 'ar')
+ * @param {Object} theme - Theme object from ThemeContext
  * @returns {Composer} Configured composer instance
  */
-export function createBurnoutSurveyComposer(localization = "en") {
+export function createBurnoutSurveyComposer(localization = "en", theme) {
     if (!window.Composer) {
         console.error("Composer not loaded yet");
         return null;
@@ -14,21 +15,8 @@ export function createBurnoutSurveyComposer(localization = "en") {
 
     const composer = new window.Composer({
         id: "burnout-survey",
-        formStyle: "conversational",
-        fontSize: "lg",
-        rounded: "pill",
-        restartButton: "show",
-        buttonAlignment: "end",
-        paddingInlineBottom: 80,
-        paddingInlineTop: 100,
-        colorScheme: "light",
-        accent: "#09595C",
-        accentForeground: "#ffffff",
-        backgroundColor: "#ffffff",
-        color: "#063E40",
+        ...getSharedFormConfig(localization, theme),
         postUrl: GOOGLE_SCRIPT_URL,
-        localization: localization,
-        dir: localization === "ar" ? "rtl" : "ltr",
     });
 
     // Welcome slide

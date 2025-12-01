@@ -1,26 +1,13 @@
 import { translate } from "../utils/translate.js";
-import { GOOGLE_SCRIPT_URL } from "./formUtils.js";
+import { GOOGLE_SCRIPT_URL, getSharedFormConfig } from "./formUtils.js";
 
-export function createTesterFormComposer(localization = "en") {
+export function createTesterFormComposer(localization = "en", theme) {
 	if (!window.Composer) return null;
 
 	const composer = new window.Composer({
 		id: "tester-form",
-		formStyle: "conversational",
-		fontSize: "lg",
-		rounded: "pill",
-		restartButton: "show",
-		buttonAlignment: "end",
-		paddingInlineBottom: 80,
-		paddingInlineTop: 100,
-		colorScheme: "light",
-		accent: "#09595C",
-		accentForeground: "#ffffff",
-		backgroundColor: "#ffffff",
-		color: "#063E40",
+		...getSharedFormConfig(localization, theme),
 		postUrl: GOOGLE_SCRIPT_URL,
-		localization: localization,
-		dir: localization === "ar" ? "rtl" : "ltr",
 	});
 
 	composer.h1("تسليم أصول الوزارة");

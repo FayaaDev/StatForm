@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import FormRenderer from "../components/FormRenderer";
 import { createBurnoutSurveyComposer } from "../forms/BurnoutSurvey.js";
 import { getFormOptions } from "../forms/formUtils.js";
+import { useTheme } from "../contexts/ThemeContext";
 
 import FormProgressBar from "../components/FormProgressBar";
 import { useFormController } from "../hooks/useFormController.js";
 
 const BurnoutSurveyPage = () => {
     const { currentLang } = useOutletContext();
+    const theme = useTheme();
     const [composer, setComposer] = useState(null);
     const [options, setOptions] = useState(null);
 
@@ -24,12 +26,12 @@ const BurnoutSurveyPage = () => {
     });
 
     useEffect(() => {
-        const newComposer = createBurnoutSurveyComposer(currentLang);
-        const newOptions = getFormOptions(currentLang);
+        const newComposer = createBurnoutSurveyComposer(currentLang, theme);
+        const newOptions = getFormOptions(currentLang, theme);
 
         setComposer(newComposer);
         setOptions(newOptions);
-    }, [currentLang]);
+    }, [currentLang, theme]);
 
     if (!composer || !options) {
         return <div>Loading...</div>;
