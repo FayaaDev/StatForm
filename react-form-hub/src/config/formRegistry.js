@@ -77,6 +77,33 @@ export const formRegistry = [
 			ar: "تاريخ ألم الصدر",
 		},
 	},
+	{
+		id: "fever-unknown-origin",
+		themes: ["personal"],
+		path: "fever-unknown-origin",
+		title: {
+			en: "Fever of Unknown Origin (FUO)",
+			ar: "حمى مجهولة المصدر (FUO)",
+		},
+	},
+	{
+		id: "cough-history",
+		themes: ["personal"],
+		path: "cough-history",
+		title: {
+			en: "Cough History and Assessment",
+			ar: "تاريخ وتقييم السعال",
+		},
+	},
+	{
+		id: "dyspnea-history",
+		themes: ["personal"],
+		path: "dyspnea-history",
+		title: {
+			en: "Dyspnea (Shortness of Breath) History",
+			ar: "تاريخ ضيق التنفس",
+		},
+	},
 ];
 
 // Helper to get forms for a specific theme

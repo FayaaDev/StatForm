@@ -11,6 +11,9 @@ import BurnoutSurveyPage from "./pages/BurnoutSurveyPage";
 import NeurologyHistoryFormPage from "./pages/NeurologyHistoryFormPage";
 import AcuteAbodemPage from "./pages/AcuteAbodemPage";
 import ChestPainPage from "./pages/ChestPainPage";
+import FeverOfUnknownOriginPage from "./pages/FeverOfUnknownOriginPage";
+import CoughPage from "./pages/CoughPage";
+import DyspneaPage from "./pages/DyspneaPage";
 import "./App.css";
 
 function App() {
@@ -34,6 +37,9 @@ function App() {
 					/>
 					<Route path="acute-abdomen" element={<AcuteAbodemPage />} />
 					<Route path="chest-pain" element={<ChestPainPage />} />
+					<Route path="fever-unknown-origin" element={<FeverOfUnknownOriginPage />} />
+					<Route path="cough-history" element={<CoughPage />} />
+					<Route path="dyspnea-history" element={<DyspneaPage />} />
 				</Route>
 
 				{/* PHA Theme Routes */}
