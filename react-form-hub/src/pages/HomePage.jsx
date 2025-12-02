@@ -80,6 +80,13 @@ const HomePage = () => {
 					ar: "حوّل بيانات النماذج إلى سرديات سريرية شاملة تلقائياً.",
 				},
 			},
+			privacy: {
+				title: { en: "Data Security & Privacy", ar: "أمان البيانات والخصوصية" },
+				desc: {
+					en: "Patient data stays on your device. No server uploads. Includes dedicated clear data button for complete control.",
+					ar: "بيانات المرضى تبقى على جهازك. لا يتم الرفع إلى الخادم. يتضمن زر مخصص لمسح البيانات للتحكم الكامل.",
+				},
+			},
 		},
 		cta: {
 			explore: { en: "Explore Forms", ar: "استكشف النماذج" },
