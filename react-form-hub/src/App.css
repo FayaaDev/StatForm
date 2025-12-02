@@ -374,6 +374,7 @@
 		opacity: 0;
 		transform: translateY(20px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -381,9 +382,12 @@
 }
 
 @keyframes pulse {
-	0%, 100% {
+
+	0%,
+	100% {
 		transform: scale(1);
 	}
+
 	50% {
 		transform: scale(1.1);
 	}
@@ -507,7 +511,7 @@
 	text-align: left;
 }
 
-.code-display > p {
+.code-display>p {
 	font-size: 1rem;
 	color: var(--theme-text);
 	margin-bottom: 32px;
@@ -832,6 +836,29 @@
 	.footer-container {
 		padding: 0 16px;
 	}
+}
+
+/* Staggered Animation Styles */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+		filter: blur(4px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+		filter: blur(0);
+	}
+}
+
+.animated-char {
+	animation: fadeInUp 0.8s cubic-bezier(0.2, 0.65, 0.3, 0.9) forwards;
+}
+
+.reveal-wrapper {
+	animation: fadeInUp 0.8s cubic-bezier(0.2, 0.65, 0.3, 0.9) forwards;
 }
 
 /* RTL Support for Linear Design Elements */

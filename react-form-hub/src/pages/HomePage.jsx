@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { formRegistry } from "../config/formRegistry";
+import AnimatedText from "../components/AnimatedText";
+import Reveal from "../components/Reveal";
 
 const HomePage = () => {
 	const { currentLang } = useOutletContext();
@@ -239,165 +241,184 @@ export default ${formName}FormPage;
 				<>
 					{/* Hero Section */}
 					<div className="hero-section">
-						<div className="hero-badge">
-							<span className="badge-icon">⚡</span>
-							<span>{translations.hero.title[currentLang]}</span>
-						</div>
+						<Reveal delay={0.1}>
+							<div className="hero-badge">
+								<span className="badge-icon">⚡</span>
+								<span>{translations.hero.title[currentLang]}</span>
+							</div>
+						</Reveal>
+
 						<h1 className="hero-title">
-							{translations.hero.subtitle[currentLang]}
+							<AnimatedText
+								text={translations.hero.subtitle[currentLang]}
+								delay={0.2}
+							/>
 						</h1>
-						<p className="hero-description">
-							{translations.hero.description[currentLang]}
-						</p>
+
+						<Reveal delay={0.6}>
+							<p className="hero-description">
+								{translations.hero.description[currentLang]}
+							</p>
+						</Reveal>
 
 						{/* CTA Buttons */}
-						<div className="hero-actions">
-							<button className="cta-primary" onClick={() => setView("review")}>
-								<span>{translations.cta.explore[currentLang]}</span>
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 20 20"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M7.5 15L12.5 10L7.5 5"
-										stroke="currentColor"
-										strokeWidth="2"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-									/>
-								</svg>
-							</button>
-							<button className="cta-secondary" onClick={() => setView("create")}>
-								{translations.cta.create[currentLang]}
-							</button>
-						</div>
+						<Reveal delay={0.8}>
+							<div className="hero-actions">
+								<button className="cta-primary" onClick={() => setView("review")}>
+									<span>{translations.cta.explore[currentLang]}</span>
+									<svg
+										width="20"
+										height="20"
+										viewBox="0 0 20 20"
+										fill="none"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											d="M7.5 15L12.5 10L7.5 5"
+											stroke="currentColor"
+											strokeWidth="2"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+									</svg>
+								</button>
+								<button className="cta-secondary" onClick={() => setView("create")}>
+									{translations.cta.create[currentLang]}
+								</button>
+							</div>
+						</Reveal>
 					</div>
 
 					{/* Features Grid */}
 					<div className="features-section">
-						<h2 className="features-title">
-							{translations.features.title[currentLang]}
-						</h2>
+						<Reveal delay={1.0}>
+							<h2 className="features-title">
+								{translations.features.title[currentLang]}
+							</h2>
+						</Reveal>
 						<div className="features-grid">
-							<div className="feature-card">
-								<div className="feature-icon">
-									<svg
-										width="32"
-										height="32"
-										viewBox="0 0 32 32"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<rect
-											x="4"
-											y="4"
-											width="24"
-											height="24"
-											rx="4"
-											stroke="currentColor"
-											strokeWidth="2"
-										/>
-										<path
-											d="M10 12H22M10 16H22M10 20H18"
-											stroke="currentColor"
-											strokeWidth="2"
-											strokeLinecap="round"
-										/>
-									</svg>
+							<Reveal delay={1.2}>
+								<div className="feature-card">
+									<div className="feature-icon">
+										<svg
+											width="32"
+											height="32"
+											viewBox="0 0 32 32"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<rect
+												x="4"
+												y="4"
+												width="24"
+												height="24"
+												rx="4"
+												stroke="currentColor"
+												strokeWidth="2"
+											/>
+											<path
+												d="M10 12H22M10 16H22M10 20H18"
+												stroke="currentColor"
+												strokeWidth="2"
+												strokeLinecap="round"
+											/>
+										</svg>
+									</div>
+									<h3 className="feature-title">
+										{translations.features.specialty.title[currentLang]}
+									</h3>
+									<p className="feature-description">
+										{translations.features.specialty.desc[currentLang]}
+									</p>
 								</div>
-								<h3 className="feature-title">
-									{translations.features.specialty.title[currentLang]}
-								</h3>
-								<p className="feature-description">
-									{translations.features.specialty.desc[currentLang]}
-								</p>
-							</div>
+							</Reveal>
 
-							<div className="feature-card">
-								<div className="feature-icon">
-									<svg
-										width="32"
-										height="32"
-										viewBox="0 0 32 32"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<rect
-											x="6"
-											y="8"
-											width="20"
-											height="16"
-											rx="2"
-											stroke="currentColor"
-											strokeWidth="2"
-										/>
-										<rect
-											x="10"
-											y="12"
-											width="3"
-											height="3"
-											rx="1"
-											fill="currentColor"
-										/>
-										<rect
-											x="14"
-											y="12"
-											width="3"
-											height="3"
-											rx="1"
-											fill="currentColor"
-										/>
-										<rect
-											x="18"
-											y="12"
-											width="3"
-											height="3"
-											rx="1"
-											fill="currentColor"
-										/>
-									</svg>
+							<Reveal delay={1.4}>
+								<div className="feature-card">
+									<div className="feature-icon">
+										<svg
+											width="32"
+											height="32"
+											viewBox="0 0 32 32"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<rect
+												x="6"
+												y="8"
+												width="20"
+												height="16"
+												rx="2"
+												stroke="currentColor"
+												strokeWidth="2"
+											/>
+											<rect
+												x="10"
+												y="12"
+												width="3"
+												height="3"
+												rx="1"
+												fill="currentColor"
+											/>
+											<rect
+												x="14"
+												y="12"
+												width="3"
+												height="3"
+												rx="1"
+												fill="currentColor"
+											/>
+											<rect
+												x="18"
+												y="12"
+												width="3"
+												height="3"
+												rx="1"
+												fill="currentColor"
+											/>
+										</svg>
+									</div>
+									<h3 className="feature-title">
+										{translations.features.keyboard.title[currentLang]}
+									</h3>
+									<p className="feature-description">
+										{translations.features.keyboard.desc[currentLang]}
+									</p>
 								</div>
-								<h3 className="feature-title">
-									{translations.features.keyboard.title[currentLang]}
-								</h3>
-								<p className="feature-description">
-									{translations.features.keyboard.desc[currentLang]}
-								</p>
-							</div>
+							</Reveal>
 
-							<div className="feature-card">
-								<div className="feature-icon">
-									<svg
-										width="32"
-										height="32"
-										viewBox="0 0 32 32"
-										fill="none"
-										xmlns="http://www.w3.org/2000/svg"
-									>
-										<circle
-											cx="16"
-											cy="16"
-											r="10"
-											stroke="currentColor"
-											strokeWidth="2"
-										/>
-										<path
-											d="M16 12L18 16H14L16 12Z"
-											fill="currentColor"
-										/>
-										<circle cx="16" cy="19" r="1" fill="currentColor" />
-									</svg>
+							<Reveal delay={1.6}>
+								<div className="feature-card">
+									<div className="feature-icon">
+										<svg
+											width="32"
+											height="32"
+											viewBox="0 0 32 32"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<circle
+												cx="16"
+												cy="16"
+												r="10"
+												stroke="currentColor"
+												strokeWidth="2"
+											/>
+											<path
+												d="M16 12L18 16H14L16 12Z"
+												fill="currentColor"
+											/>
+											<circle cx="16" cy="19" r="1" fill="currentColor" />
+										</svg>
+									</div>
+									<h3 className="feature-title">
+										{translations.features.ai.title[currentLang]}
+									</h3>
+									<p className="feature-description">
+										{translations.features.ai.desc[currentLang]}
+									</p>
 								</div>
-								<h3 className="feature-title">
-									{translations.features.ai.title[currentLang]}
-								</h3>
-								<p className="feature-description">
-									{translations.features.ai.desc[currentLang]}
-								</p>
-							</div>
+							</Reveal>
 						</div>
 					</div>
 				</>
