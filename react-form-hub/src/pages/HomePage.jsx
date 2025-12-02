@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
 import { formRegistry } from "../config/formRegistry";
@@ -12,6 +12,32 @@ const HomePage = () => {
 	const [newFormName, setNewFormName] = useState("");
 	const [generatedFormCode, setGeneratedFormCode] = useState("");
 	const [generatedPageCode, setGeneratedPageCode] = useState("");
+	const [activeSection, setActiveSection] = useState("home");
+
+	// Scroll listener to update active navigation
+	useEffect(() => {
+		if (view !== "main") {
+			setActiveSection("home");
+			return;
+		}
+
+		const handleScroll = () => {
+			const faqSection = document.getElementById("faq");
+			if (faqSection) {
+				const faqTop = faqSection.offsetTop - 100;
+				const scrollPosition = window.scrollY;
+				
+				if (scrollPosition >= faqTop) {
+					setActiveSection("faq");
+				} else {
+					setActiveSection("home");
+				}
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, [view]);
 
 	// Filter forms by current theme
 	const availableForms = formRegistry.filter((form) =>
@@ -92,6 +118,46 @@ const HomePage = () => {
 		cta: {
 			explore: { en: "Explore Forms", ar: "استكشف النماذج" },
 			create: { en: "Create Custom Form", ar: "أنشئ نموذجاً مخصصاً" },
+		},
+		faq: {
+			title: { en: "Frequently Asked Questions", ar: "الأسئلة الشائعة" },
+			q1: {
+				question: { en: "Why StatForm?", ar: "لماذا ستات فورم؟" },
+				answer: {
+					en: "StatForm revolutionizes clinical documentation by offering specialty-specific forms with keyboard shortcuts for rapid data entry. Built by physicians for physicians, it streamlines your workflow, reduces documentation time, and improves accuracy—allowing you to focus more on patient care rather than paperwork.",
+					ar: "ستات فورم يُحدث ثورة في التوثيق السريري من خلال تقديم نماذج خاصة بالتخصص مع اختصارات لوحة المفاتيح لإدخال البيانات السريع. مصمم من قبل أطباء للأطباء، يبسط سير عملك، يقلل وقت التوثيق، ويحسن الدقة—مما يتيح لك التركيز أكثر على رعاية المرضى بدلاً من الأعمال الورقية."
+				}
+			},
+			q2: {
+				question: { 
+					en: "What if the generated story is different from what I expected?", 
+					ar: "ماذا لو كانت القصة المُولدة مختلفة عما توقعت؟" 
+				},
+				answer: {
+					en: "We use state of the art AI models to make sure no data leak nor hallucinations occurs. The tool merely combines your entries, rather than coming up of its own.",
+					ar: "السرد السريري المُولد بالذكاء الاصطناعي يعتمد على بيانات النموذج التي تقدمها. إذا كان الناتج مختلفاً عن توقعاتك، يمكنك إعادة توليد القصة أو تعديلها يدوياً لتتناسب مع حكمك السريري. الذكاء الاصطناعي يعمل كمساعد لتسريع التوثيق، لكنك تحتفظ بالسيطرة الكاملة وسلطة اتخاذ القرار السريري."
+				}
+			},
+			q3: {
+				question: { 
+					en: "Do you save patient's data?", 
+					ar: "هل تحفظون بيانات المرضى؟" 
+				},
+				answer: {
+					en: "No. Patient data privacy is our top priority. All data remains exclusively on your device and is never transmitted to our servers or stored anywhere. We provide a one-click clear button for instant data removal. You have complete control over your patient information at all times.",
+					ar: "لا. خصوصية بيانات المرضى هي أولويتنا القصوى. جميع البيانات تبقى حصرياً على جهازك ولا يتم نقلها أبداً إلى خوادمنا أو تخزينها في أي مكان. نوفر زر مسح بنقرة واحدة لإزالة البيانات فورياً. لديك السيطرة الكاملة على معلومات مرضاك في جميع الأوقات."
+				}
+			},
+			q4: {
+				question: { 
+					en: "Why is it free?", 
+					ar: "لماذا هو مجاني؟" 
+				},
+				answer: {
+					en: "StatForm is currently free as part of our mission to improve healthcare documentation and support medical professionals. We believe better tools lead to better patient care. However, we may introduce premium features in the future.",
+					ar: "ستات فورم مجاني حالياً كجزء من مهمتنا لتحسين توثيق الرعاية الصحية ودعم المهنيين الطبيين. نؤمن بأن الأدوات الأفضل تؤدي إلى رعاية أفضل للمرضى. بينما قد نقدم ميزات مدفوعة في المستقبل، ستبقى الوظائف الأساسية متاحة دائماً لمساعدة الأطباء في جميع أنحاء العالم على تقديم رعاية ممتازة."
+				}
+			}
 		},
 		createBtn: { en: "Create New Form", ar: "إنشاء نموذج جديد" },
 		reviewBtn: { en: "Review Forms", ar: "مراجعة النماذج" },
@@ -229,10 +295,38 @@ export default ${formName}FormPage;
 						<span className="logo-text">{translations.hero.title[currentLang]}</span>
 					</Link>
 					<nav className="header-nav">
-						<a href="#home" className="nav-item active">
+						<a 
+							href="#home" 
+							className={`nav-item ${view === 'main' && activeSection === 'home' ? 'active' : ''}`}
+							onClick={(e) => {
+								e.preventDefault();
+								setView('main');
+								window.scrollTo({ top: 0, behavior: 'smooth' });
+							}}
+						>
 							{translations.nav.home[currentLang]}
 						</a>
-						<a href="#faq" className="nav-item">
+						<a 
+							href="#faq" 
+							className={`nav-item ${view === 'main' && activeSection === 'faq' ? 'active' : ''}`}
+							onClick={(e) => {
+								e.preventDefault();
+								if (view !== 'main') {
+									setView('main');
+									setTimeout(() => {
+										const faqSection = document.getElementById('faq');
+										if (faqSection) {
+											faqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+										}
+									}, 100);
+								} else {
+									const faqSection = document.getElementById('faq');
+									if (faqSection) {
+										faqSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+									}
+								}
+							}}
+						>
 							{translations.nav.faq[currentLang]}
 						</a>
 						<button className="header-lang-toggle" onClick={toggleLanguage}>
@@ -462,6 +556,60 @@ export default ${formName}FormPage;
 									</h3>
 									<p className="feature-description">
 										{translations.features.privacy.desc[currentLang]}
+									</p>
+								</div>
+							</Reveal>
+						</div>
+					</div>
+
+					{/* FAQ Section */}
+					<div id="faq" className="faq-section">
+						<Reveal delay={2.0}>
+							<h2 className="faq-title">
+								{translations.faq.title[currentLang]}
+							</h2>
+						</Reveal>
+						<div className="faq-container">
+							<Reveal delay={2.1}>
+								<div className="faq-item">
+									<h3 className="faq-question">
+										{translations.faq.q1.question[currentLang]}
+									</h3>
+									<p className="faq-answer">
+										{translations.faq.q1.answer[currentLang]}
+									</p>
+								</div>
+							</Reveal>
+
+							<Reveal delay={2.2}>
+								<div className="faq-item">
+									<h3 className="faq-question">
+										{translations.faq.q2.question[currentLang]}
+									</h3>
+									<p className="faq-answer">
+										{translations.faq.q2.answer[currentLang]}
+									</p>
+								</div>
+							</Reveal>
+
+							<Reveal delay={2.3}>
+								<div className="faq-item">
+									<h3 className="faq-question">
+										{translations.faq.q3.question[currentLang]}
+									</h3>
+									<p className="faq-answer">
+										{translations.faq.q3.answer[currentLang]}
+									</p>
+								</div>
+							</Reveal>
+
+							<Reveal delay={2.4}>
+								<div className="faq-item">
+									<h3 className="faq-question">
+										{translations.faq.q4.question[currentLang]}
+									</h3>
+									<p className="faq-answer">
+										{translations.faq.q4.answer[currentLang]}
 									</p>
 								</div>
 							</Reveal>
