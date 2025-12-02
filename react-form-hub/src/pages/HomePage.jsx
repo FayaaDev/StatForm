@@ -25,6 +25,7 @@ const HomePage = () => {
 			getStarted: { en: "Get Started", ar: "ابدأ الآن" },
 		},
 		hero: {
+			badge: { en: "Free for Limited Time", ar: "مجاني لفترة محدودة" },
 			title: { en: "StatForm", ar: "ستات فورم" },
 			subtitle: {
 				en: "Quick Documentation for Modern Physicians",
@@ -83,8 +84,8 @@ const HomePage = () => {
 			privacy: {
 				title: { en: "Data Security & Privacy", ar: "أمان البيانات والخصوصية" },
 				desc: {
-					en: "Patient data stays on your device. No server uploads. Includes dedicated clear data button for complete control.",
-					ar: "بيانات المرضى تبقى على جهازك. لا يتم الرفع إلى الخادم. يتضمن زر مخصص لمسح البيانات للتحكم الكامل.",
+					en: "Patient data stays on your device only. One-click clear button for complete control.",
+					ar: "بيانات المرضى تبقى على جهازك فقط. زر مسح بنقرة واحدة للتحكم الكامل.",
 				},
 			},
 		},
@@ -250,8 +251,8 @@ export default ${formName}FormPage;
 					<div className="hero-section">
 						<Reveal delay={0.1}>
 							<div className="hero-badge">
-								<span className="badge-icon">⚡</span>
-								<span>{translations.hero.title[currentLang]}</span>
+								<span className="badge-icon">🎉</span>
+								<span>{translations.hero.badge[currentLang]}</span>
 							</div>
 						</Reveal>
 
@@ -426,6 +427,41 @@ export default ${formName}FormPage;
 									</p>
 								</div>
 							</Reveal>
+
+							<Reveal delay={1.8}>
+								<div className="feature-card">
+									<div className="feature-icon">
+										<svg
+											width="32"
+											height="32"
+											viewBox="0 0 32 32"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M16 4L6 9V15C6 21 10 26 16 28C22 26 26 21 26 15V9L16 4Z"
+												stroke="currentColor"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+											<path
+												d="M16 12V16M16 20H16.01"
+												stroke="currentColor"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+									</div>
+									<h3 className="feature-title">
+										{translations.features.privacy.title[currentLang]}
+									</h3>
+									<p className="feature-description">
+										{translations.features.privacy.desc[currentLang]}
+									</p>
+								</div>
+							</Reveal>
 						</div>
 					</div>
 				</>
@@ -433,16 +469,46 @@ export default ${formName}FormPage;
 
 			{view === "review" && (
 				<div className="review-section">
-					<h2>{txt("availableForms")}</h2>
+					<h2 className="review-title">{txt("availableForms")}</h2>
+					<p className="review-subtitle">
+						{currentLang === "en"
+							? "Select a specialty form to get started with clinical documentation"
+							: "اختر نموذج التخصص للبدء في التوثيق السريري"}
+					</p>
 					<div className="form-list">
-						{availableForms.map((form) => (
-							<Link
-								key={form.id}
-								to={theme.id === "pha" ? `/pha/${form.path}` : `/${form.path}`}
-								className="form-link-card"
-							>
-								{form.title[currentLang]}
-							</Link>
+						{availableForms.map((form, index) => (
+							<Reveal key={form.id} delay={0.1 + index * 0.1}>
+								<Link
+									to={
+										theme.id === "pha" ? `/pha/${form.path}` : `/${form.path}`
+									}
+									className="form-link-card"
+								>
+									<div className="form-card-icon">
+										<svg
+											width="28"
+											height="28"
+											viewBox="0 0 24 24"
+											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
+										>
+											<path
+												d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z"
+												stroke="currentColor"
+												strokeWidth="2"
+												strokeLinecap="round"
+												strokeLinejoin="round"
+											/>
+										</svg>
+									</div>
+									<div className="form-card-content">
+										<h3 className="form-card-title">
+											{form.title[currentLang]}
+										</h3>
+										<span className="form-card-arrow">→</span>
+									</div>
+								</Link>
+							</Reveal>
 						))}
 					</div>
 					<button className="back-btn" onClick={() => setView("main")}>
