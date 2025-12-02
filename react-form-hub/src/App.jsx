@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import HubLayout from "./layouts/HubLayout";
 import HomePage from "./pages/HomePage";
+import PHAHomePage from "./pages/PHAHomePage";
 import DemoFormPage from "./pages/DemoFormPage";
 import FeedbackFormPage from "./pages/FeedbackFormPage";
 import TesterFormPage from "./pages/TesterFormPage";
@@ -44,7 +45,7 @@ function App() {
 						</ThemeProvider>
 					}
 				>
-					<Route index element={<HomePage />} />
+					<Route index element={<PHAHomePage />} />
 					<Route path="demo-form" element={<DemoFormPage />} />
 					<Route path="feedback-form" element={<FeedbackFormPage />} />
 					<Route path="survey-form" element={<SurveyFormPage />} />
