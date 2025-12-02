@@ -26,10 +26,13 @@ function App() {
 					}
 				>
 					<Route index element={<HomePage />} />
-					<Route path="demo-form" element={<DemoFormPage />} />
-					<Route path="feedback-form" element={<FeedbackFormPage />} />
-					<Route path="survey-form" element={<SurveyFormPage />} />
 					<Route path="burnout-survey" element={<BurnoutSurveyPage />} />
+					<Route
+						path="neurology-history"
+						element={<NeurologyHistoryFormPage />}
+					/>
+					<Route path="acute-abdomen" element={<AcuteAbodemPage />} />
+					<Route path="chest-pain" element={<ChestPainPage />} />
 				</Route>
 
 				{/* PHA Theme Routes */}
@@ -45,10 +48,6 @@ function App() {
 					<Route path="demo-form" element={<DemoFormPage />} />
 					<Route path="feedback-form" element={<FeedbackFormPage />} />
 					<Route path="survey-form" element={<SurveyFormPage />} />
-					<Route path="burnout-survey" element={<BurnoutSurveyPage />} />
-					<Route path="neurology-history" element={<NeurologyHistoryFormPage />} />
-					<Route path="acute-abdomen" element={<AcuteAbodemPage />} />
-					<Route path="chest-pain" element={<ChestPainPage />} />
 					<Route path="tester-form" element={<TesterFormPage />} />
 				</Route>
 			</Routes>
