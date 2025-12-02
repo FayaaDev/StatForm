@@ -187,6 +187,28 @@
 	background: var(--theme-text);
 }
 
+/* Header Language Toggle */
+.header-lang-toggle {
+	padding: 8px 16px;
+	background: transparent;
+	color: var(--theme-primary);
+	border: 1.5px solid var(--theme-primary);
+	border-radius: 6px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	font-family: var(--theme-font-family);
+}
+
+.header-lang-toggle:hover {
+	background: var(--theme-primary);
+	color: white;
+	transform: translateY(-1px);
+	box-shadow: 0 2px 8px rgba(77, 18, 47, 0.2);
+}
+
+
 /* Main Content Area */
 .hero-section,
 .review-section,
@@ -1074,13 +1096,41 @@
 
 .pha-section-title {
 	font-size: 1.5rem;
-	font-weight: 600;
+	font-weight: 700;
 	color: var(--theme-primary);
 	margin: 0 0 30px 0;
 	font-family: var(--theme-font-family);
 	padding-bottom: 15px;
 	border-bottom: 2px solid var(--theme-primary);
 }
+
+/* PHA Language Toggle */
+.pha-header-top {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 20px;
+}
+
+.pha-lang-toggle {
+	padding: 8px 16px;
+	background: transparent;
+	color: var(--theme-primary);
+	border: 1.5px solid var(--theme-primary);
+	border-radius: 6px;
+	font-size: 0.95rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-family: var(--theme-font-family);
+}
+
+.pha-lang-toggle:hover {
+	background: var(--theme-primary);
+	color: white;
+	transform: translateY(-1px);
+	box-shadow: 0 2px 8px rgba(9, 89, 92, 0.2);
+}
+
 
 .pha-form-list {
 	display: flex;

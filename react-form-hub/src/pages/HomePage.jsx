@@ -6,7 +6,7 @@ import AnimatedText from "../components/AnimatedText";
 import Reveal from "../components/Reveal";
 
 const HomePage = () => {
-	const { currentLang } = useOutletContext();
+	const { currentLang, toggleLanguage } = useOutletContext();
 	const theme = useTheme();
 	const [view, setView] = useState("main"); // main, review, create
 	const [newFormName, setNewFormName] = useState("");
@@ -235,6 +235,9 @@ export default ${formName}FormPage;
 						<a href="#faq" className="nav-item">
 							{translations.nav.faq[currentLang]}
 						</a>
+						<button className="header-lang-toggle" onClick={toggleLanguage}>
+							{currentLang === "ar" ? "English" : "العربية"}
+						</button>
 						<button
 							className="nav-cta"
 							onClick={() => setView("review")}

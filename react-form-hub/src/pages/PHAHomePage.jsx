@@ -3,7 +3,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { formRegistry } from "../config/formRegistry";
 
 const PHAHomePage = () => {
-	const { currentLang } = useOutletContext();
+	const { currentLang, toggleLanguage } = useOutletContext();
 	const theme = useTheme();
 
 	// Filter forms by PHA theme
@@ -31,6 +31,11 @@ const PHAHomePage = () => {
 			<div className="pha-container">
 				{/* PHA Header */}
 				<div className="pha-header">
+					<div className="pha-header-top">
+						<button className="pha-lang-toggle" onClick={toggleLanguage}>
+							{currentLang === "ar" ? "English" : "العربية"}
+						</button>
+					</div>
 					<h1 className="pha-title">{translations.title[currentLang]}</h1>
 					<p className="pha-subtitle">{translations.subtitle[currentLang]}</p>
 				</div>

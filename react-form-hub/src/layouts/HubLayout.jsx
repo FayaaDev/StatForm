@@ -40,21 +40,25 @@ const HubLayout = () => {
 
 	return (
 		<div className="hub-layout">
-			{/* Logo */}
-			<div className="logo">
-				<Link to={rootPath}>
-					<img src={theme.logo.path} alt={theme.logo.alt} />
-				</Link>
-			</div>
+			{/* Logo - Hidden on home pages */}
+			{!isHomePage && (
+				<div className="logo">
+					<Link to={rootPath}>
+						<img src={theme.logo.path} alt={theme.logo.alt} />
+					</Link>
+				</div>
+			)}
 
-			{/* Language Toggle */}
-			<button className="lang-toggle" onClick={toggleLanguage}>
-				{currentLang === "ar" ? "English" : "العربية"}
-			</button>
+			{/* Language Toggle - Hidden on home pages */}
+			{!isHomePage && (
+				<button className="lang-toggle" onClick={toggleLanguage}>
+					{currentLang === "ar" ? "English" : "العربية"}
+				</button>
+			)}
 
 			{/* Main content area where forms will render */}
 			<main className={isHomePage ? "home-main-container" : "form-container"}>
-				<Outlet context={{ currentLang }} />
+				<Outlet context={{ currentLang, toggleLanguage }} />
 			</main>
 		</div>
 	);
