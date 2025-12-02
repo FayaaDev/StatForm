@@ -117,6 +117,13 @@
 	display: flex;
 	align-items: center;
 	gap: 12px;
+	text-decoration: none;
+	cursor: pointer;
+	transition: opacity 0.3s ease;
+}
+
+.header-logo:hover {
+	opacity: 0.8;
 }
 
 .header-logo img {
@@ -255,6 +262,11 @@
 	margin: 0 0 24px 0;
 	line-height: 1.2;
 	letter-spacing: -0.02em;
+}
+
+/* Remove letter-spacing for RTL text to preserve Arabic ligatures */
+[dir="rtl"] .hero-title {
+	letter-spacing: normal;
 }
 
 .hero-description {
@@ -997,6 +1009,16 @@
 }
 
 /* RTL Support for Linear Design Elements */
+/* Reset letter-spacing for all RTL text to preserve Arabic ligatures */
+[dir="rtl"] .logo-text,
+[dir="rtl"] .features-title,
+[dir="rtl"] .feature-title,
+[dir="rtl"] .review-title,
+[dir="rtl"] .footer-logo-text,
+[dir="rtl"] .footer-column h4 {
+	letter-spacing: normal;
+}
+
 [dir="rtl"] .header-container {
 	flex-direction: row-reverse;
 }

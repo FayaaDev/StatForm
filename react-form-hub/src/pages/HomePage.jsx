@@ -224,10 +224,10 @@ export default ${formName}FormPage;
 			{/* Navigation Header */}
 			<header className="site-header">
 				<div className="header-container">
-					<div className="header-logo">
+					<Link to={theme.id === "pha" ? "/pha" : "/"} className="header-logo">
 						<img src={theme.logo.path} alt={theme.logo.alt} />
 						<span className="logo-text">{translations.hero.title[currentLang]}</span>
-					</div>
+					</Link>
 					<nav className="header-nav">
 						<a href="#home" className="nav-item active">
 							{translations.nav.home[currentLang]}

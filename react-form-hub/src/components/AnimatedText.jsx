@@ -27,9 +27,47 @@ const AnimatedText = ({ text, className = "", delay = 0, tag = "span", threshold
         };
     }, [threshold]);
 
+    // Check if text contains Arabic characters
+    const hasArabic = /[\u0600-\u06FF]/.test(text);
+
     // Split text into words first to handle spacing correctly
     const words = text.split(" ");
 
+    // For Arabic text, animate word-by-word instead of character-by-character
+    // to preserve ligatures and proper text shaping
+    if (hasArabic) {
+        return (
+            <Tag
+                ref={ref}
+                className={`animated-text-wrapper ${isVisible ? 'is-visible' : ''} ${className}`}
+                style={{ display: 'inline-block' }}
+            >
+                {words.map((word, wordIndex) => {
+                    const wordDelay = delay + (wordIndex * 0.1);
+                    return (
+                        <React.Fragment key={wordIndex}>
+                            <span
+                                className="animated-char"
+                                style={{
+                                    animationDelay: `${wordDelay}s`,
+                                    display: 'inline-block',
+                                    whiteSpace: 'nowrap',
+                                    opacity: 0
+                                }}
+                            >
+                                {word}
+                            </span>
+                            {wordIndex < words.length - 1 && (
+                                <span style={{ display: 'inline-block' }}>&nbsp;</span>
+                            )}
+                        </React.Fragment>
+                    );
+                })}
+            </Tag>
+        );
+    }
+
+    // For non-Arabic text, use character-by-character animation
     return (
         <Tag
             ref={ref}
