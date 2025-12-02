@@ -23,6 +23,22 @@ export function ThemeProvider({ theme: themeId, children }) {
 
 		// Apply font family to body
 		document.body.style.fontFamily = theme.font.family;
+
+		// Update favicon and page title based on theme
+		const favicon = document.getElementById("favicon");
+		if (theme.id === "pha") {
+			document.title = "PHA Form Hub";
+			if (favicon) {
+				favicon.type = "image/png";
+				favicon.href = "/logos/PHAlogo.png";
+			}
+		} else {
+			document.title = "StatForm";
+			if (favicon) {
+				favicon.type = "image/svg+xml";
+				favicon.href = "/statform-favicon.svg";
+			}
+		}
 	}, [theme]);
 
 	return <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>;
