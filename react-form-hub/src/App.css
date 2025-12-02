@@ -75,6 +75,12 @@
 	padding-bottom: 20px;
 }
 
+.home-main-container {
+	width: 100%;
+	min-height: 100vh;
+	padding: 0;
+}
+
 /* Home Page Styles - Linear Design */
 .home-page {
 	text-align: center;

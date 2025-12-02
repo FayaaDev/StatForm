@@ -1,4 +1,4 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -35,6 +35,8 @@ const HubLayout = () => {
 
 	// Determine root path based on theme
 	const rootPath = theme.id === "pha" ? "/pha" : "/";
+	const location = useLocation();
+	const isHomePage = location.pathname === "/" || location.pathname === "/pha";
 
 	return (
 		<div className="hub-layout">
@@ -51,7 +53,7 @@ const HubLayout = () => {
 			</button>
 
 			{/* Main content area where forms will render */}
-			<main className="form-container">
+			<main className={isHomePage ? "home-main-container" : "form-container"}>
 				<Outlet context={{ currentLang }} />
 			</main>
 		</div>
