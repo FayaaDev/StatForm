@@ -82,9 +82,9 @@ const HomePage = () => {
 				},
 			},
 			privacy: {
-				title: { en: "Data Security & Privacy", ar: "أمان البيانات والخصوصية" },
+				title: { en: "Data Privacy", ar: "أمان البيانات والخصوصية" },
 				desc: {
-					en: "Patient data stays on your device only. One-click clear button for complete control.",
+					en: "Patient data stays on your device only. with a One-click clear button. We do not store any data.",
 					ar: "بيانات المرضى تبقى على جهازك فقط. زر مسح بنقرة واحدة للتحكم الكامل.",
 				},
 			},
@@ -622,6 +622,18 @@ export default ${formName}FormPage;
 							<p className="footer-tagline">
 								{translations.footer.tagline[currentLang]}
 							</p>
+							<a
+								href="/FreeLanceCertificate.pdf"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="footer-certificate-link"
+							>
+								<img
+									src="/FreeLanceLogo.png"
+									alt="Freelance Certificate"
+									className="footer-certificate-logo"
+								/>
+							</a>
 						</div>
 
 						<div className="footer-links-group">
