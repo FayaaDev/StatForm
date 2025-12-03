@@ -193,8 +193,8 @@ const HomePage = () => {
 				ar: "شكراً لك! تم إرسال طلبك. سنتواصل معك قريباً.",
 			},
 			error: {
-				en: "Something went wrong. Please try again or email us directly at support@statform.app",
-				ar: "حدث خطأ ما. يرجى المحاولة مرة أخرى أو مراسلتنا مباشرة على support@statform.app",
+				en: "Something went wrong. Please try again or email us directly at drfayaa@gmail.com",
+				ar: "حدث خطأ ما. يرجى المحاولة مرة أخرى أو مراسلتنا مباشرة على drfayaa@gmail.com",
 			},
 			newRequest: { en: "Submit Another Request", ar: "إرسال طلب آخر" },
 		},
@@ -797,8 +797,8 @@ const HomePage = () => {
 						</div>
 
 						<div className="footer-contact">
-							<a href="mailto:Support@statform.app" className="footer-email">
-								Support@statform.app
+							<a href="mailto:drfayaa@gmail.com" className="footer-email">
+								drfayaa@gmail.com
 							</a>
 						</div>
 					</div>

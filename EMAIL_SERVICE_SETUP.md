@@ -48,7 +48,7 @@ The email service uses [Resend](https://resend.com) - a modern email API service
 
 1. Deploy your site (Netlify will pick up the new environment variable)
 2. Test the custom form request feature on your live site
-3. Check that emails arrive at support@statform.app
+3. Check that emails arrive at drfayaa@gmail.com
 
 ## Alternative: SendGrid Setup
 
@@ -90,7 +90,7 @@ export const handler = async (event) => {
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
         const msg = {
-            to: 'support@statform.app',
+            to: 'drfayaa@gmail.com',
             from: 'noreply@statform.app', // Use verified sender
             replyTo: email,
             subject: `Custom Form Request: ${formName}`,

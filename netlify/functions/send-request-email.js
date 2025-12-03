@@ -38,7 +38,7 @@ export const handler = async (event) => {
             },
             body: JSON.stringify({
                 from: "StatForm <noreply@statform.app>",
-                to: ["support@statform.app"],
+                to: ["drfayaa@gmail.com"],
                 reply_to: email,
                 subject: `Custom Form Request: ${formName}`,
                 html: `
