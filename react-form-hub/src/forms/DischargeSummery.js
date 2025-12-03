@@ -185,7 +185,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 			en: "Succinct summary of diagnosis, management, and progress.",
 			ar: "ملخص موجز للتشخيص، والعلاج، والتقدم.",
 		}),
-		textarea: true, 
+		textarea: true,
+		multiline: true,
 	});
 
 	// 16. Procedures Performed

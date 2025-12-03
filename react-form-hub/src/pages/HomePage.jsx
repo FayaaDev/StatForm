@@ -207,15 +207,27 @@ const HomePage = () => {
 		setRequestStatus("sending");
 
 		try {
-			const mailtoLink = `mailto:support@statform.app?subject=${encodeURIComponent(
-				`Custom Form Request: ${requestFormName}`
-			)}&body=${encodeURIComponent(
-				`Email: ${requestEmail}\n\nForm Name: ${requestFormName}\n\nDetails & Specifications:\n${requestDetails}`
-			)}`;
-			
-			window.location.href = mailtoLink;
+			const response = await fetch("/.netlify/functions/send-request-email", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					email: requestEmail,
+					formName: requestFormName,
+					details: requestDetails,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				throw new Error(data.message || "Failed to send request");
+			}
+
 			setRequestStatus("success");
 		} catch (error) {
+			console.error("Error sending request:", error);
 			setRequestStatus("error");
 		}
 	};
