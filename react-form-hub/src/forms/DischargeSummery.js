@@ -59,8 +59,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// 3. Patient Details
-	composer.slide({ pageProgress: "3/21" });
+	// 3. Patient Details Header
+	composer.slide({ pageProgress: "3/27" });
 	composer.h2(
 		translate(localization, {
 			en: "Patient Details",
@@ -68,6 +68,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 4. Patient Name
+	composer.slide({ pageProgress: "4/27" });
 	composer.textInput("patient_name", {
 		question: translate(localization, {
 			en: "Patient Full Name (Use Fake name and edit later)",
@@ -75,6 +77,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
+	// 5. MRN
+	composer.slide({ pageProgress: "5/27" });
 	composer.textInput("mrn", {
 		question: translate(localization, {
 			en: "MRN / Patient ID",
@@ -82,8 +86,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 4. Admission Details
-	composer.slide({ pageProgress: "4/21" });
+	// 6. Admission Date
+	composer.slide({ pageProgress: "6/27" });
 	composer.textInput("admission_date", {
 		question: translate(localization, {
 			en: "Admission Date",
@@ -92,6 +96,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		placeholder: "YYYY-MM-DD"
 	});
 
+	// 7. Discharge Date
+	composer.slide({ pageProgress: "7/27" });
 	composer.textInput("discharge_date", {
 		question: translate(localization, {
 			en: "Discharge Date",
@@ -100,8 +106,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		placeholder: "YYYY-MM-DD"
 	});
 
-	// 4. Provider & Location
-	composer.slide({ pageProgress: "5/21" });
+	// 8. Consultant Name
+	composer.slide({ pageProgress: "8/27" });
 	composer.textInput("consultant_name", {
 		question: translate(localization, {
 			en: "Most Responsible Physician / Consultant",
@@ -109,6 +115,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
+	// 9. Ward/Unit
+	composer.slide({ pageProgress: "9/27" });
 	composer.textInput("ward_unit", {
 		question: translate(localization, {
 			en: "Ward / Clinical Unit",
@@ -116,8 +124,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 5. Diagnoses - Principal
-	composer.slide({ pageProgress: "6/21" });
+	// 10. Diagnoses Header
+	composer.slide({ pageProgress: "10/27" });
 	composer.h2(
 		translate(localization, {
 			en: "Diagnoses",
@@ -125,6 +133,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 11. Principal Diagnosis
+	composer.slide({ pageProgress: "11/27" });
 	composer.textInput("principal_diagnosis", {
 		question: translate(localization, {
 			en: "Principal Diagnosis (Most Responsible)",
@@ -136,8 +146,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 6. Diagnoses - Secondary
-	composer.slide({ pageProgress: "7/21" });
+	// 12. Secondary Diagnoses
+	composer.slide({ pageProgress: "12/27" });
 	composer.textInput("secondary_diagnoses", {
 		question: translate(localization, {
 			en: "Secondary Diagnoses / Comorbidities",
@@ -146,8 +156,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// 7. Clinical Course - Presentation
-	composer.slide({ pageProgress: "8/21" });
+	// 13. Clinical Course Header
+	composer.slide({ pageProgress: "13/27" });
 	composer.h2(
 		translate(localization, {
 			en: "Clinical Course",
@@ -155,6 +165,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 14. Presenting Complaint
+	composer.slide({ pageProgress: "14/27" });
 	composer.textInput("presenting_complaint", {
 		question: translate(localization, {
 			en: "Reason for Presentation / Chief Complaint",
@@ -162,8 +174,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 8. Clinical Course - Summary
-	composer.slide({ pageProgress: "9/21" });
+	// 15. Clinical Summary
+	composer.slide({ pageProgress: "15/27" });
 	composer.textInput("clinical_summary", {
 		question: translate(localization, {
 			en: "Summary of Course in Hospital",
@@ -176,8 +188,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true, 
 	});
 
-	// 9. Procedures
-	composer.slide({ pageProgress: "10/21" });
+	// 16. Procedures Performed
+	composer.slide({ pageProgress: "16/26" });
 	composer.choiceInput("procedures_performed", {
 		question: translate(localization, {
 			en: "Were any procedures/surgeries performed?",
@@ -202,8 +214,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// 10. Investigations
-	composer.slide({ pageProgress: "11/21" });
+	// 17. Investigations
+	composer.slide({ pageProgress: "17/26" });
 	composer.textInput("investigations_summary", {
 		question: translate(localization, {
 			en: "Key Investigations / Abnormal Results",
@@ -212,8 +224,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// 11. Allergies
-	composer.slide({ pageProgress: "12/21" });
+	// 18. Allergies Header
+	composer.slide({ pageProgress: "18/26" });
 	composer.h2(
 		translate(localization, {
 			en: "Alerts & Allergies",
@@ -221,6 +233,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 19. Allergies Exist
+	composer.slide({ pageProgress: "19/26" });
 	composer.choiceInput("allergies_exist", {
 		question: translate(localization, {
 			en: "Does the patient have allergies?",
@@ -232,6 +246,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		],
 	});
 
+	// 20. Allergy Details
+	composer.slide({ pageProgress: "20/26" });
 	composer.textInput("allergies_details", {
 		question: translate(localization, {
 			en: "Allergy Details (Agent & Reaction)",
@@ -244,8 +260,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// 12. Medications - Introduction
-	composer.slide({ pageProgress: "13/21" });
+	// 21. Medications Header
+	composer.slide({ pageProgress: "21/26" });
 	composer.h2(
 		translate(localization, {
 			en: "Medications on Discharge",
@@ -259,8 +275,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// 13. Medications - New
-	composer.slide({ pageProgress: "14/21" });
+	// 22. New Medications
+	composer.slide({ pageProgress: "22/26" });
 	composer.textInput("meds_new", {
 		question: translate(localization, {
 			en: "New Medications (Started this admission)",
@@ -274,8 +290,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 14. Medications - Changed
-	composer.slide({ pageProgress: "15/21" });
+	// 23. Changed Medications
+	composer.slide({ pageProgress: "23/26" });
 	composer.textInput("meds_changed", {
 		question: translate(localization, {
 			en: "Changed Medications (Dose/Freq modified)",
@@ -285,8 +301,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 15. Medications - Unchanged
-	composer.slide({ pageProgress: "16/21" });
+	// 24. Unchanged Medications
+	composer.slide({ pageProgress: "24/26" });
 	composer.textInput("meds_unchanged", {
 		question: translate(localization, {
 			en: "Unchanged Medications (Continued from home)",
@@ -296,8 +312,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 16. Medications - Ceased
-	composer.slide({ pageProgress: "17/21" });
+	// 25. Ceased Medications
+	composer.slide({ pageProgress: "25/26" });
 	composer.textInput("meds_ceased", {
 		question: translate(localization, {
 			en: "Ceased Medications (Stopped during admission)",
@@ -311,8 +327,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 17. Discharge Plan
-	composer.slide({ pageProgress: "18/21" });
+	// 26. Discharge Plan
+	composer.slide({ pageProgress: "26/29" });
 	composer.h2(
 		translate(localization, {
 			en: "Discharge Plan",
@@ -335,8 +351,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		],
 	});
 
-	// 18. Recommendations
-	composer.slide({ pageProgress: "19/21" });
+	// 27. Recommendations
+	composer.slide({ pageProgress: "27/29" });
 	composer.textInput("recommendations", {
 		question: translate(localization, {
 			en: "Recommendations / Actions Required",
@@ -349,8 +365,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 19. Follow Up
-	composer.slide({ pageProgress: "20/21" });
+	// 28. Follow-up Appointments
+	composer.slide({ pageProgress: "28/29" });
 	composer.textInput("follow_up_appointments", {
 		question: translate(localization, {
 			en: "Follow-up Appointments",
@@ -364,8 +380,8 @@ export function createDischargeSummaryFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 20. Generate
-	composer.slide({ pageProgress: "21/21" });
+	// 29. Generate Summary
+	composer.slide({ pageProgress: "29/29" });
 	composer.h2(
 		translate(localization, {
 			en: "Generate Summary",

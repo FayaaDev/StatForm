@@ -45,7 +45,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 2. Gender
-	composer.slide({ pageProgress: "2/27" });
+	composer.slide({ pageProgress: "2/26" });
 	composer.choiceInput("gender", {
 		question: translate(localization, {
 			en: "Gender",
@@ -57,8 +57,20 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 		],
 	});
 
+	composer.textInput("gyne_history", {
+		question: translate(localization, {
+			en: "LMP? Chance of pregnancy? Vaginal bleeding?",
+			ar: "تاريخ آخر دورة؟ احتمالية الحمل؟ نزيف مهبلي؟",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["gender"],
+			condition: "gender == 'Female' or gender == 'أنثى'",
+		},
+	});
+
 	// 3. Pain Location
-	composer.slide({ pageProgress: "3/27" });
+	composer.slide({ pageProgress: "3/26" });
 	composer.choiceInput("pain_location", {
 		question: translate(localization, {
 			en: "Where is the pain located?",
@@ -85,7 +97,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 4. Pain Radiation
-	composer.slide({ pageProgress: "4/27" });
+	composer.slide({ pageProgress: "4/26" });
 	composer.choiceInput("pain_radiation", {
 		question: translate(localization, {
 			en: "Does the pain radiate (move) anywhere else?",
@@ -110,7 +122,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 5. Onset
-	composer.slide({ pageProgress: "5/27" });
+	composer.slide({ pageProgress: "5/26" });
 	composer.textInput("onset_time", {
 		question: translate(localization, {
 			en: "When did the pain start?",
@@ -119,7 +131,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 6. Onset Type
-	composer.slide({ pageProgress: "6/27" });
+	composer.slide({ pageProgress: "6/26" });
 	composer.choiceInput("onset_type", {
 		question: translate(localization, {
 			en: "How did the pain start?",
@@ -140,7 +152,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 7. Character
-	composer.slide({ pageProgress: "7/27" });
+	composer.slide({ pageProgress: "7/26" });
 	composer.choiceInput("pain_character", {
 		question: translate(localization, {
 			en: "How would you describe the pain?",
@@ -164,7 +176,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 8. Severity
-	composer.slide({ pageProgress: "8/27" });
+	composer.slide({ pageProgress: "8/26" });
 	composer.numberInput("severity", {
 		question: translate(localization, {
 			en: "Severity on a scale of 1-10?",
@@ -175,7 +187,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 9. Progression
-	composer.slide({ pageProgress: "9/27" });
+	composer.slide({ pageProgress: "9/26" });
 	composer.choiceInput("progression", {
 		question: translate(localization, {
 			en: "Is the pain getting worse, better, or staying the same?",
@@ -198,7 +210,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 10. Aggravating Factors
-	composer.slide({ pageProgress: "10/27" });
+	composer.slide({ pageProgress: "10/26" });
 	composer.textInput("aggravating_factors", {
 		question: translate(localization, {
 			en: "What makes the pain worse? (e.g., eating, movement, coughing)",
@@ -207,7 +219,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 11. Alleviating Factors
-	composer.slide({ pageProgress: "11/27" });
+	composer.slide({ pageProgress: "11/26" });
 	composer.textInput("alleviating_factors", {
 		question: translate(localization, {
 			en: "What makes the pain better? (e.g., vomiting, lying still, leaning forward)",
@@ -216,7 +228,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 12. Nausea/Vomiting
-	composer.slide({ pageProgress: "12/27" });
+	composer.slide({ pageProgress: "12/26" });
 	composer.choiceInput("nausea_vomiting", {
 		question: translate(localization, {
 			en: "Do you have nausea or vomiting?",
@@ -238,7 +250,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 13. Fever
-	composer.slide({ pageProgress: "13/27" });
+	composer.slide({ pageProgress: "13/26" });
 	composer.choiceInput("fever", {
 		question: translate(localization, {
 			en: "Do you have a fever or chills?",
@@ -260,7 +272,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 14. Bowel Habits
-	composer.slide({ pageProgress: "14/27" });
+	composer.slide({ pageProgress: "14/26" });
 	composer.choiceInput("bowel_habits", {
 		question: translate(localization, {
 			en: "Any change in bowel habits?",
@@ -283,7 +295,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 15. Stool Characteristics
-	composer.slide({ pageProgress: "15/27" });
+	composer.slide({ pageProgress: "15/26" });
 	composer.choiceInput("stool_blood", {
 		question: translate(localization, {
 			en: "Any blood in stool or black tarry stool?",
@@ -305,7 +317,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 16. Urinary Symptoms
-	composer.slide({ pageProgress: "16/27" });
+	composer.slide({ pageProgress: "16/26" });
 	composer.choiceInput("urinary_symptoms", {
 		question: translate(localization, {
 			en: "Any urinary symptoms?",
@@ -328,7 +340,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 17. Anorexia/Weight Loss
-	composer.slide({ pageProgress: "17/27" });
+	composer.slide({ pageProgress: "17/26" });
 	composer.choiceInput("anorexia", {
 		question: translate(localization, {
 			en: "Loss of appetite or unintentional weight loss?",
@@ -350,7 +362,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 18. Past Surgeries
-	composer.slide({ pageProgress: "18/27" });
+	composer.slide({ pageProgress: "18/26" });
 	composer.choiceInput("past_surgeries", {
 		question: translate(localization, {
 			en: "Any previous abdominal surgeries?",
@@ -372,7 +384,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 19. Past Medical History
-	composer.slide({ pageProgress: "19/27" });
+	composer.slide({ pageProgress: "19/26" });
 	composer.textInput("pmh", {
 		question: translate(localization, {
 			en: "Past Medical History (e.g., Ulcers, Gallstones, Diabetes, Heart Disease)?",
@@ -381,7 +393,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 20. Medications
-	composer.slide({ pageProgress: "20/27" });
+	composer.slide({ pageProgress: "20/26" });
 	composer.textInput("medications", {
 		question: translate(localization, {
 			en: "Current medications (especially NSAIDs, Steroids, Anticoagulants)?",
@@ -390,7 +402,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 21. Allergies
-	composer.slide({ pageProgress: "21/27" });
+	composer.slide({ pageProgress: "21/26" });
 	composer.textInput("allergies", {
 		question: translate(localization, {
 			en: "Allergies?",
@@ -399,7 +411,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	});
 
 	// 22. Social History
-	composer.slide({ pageProgress: "22/27" });
+	composer.slide({ pageProgress: "22/26" });
 	composer.textInput("social_history", {
 		question: translate(localization, {
 			en: "Do you smoke or drink alcohol?",
@@ -407,22 +419,8 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 23. Gynecological (Females)
-	composer.slide({ pageProgress: "23/27" });
-	composer.textInput("gyne_history", {
-		question: translate(localization, {
-			en: "LMP? Chance of pregnancy? Vaginal bleeding?",
-			ar: "تاريخ آخر دورة؟ احتمالية الحمل؟ نزيف مهبلي؟",
-		}),
-		required: false,
-		displayCondition: {
-			dependencies: ["gender"],
-			condition: "gender == 'Female' or gender == 'أنثى'",
-		},
-	});
-
-	// Review of Systems - Cardiopulmonary
-	composer.slide({ pageProgress: "24/27" });
+	// 23. Review of Systems - Cardiopulmonary
+	composer.slide({ pageProgress: "23/26" });
 	composer.h2(
 		translate(localization, {
 			en: "Review of Systems",
@@ -450,8 +448,8 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// ROS - Skin/Jaundice
-	composer.slide({ pageProgress: "25/27" });
+	// 24. ROS - Skin/Jaundice
+	composer.slide({ pageProgress: "24/26" });
 	composer.choiceInput("ros_skin", {
 		question: translate(localization, {
 			en: "Jaundice (Yellow skin/eyes) or Rash?",
@@ -472,8 +470,8 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// ROS - Other
-	composer.slide({ pageProgress: "26/27" });
+	// 25. ROS - Other
+	composer.slide({ pageProgress: "25/26" });
 	composer.textInput("ros_other", {
 		question: translate(localization, {
 			en: "Any other symptoms?",
@@ -481,8 +479,8 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// Generate Story
-	composer.slide({ pageProgress: "27/27" });
+	// 26. Generate Story
+	composer.slide({ pageProgress: "26/26" });
 	composer.h2(
 		translate(localization, {
 			en: "Patient Story",

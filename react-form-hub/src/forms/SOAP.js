@@ -37,8 +37,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// 1. Patient Details (Context for HPI)
-	composer.slide({ pageProgress: "1/15" });
+	// 1. Patient Details Header
+	composer.slide({ pageProgress: "1/19" });
 	composer.h2(
 		translate(localization, {
 			en: "Patient Details",
@@ -46,6 +46,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 	
+	// 2. Patient Name
+	composer.slide({ pageProgress: "2/19" });
 	composer.textInput("patient_name", {
 		question: translate(localization, {
 			en: "Patient Full Name (Use Fake name and edit later)",
@@ -53,6 +55,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	});
 
+	// 3. MRN
+	composer.slide({ pageProgress: "3/19" });
 	composer.textInput("mrn", {
 		question: translate(localization, {
 			en: "MRN / Patient ID",
@@ -60,8 +64,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 2. Demographics
-	composer.slide({ pageProgress: "2/15" });
+	// 4. Age
+	composer.slide({ pageProgress: "4/19" });
 	composer.numberInput("age", {
 		question: translate(localization, {
 			en: "Age",
@@ -71,6 +75,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		max: 120
 	});
 
+	// 5. Gender
+	composer.slide({ pageProgress: "5/19" });
 	composer.choiceInput("gender", {
 		question: translate(localization, {
 			en: "Gender",
@@ -86,8 +92,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 	// SUBJECTIVE (S)
 	// ==========================================
 	
-	// 3. Chief Complaint (CC)
-	composer.slide({ pageProgress: "3/15" });
+	// 6. Subjective Header
+	composer.slide({ pageProgress: "6/19" });
 	composer.h2(
 		translate(localization, {
 			en: "Subjective (S)",
@@ -95,6 +101,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 7. Chief Complaint
+	composer.slide({ pageProgress: "7/19" });
 	composer.textInput("chief_complaint", {
 		question: translate(localization, {
 			en: "Chief Complaint (CC)",
@@ -106,8 +114,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	});
 
-	// 4. History of Present Illness (HPI)
-	composer.slide({ pageProgress: "4/15" });
+	// 8. History of Present Illness
+	composer.slide({ pageProgress: "8/19" });
 	composer.textInput("hpi", {
 		question: translate(localization, {
 			en: "History of Present Illness (HPI)",
@@ -120,8 +128,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 5. History (Medical, Surgical, Family, Social)
-	composer.slide({ pageProgress: "5/15" });
+	// 9. Medical & Surgical History
+	composer.slide({ pageProgress: "9/19" });
 	composer.textInput("medical_history", {
 		question: translate(localization, {
 			en: "Medical & Surgical History",
@@ -134,6 +142,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
+	// 10. Social & Family History
+	composer.slide({ pageProgress: "10/19" });
 	composer.textInput("social_family_history", {
 		question: translate(localization, {
 			en: "Social & Family History",
@@ -147,8 +157,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 6. Review of Systems (ROS)
-	composer.slide({ pageProgress: "6/15" });
+	// 11. Review of Systems
+	composer.slide({ pageProgress: "11/19" });
 	composer.textInput("ros", {
 		question: translate(localization, {
 			en: "Review of Systems (ROS)",
@@ -162,8 +172,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 7. Medications & Allergies
-	composer.slide({ pageProgress: "7/15" });
+	// 12. Medications & Allergies
+	composer.slide({ pageProgress: "12/19" });
 	composer.textInput("medications_allergies", {
 		question: translate(localization, {
 			en: "Current Medications & Allergies",
@@ -180,8 +190,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 	// OBJECTIVE (O)
 	// ==========================================
 
-	// 8. Vital Signs
-	composer.slide({ pageProgress: "8/15" });
+	// 13. Objective Header
+	composer.slide({ pageProgress: "13/19" });
 	composer.h2(
 		translate(localization, {
 			en: "Objective (O)",
@@ -189,6 +199,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 14. Vital Signs
+	composer.slide({ pageProgress: "14/19" });
 	composer.textInput("vital_signs", {
 		question: translate(localization, {
 			en: "Vital Signs",
@@ -201,8 +213,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 9. Physical Exam
-	composer.slide({ pageProgress: "9/15" });
+	// 15. Physical Exam
+	composer.slide({ pageProgress: "15/19" });
 	composer.textInput("physical_exam", {
 		question: translate(localization, {
 			en: "Physical Exam Findings",
@@ -215,8 +227,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 10. Diagnostic Data
-	composer.slide({ pageProgress: "10/15" });
+	// 16. Diagnostic Data
+	composer.slide({ pageProgress: "16/19" });
 	composer.textInput("diagnostic_data", {
 		question: translate(localization, {
 			en: "Diagnostic Data",
@@ -234,8 +246,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 	// ASSESSMENT (A)
 	// ==========================================
 
-	// 11. Problem List
-	composer.slide({ pageProgress: "11/15" });
+	// 17. Assessment Header
+	composer.slide({ pageProgress: "17/19" });
 	composer.h2(
 		translate(localization, {
 			en: "Assessment (A)",
@@ -243,6 +255,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 18. Problem List
+	composer.slide({ pageProgress: "18/19" });
 	composer.textInput("problem_list", {
 		question: translate(localization, {
 			en: "Problem List / Diagnosis",
@@ -255,8 +269,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 12. Differential Diagnosis
-	composer.slide({ pageProgress: "12/15" });
+	// 19. Differential Diagnosis
+	composer.slide({ pageProgress: "19/22" });
 	composer.textInput("differential_diagnosis", {
 		question: translate(localization, {
 			en: "Differential Diagnosis & Reasoning",
@@ -274,8 +288,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 	// PLAN (P)
 	// ==========================================
 
-	// 13. Plan Details
-	composer.slide({ pageProgress: "13/15" });
+	// 20. Plan Header
+	composer.slide({ pageProgress: "20/22" });
 	composer.h2(
 		translate(localization, {
 			en: "Plan (P)",
@@ -283,6 +297,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		}),
 	);
 
+	// 21. Treatment Plan
+	composer.slide({ pageProgress: "21/22" });
 	composer.textInput("treatment_plan", {
 		question: translate(localization, {
 			en: "Treatment Plan",
@@ -295,8 +311,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 14. Education & Follow-up
-	composer.slide({ pageProgress: "14/15" });
+	// 22. Patient Education & Follow-up
+	composer.slide({ pageProgress: "22/22" });
 	composer.textInput("education_followup", {
 		question: translate(localization, {
 			en: "Patient Education & Follow-up",
@@ -309,8 +325,8 @@ export function createSOAPNoteFormComposer(localization = "en", theme) {
 		textarea: true,
 	});
 
-	// 15. Generate
-	composer.slide({ pageProgress: "15/15" });
+	// 23. Generate SOAP Note
+	composer.slide({ pageProgress: "23/23" });
 	composer.h2(
 		translate(localization, {
 			en: "Generate SOAP Note",
