@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useOutletContext } from "react-router-dom";
 import { useTheme } from "../contexts/ThemeContext";
-import { formRegistry } from "../config/formRegistry";
+import {
+	formRegistry,
+	getFormsByThemeGrouped,
+	medicalCategories,
+} from "../config/formRegistry";
 import AnimatedText from "../components/AnimatedText";
 import Reveal from "../components/Reveal";
 
@@ -43,6 +47,9 @@ const HomePage = () => {
 	const availableForms = formRegistry.filter((form) =>
 		form.themes.includes(theme.id)
 	);
+
+	// Get forms grouped by category (for personal theme only)
+	const groupedForms = theme.id === "personal" ? getFormsByThemeGrouped(theme.id) : null;
 
 	const translations = {
 		nav: {
@@ -626,42 +633,107 @@ export default ${formName}FormPage;
 							? "Select a specialty form to get started with clinical documentation"
 							: "اختر نموذج التخصص للبدء في التوثيق السريري"}
 					</p>
-					<div className="form-list">
-						{availableForms.map((form, index) => (
-							<Reveal key={form.id} delay={0.1 + index * 0.1}>
-								<Link
-									to={
-										theme.id === "pha" ? `/pha/${form.path}` : `/${form.path}`
-									}
-									className="form-link-card"
-								>
-									<div className="form-card-icon">
-										<svg
-											width="28"
-											height="28"
-											viewBox="0 0 24 24"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<path
-												d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z"
-												stroke="currentColor"
-												strokeWidth="2"
-												strokeLinecap="round"
-												strokeLinejoin="round"
-											/>
-										</svg>
-									</div>
-									<div className="form-card-content">
-										<h3 className="form-card-title">
-											{form.title[currentLang]}
-										</h3>
-										<span className="form-card-arrow">→</span>
-									</div>
-								</Link>
-							</Reveal>
-						))}
-					</div>
+
+					{/* Show grouped forms for personal theme, ungrouped for others */}
+					{groupedForms ? (
+						<div className="specialty-categories">
+							{Object.keys(medicalCategories).map((categoryId, catIndex) => {
+								const categoryForms = groupedForms[categoryId];
+								if (categoryForms.length === 0) {
+									return null; // Don't show empty categories
+								}
+
+								return (
+									<Reveal key={categoryId} delay={0.1 + catIndex * 0.15}>
+										<div className="category-section">
+											<h3 className="category-title">
+												{medicalCategories[categoryId][currentLang]}
+											</h3>
+											<div className="form-list">
+												{categoryForms.map((form, formIndex) => (
+													<Reveal
+														key={form.id}
+														delay={0.2 + catIndex * 0.15 + formIndex * 0.05}
+													>
+														<Link
+															to={
+																theme.id === "pha"
+																	? `/pha/${form.path}`
+																	: `/${form.path}`
+															}
+															className="form-link-card"
+														>
+															<div className="form-card-icon">
+																<svg
+																	width="28"
+																	height="28"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	xmlns="http://www.w3.org/2000/svg"
+																>
+																	<path
+																		d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z"
+																		stroke="currentColor"
+																		strokeWidth="2"
+																		strokeLinecap="round"
+																		strokeLinejoin="round"
+																	/>
+																</svg>
+															</div>
+															<div className="form-card-content">
+																<h3 className="form-card-title">
+																	{form.title[currentLang]}
+																</h3>
+																<span className="form-card-arrow">→</span>
+															</div>
+														</Link>
+													</Reveal>
+												))}
+											</div>
+										</div>
+									</Reveal>
+								);
+							})}
+						</div>
+					) : (
+						<div className="form-list">
+							{availableForms.map((form, index) => (
+								<Reveal key={form.id} delay={0.1 + index * 0.1}>
+									<Link
+										to={
+											theme.id === "pha" ? `/pha/${form.path}` : `/${form.path}`
+										}
+										className="form-link-card"
+									>
+										<div className="form-card-icon">
+											<svg
+												width="28"
+												height="28"
+												viewBox="0 0 24 24"
+												fill="none"
+												xmlns="http://www.w3.org/2000/svg"
+											>
+												<path
+													d="M9 12H15M9 16H15M17 21H7C5.89543 21 5 20.1046 5 19V5C5 3.89543 5.89543 3 7 3H12.5858C12.851 3 13.1054 3.10536 13.2929 3.29289L18.7071 8.70711C18.8946 8.89464 19 9.149 19 9.41421V19C19 20.1046 18.1046 21 17 21Z"
+													stroke="currentColor"
+													strokeWidth="2"
+													strokeLinecap="round"
+													strokeLinejoin="round"
+												/>
+											</svg>
+										</div>
+										<div className="form-card-content">
+											<h3 className="form-card-title">
+												{form.title[currentLang]}
+											</h3>
+											<span className="form-card-arrow">→</span>
+										</div>
+									</Link>
+								</Reveal>
+							))}
+						</div>
+					)}
+
 					<button className="back-btn" onClick={() => setView("main")}>
 						{txt("backBtn")}
 					</button>
