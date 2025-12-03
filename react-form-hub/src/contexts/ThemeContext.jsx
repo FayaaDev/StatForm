@@ -33,7 +33,7 @@ export function ThemeProvider({ theme: themeId, children }) {
 				favicon.href = "/logos/PHAlogo.png";
 			}
 		} else {
-			document.title = "StatForm";
+			document.title = "StatForm - Intelligent Documentation";
 			if (favicon) {
 				favicon.type = "image/svg+xml";
 				favicon.href = "/statform-favicon.svg";
