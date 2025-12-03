@@ -16,6 +16,8 @@ import CoughPage from "./pages/CoughPage";
 import DyspneaPage from "./pages/DyspneaPage";
 import PelvicPainPage from "./pages/PelvicPainPage";
 import DepressionPage from "./pages/DepressionPage";
+import DischargeSummaryPage from "./pages/DischargeSummaryPage";
+import SOAPPage from "./pages/SOAPPage";
 import "./App.css";
 
 function App() {
@@ -32,6 +34,8 @@ function App() {
 					}
 				>
 					<Route index element={<HomePage />} />
+					<Route path="discharge-summary" element={<DischargeSummaryPage />} />
+					<Route path="soap-note" element={<SOAPPage />} />
 					<Route path="burnout-survey" element={<BurnoutSurveyPage />} />
 					<Route
 						path="neurology-history"

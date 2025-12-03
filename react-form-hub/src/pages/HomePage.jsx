@@ -131,13 +131,13 @@ const HomePage = () => {
 			q1: {
 				question: { en: "Why StatForm?", ar: "لماذا ستات فورم؟" },
 				answer: {
-					en: "StatForm revolutionizes clinical documentation by offering specialty-specific forms with keyboard shortcuts for rapid data entry. Built by physicians for physicians, it streamlines your workflow, reduces documentation time, and improves accuracy—allowing you to focus more on patient care rather than paperwork.",
+					en: "StatForm revolutionizes clinical documentation by offering specialty-specific forms with keyboard shortcuts for rapid data entry. Built by physicians for physicians, it streamlines your workflow, reduces documentation time, and improves accuracy, allowing you to focus more on patient care rather than paperwork.",
 					ar: "ستات فورم يُحدث ثورة في التوثيق السريري من خلال تقديم نماذج خاصة بالتخصص مع اختصارات لوحة المفاتيح لإدخال البيانات السريع. مصمم من قبل أطباء للأطباء، يبسط سير عملك، يقلل وقت التوثيق، ويحسن الدقة—مما يتيح لك التركيز أكثر على رعاية المرضى بدلاً من الأعمال الورقية."
 				}
 			},
 			q2: {
 				question: { 
-					en: "What if the generated story is different from what I expected?", 
+					en: "What if the generated story is different from what I entered?", 
 					ar: "ماذا لو كانت القصة المُولدة مختلفة عما توقعت؟" 
 				},
 				answer: {

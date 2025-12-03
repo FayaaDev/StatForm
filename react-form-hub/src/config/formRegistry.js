@@ -42,6 +42,30 @@ export const formRegistry = [
 
 	// Personal (main) theme exclusive forms
 	// ============================================
+	// Category: Patient General Assessment
+	// ============================================
+	{
+		id: "discharge-summary",
+		themes: ["personal"],
+		path: "discharge-summary",
+		category: "patient-general-assessment",
+		title: {
+			en: "Discharge Summary",
+			ar: "ملخص الخروج",
+		},
+	},
+	{
+		id: "soap-note",
+		themes: ["personal"],
+		path: "soap-note",
+		category: "patient-general-assessment",
+		title: {
+			en: "SOAP Note",
+			ar: "ملاحظة SOAP",
+		},
+	},
+
+	// ============================================
 	// Category: General Surgery
 	// ============================================
 	{
@@ -155,6 +179,10 @@ export const formRegistry = [
 
 // Medical specialty categories
 export const medicalCategories = {
+	"patient-general-assessment": {
+		en: "Patient General Assessment",
+		ar: "التقييم العام للمريض",
+	},
 	"general-surgery": {
 		en: "General Surgery",
 		ar: "الجراحة العامة",
