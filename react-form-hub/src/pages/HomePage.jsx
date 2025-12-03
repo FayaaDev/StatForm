@@ -13,9 +13,10 @@ const HomePage = () => {
 	const { currentLang, toggleLanguage } = useOutletContext();
 	const theme = useTheme();
 	const [view, setView] = useState("main"); // main, review, create
-	const [newFormName, setNewFormName] = useState("");
-	const [generatedFormCode, setGeneratedFormCode] = useState("");
-	const [generatedPageCode, setGeneratedPageCode] = useState("");
+	const [requestEmail, setRequestEmail] = useState("");
+	const [requestFormName, setRequestFormName] = useState("");
+	const [requestDetails, setRequestDetails] = useState("");
+	const [requestStatus, setRequestStatus] = useState(""); // '', 'sending', 'success', 'error'
 	const [activeSection, setActiveSection] = useState("home");
 
 	// Scroll listener to update active navigation
@@ -124,20 +125,20 @@ const HomePage = () => {
 		},
 		cta: {
 			explore: { en: "Explore Forms", ar: "استكشف النماذج" },
-			create: { en: "Create Custom Form", ar: "أنشئ نموذجاً مخصصاً" },
+			create: { en: "Request Custom Form", ar: "اطلب نموذجاً مخصصاً" },
 		},
 		faq: {
 			title: { en: "Frequently Asked Questions", ar: "الأسئلة الشائعة" },
 			q1: {
 				question: { en: "Why StatForm?", ar: "لماذا ستات فورم؟" },
 				answer: {
-					en: "StatForm revolutionizes clinical documentation by offering specialty-specific forms with keyboard shortcuts for rapid data entry. Built by physicians for physicians, it streamlines your workflow, reduces documentation time, and improves accuracy, allowing you to focus more on patient care rather than paperwork.",
+					en: "StatForm revolutionizes clinical documentation by offering specialty-specific forms with keyboard shortcuts for rapid data entry. Built by physicians for physicians, it streamlines your workflow, reduces documentation time, and improves accuracy—allowing you to focus more on patient care rather than paperwork.",
 					ar: "ستات فورم يُحدث ثورة في التوثيق السريري من خلال تقديم نماذج خاصة بالتخصص مع اختصارات لوحة المفاتيح لإدخال البيانات السريع. مصمم من قبل أطباء للأطباء، يبسط سير عملك، يقلل وقت التوثيق، ويحسن الدقة—مما يتيح لك التركيز أكثر على رعاية المرضى بدلاً من الأعمال الورقية."
 				}
 			},
 			q2: {
 				question: { 
-					en: "What if the generated story is different from what I entered?", 
+					en: "What if the generated story is different from what I expected?", 
 					ar: "ماذا لو كانت القصة المُولدة مختلفة عما توقعت؟" 
 				},
 				answer: {
@@ -166,130 +167,64 @@ const HomePage = () => {
 				}
 			}
 		},
-		createBtn: { en: "Create New Form", ar: "إنشاء نموذج جديد" },
+		createBtn: { en: "Request Custom Form", ar: "اطلب نموذجاً مخصصاً" },
 		reviewBtn: { en: "Review Forms", ar: "مراجعة النماذج" },
 		backBtn: { en: "Back", ar: "رجوع" },
 		availableForms: { en: "Available Forms", ar: "النماذج المتاحة" },
-		enterName: {
-			en: "Enter Form Name (e.g., Contact)",
-			ar: "أدخل اسم النموذج (مثلاً: تواصل)",
-		},
-		generate: { en: "Generate Code", ar: "توليد الكود" },
-		copyCode: { en: "Copy Code", ar: "نسخ الكود" },
-		formFile: { en: "Form Definition File", ar: "ملف تعريف النموذج" },
-		pageFile: { en: "Page Component File", ar: "ملف مكون الصفحة" },
-		codeInstructions: {
-			en: "Create these two files in your project:",
-			ar: "قم بإنشاء هذين الملفين في مشروعك:",
+		request: {
+			title: { en: "Request a Custom Form", ar: "اطلب نموذجاً مخصصاً" },
+			subtitle: {
+				en: "Tell us about the form you need and we'll create it for you.",
+				ar: "أخبرنا عن النموذج الذي تحتاجه وسنقوم بإنشائه لك.",
+			},
+			email: { en: "Your Email", ar: "بريدك الإلكتروني" },
+			emailPlaceholder: { en: "doctor@example.com", ar: "doctor@example.com" },
+			formName: { en: "Form Name", ar: "اسم النموذج" },
+			formNamePlaceholder: { en: "e.g., Cardiology Assessment", ar: "مثال: تقييم القلب" },
+			details: { en: "Details & Specifications", ar: "التفاصيل والمواصفات" },
+			detailsPlaceholder: {
+				en: "Describe the questions, fields, and any specific requirements for your form...",
+				ar: "صف الأسئلة والحقول وأي متطلبات محددة لنموذجك...",
+			},
+			submit: { en: "Submit Request", ar: "إرسال الطلب" },
+			sending: { en: "Sending...", ar: "جاري الإرسال..." },
+			success: {
+				en: "Thank you! Your request has been submitted. We'll get back to you soon.",
+				ar: "شكراً لك! تم إرسال طلبك. سنتواصل معك قريباً.",
+			},
+			error: {
+				en: "Something went wrong. Please try again or email us directly at support@statform.app",
+				ar: "حدث خطأ ما. يرجى المحاولة مرة أخرى أو مراسلتنا مباشرة على support@statform.app",
+			},
+			newRequest: { en: "Submit Another Request", ar: "إرسال طلب آخر" },
 		},
 	};
 
 	const txt = (key) => translations[key][currentLang];
 
-	const generateCode = () => {
-		const name = newFormName.replace(/\s+/g, "");
-		const formName = name.charAt(0).toUpperCase() + name.slice(1);
+	const handleSubmitRequest = async (e) => {
+		e.preventDefault();
+		setRequestStatus("sending");
 
-		// 1. Form Definition Code
-		const formCode = `import { translate } from '../utils/translate.js';
-import { GOOGLE_SCRIPT_URL } from './formUtils.js';
+		try {
+			const mailtoLink = `mailto:support@statform.app?subject=${encodeURIComponent(
+				`Custom Form Request: ${requestFormName}`
+			)}&body=${encodeURIComponent(
+				`Email: ${requestEmail}\n\nForm Name: ${requestFormName}\n\nDetails & Specifications:\n${requestDetails}`
+			)}`;
+			
+			window.location.href = mailtoLink;
+			setRequestStatus("success");
+		} catch (error) {
+			setRequestStatus("error");
+		}
+	};
 
-export function create${formName}FormComposer(localization = 'en') {
-  if (!window.Composer) return null;
-
-  const composer = new window.Composer({
-    id: "${formName.toLowerCase()}-form",
-    formStyle: "conversational",
-    fontSize: "lg",
-    rounded: "pill",
-    restartButton: "show",
-    buttonAlignment: "end",
-    paddingInlineBottom: 80,
-    paddingInlineTop: 100,
-    colorScheme: "light",
-    accent: "#09595C",
-    accentForeground: "#ffffff",
-    backgroundColor: "#ffffff",
-    color: "#063E40",
-    postUrl: GOOGLE_SCRIPT_URL,
-    localization: localization,
-    dir: localization === "ar" ? "rtl" : "ltr",
-  });
-
-  composer.h1("${newFormName}");
-  composer.startSlide({
-    buttonText: localization === "ar" ? "ابدأ" : "Start",
-  });
-
-  // 1. Text Field
-  composer.slide({ pageProgress: "1/3" });
-  composer.textInput("question1", {
-    question: localization === "ar" ? "سؤال نصي؟" : "Text Question?",
-    required: true,
-  });
-
-  // 2. Dropdown Menu (SelectBox)
-  composer.slide({ pageProgress: "2/3" });
-  composer.selectBox("question2", {
-    question: localization === "ar" ? "سؤال القائمة المنسدلة؟" : "Dropdown Question?",
-    options: localization === "ar" 
-      ? ["خيار 1", "خيار 2", "خيار 3"] 
-      : ["Option 1", "Option 2", "Option 3"],
-    required: true,
-  });
-
-  // 3. Select Box (ChoiceInput)
-  composer.slide({ pageProgress: "3/3" });
-  composer.choiceInput("question3", {
-    question: localization === "ar" ? "سؤال الاختيار؟" : "Selection Question?",
-    choices: localization === "ar" 
-      ? ["خيار أ", "خيار ب"] 
-      : ["Choice A", "Choice B"],
-    required: true,
-  });
-
-  return composer;
-}
-`;
-
-		// 2. Page Component Code
-		const pageCode = `import { useOutletContext } from "react-router-dom";
-import { useEffect, useState } from "react";
-import FormRenderer from "../components/FormRenderer";
-import { create${formName}FormComposer } from "../forms/${formName}Form";
-import { getFormOptions } from "../forms/formUtils";
-
-const ${formName}FormPage = () => {
-  const { currentLang } = useOutletContext();
-  const [composer, setComposer] = useState(null);
-  const [options, setOptions] = useState(null);
-
-  useEffect(() => {
-    const newComposer = create${formName}FormComposer(currentLang);
-    const newOptions = getFormOptions(currentLang);
-
-    setComposer(newComposer);
-    setOptions(newOptions);
-  }, [currentLang]);
-
-  if (!composer || !options) {
-    return <div>Loading...</div>;
-  }
-
-  return (
-    <FormRenderer
-      composer={composer}
-      options={options}
-      id="${formName.toLowerCase()}-form-container"
-    />
-  );
-};
-
-export default ${formName}FormPage;
-`;
-
-		setGeneratedFormCode(formCode);
-		setGeneratedPageCode(pageCode);
+	const resetRequestForm = () => {
+		setRequestEmail("");
+		setRequestFormName("");
+		setRequestDetails("");
+		setRequestStatus("");
 	};
 
 	return (
@@ -742,89 +677,79 @@ export default ${formName}FormPage;
 
 			{view === "create" && (
 				<div className="create-section">
-					{!generatedFormCode ? (
-						<>
-							<input
-								type="text"
-								value={newFormName}
-								onChange={(e) => setNewFormName(e.target.value)}
-								placeholder={txt("enterName")}
-								className="name-input"
-							/>
-							<button
-								className="generate-btn"
-								onClick={generateCode}
-								disabled={!newFormName}
-							>
-								{txt("generate")}
+					<h2 className="request-title">{translations.request.title[currentLang]}</h2>
+					<p className="request-subtitle">{translations.request.subtitle[currentLang]}</p>
+
+					{requestStatus === "success" ? (
+						<div className="request-success">
+							<div className="success-icon">✓</div>
+							<p>{translations.request.success[currentLang]}</p>
+							<button className="generate-btn" onClick={resetRequestForm}>
+								{translations.request.newRequest[currentLang]}
 							</button>
-						</>
-					) : (
-						<div className="code-display">
-							<p>{txt("codeInstructions")}</p>
-
-							<div className="code-block">
-								<h3>
-									{txt("formFile")}:{" "}
-									<code>
-										src/forms/{newFormName.replace(/\s+/g, "")}Form.js
-									</code>
-								</h3>
-								<textarea
-									readOnly
-									value={generatedFormCode}
-									rows={15}
-									className="code-textarea"
-								/>
-								<button
-									className="copy-btn"
-									onClick={() =>
-										navigator.clipboard.writeText(generatedFormCode)
-									}
-								>
-									{txt("copyCode")}
-								</button>
-							</div>
-
-							<div className="code-block">
-								<h3>
-									{txt("pageFile")}:{" "}
-									<code>
-										src/pages/{newFormName.replace(/\s+/g, "")}FormPage.jsx
-									</code>
-								</h3>
-								<textarea
-									readOnly
-									value={generatedPageCode}
-									rows={15}
-									className="code-textarea"
-								/>
-								<button
-									className="copy-btn"
-									onClick={() =>
-										navigator.clipboard.writeText(generatedPageCode)
-									}
-								>
-									{txt("copyCode")}
-								</button>
-							</div>
-
-							<div className="code-actions">
-								<button
-									className="reset-btn"
-									onClick={() => {
-										setGeneratedFormCode("");
-										setGeneratedPageCode("");
-										setNewFormName("");
-									}}
-								>
-									{txt("backBtn")}
-								</button>
-							</div>
 						</div>
+					) : requestStatus === "error" ? (
+						<div className="request-error">
+							<p>{translations.request.error[currentLang]}</p>
+							<button className="generate-btn" onClick={resetRequestForm}>
+								{translations.request.newRequest[currentLang]}
+							</button>
+						</div>
+					) : (
+						<form className="request-form" onSubmit={handleSubmitRequest}>
+							<div className="form-group">
+								<label htmlFor="request-email">{translations.request.email[currentLang]}</label>
+								<input
+									type="email"
+									id="request-email"
+									value={requestEmail}
+									onChange={(e) => setRequestEmail(e.target.value)}
+									placeholder={translations.request.emailPlaceholder[currentLang]}
+									className="name-input"
+									required
+								/>
+							</div>
+
+							<div className="form-group">
+								<label htmlFor="request-form-name">{translations.request.formName[currentLang]}</label>
+								<input
+									type="text"
+									id="request-form-name"
+									value={requestFormName}
+									onChange={(e) => setRequestFormName(e.target.value)}
+									placeholder={translations.request.formNamePlaceholder[currentLang]}
+									className="name-input"
+									required
+								/>
+							</div>
+
+							<div className="form-group">
+								<label htmlFor="request-details">{translations.request.details[currentLang]}</label>
+								<textarea
+									id="request-details"
+									value={requestDetails}
+									onChange={(e) => setRequestDetails(e.target.value)}
+									placeholder={translations.request.detailsPlaceholder[currentLang]}
+									className="details-textarea"
+									rows={6}
+									required
+								/>
+							</div>
+
+							<button
+								type="submit"
+								className="generate-btn"
+								disabled={requestStatus === "sending" || !requestEmail || !requestFormName || !requestDetails}
+							>
+								{requestStatus === "sending"
+									? translations.request.sending[currentLang]
+									: translations.request.submit[currentLang]}
+							</button>
+						</form>
 					)}
-					{!generatedFormCode && (
-						<button className="back-btn" onClick={() => setView("main")}>
+
+					{requestStatus !== "success" && (
+						<button className="back-btn" onClick={() => { setView("main"); resetRequestForm(); }}>
 							{txt("backBtn")}
 						</button>
 					)}
@@ -859,48 +784,10 @@ export default ${formName}FormPage;
 							</a>
 						</div>
 
-						<div className="footer-links-group">
-							<div className="footer-column">
-								<h4>{translations.footer.product.title[currentLang]}</h4>
-								<ul>
-									<li>
-										<a href="#features">
-											{translations.footer.product.features[currentLang]}
-										</a>
-									</li>
-									<li>
-										<a href="#pricing">
-											{translations.footer.product.pricing[currentLang]}
-										</a>
-									</li>
-									<li>
-										<a href="#docs">
-											{translations.footer.product.docs[currentLang]}
-										</a>
-									</li>
-								</ul>
-							</div>
-
-							<div className="footer-column">
-								<h4>{translations.footer.links.title[currentLang]}</h4>
-								<ul>
-									<li>
-										<a href="#privacy">
-											{translations.footer.links.privacy[currentLang]}
-										</a>
-									</li>
-									<li>
-										<a href="#terms">
-											{translations.footer.links.terms[currentLang]}
-										</a>
-									</li>
-									<li>
-										<a href="#contact">
-											{translations.footer.links.contact[currentLang]}
-										</a>
-									</li>
-								</ul>
-							</div>
+						<div className="footer-contact">
+							<a href="mailto:Support@statform.app" className="footer-email">
+								Support@statform.app
+							</a>
 						</div>
 					</div>
 
