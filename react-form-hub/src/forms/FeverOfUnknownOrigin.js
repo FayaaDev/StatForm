@@ -44,7 +44,7 @@ export function createFeverOfUnknownOriginFormComposer(localization = "en", them
 	composer.numberInput("age", {
 		question: translate(localization, {
 			en: "What is your age?",
-			ar: "ما هو عمرك؟",
+			ar: "العمر",
 		}),
 		min: 1,
 		max: 120
@@ -54,21 +54,13 @@ export function createFeverOfUnknownOriginFormComposer(localization = "en", them
 	composer.slide({ pageProgress: "2/20" });
 	composer.choiceInput("gender", {
 		question: translate(localization, {
-			en: "What's your gender?",
-			ar: "ما هو جنسك؟",
+			en: "Gender",
+			ar: "الجنس",
 		}),
 		choices: [
 			translate(localization, { en: "Male", ar: "ذكر" }),
 			translate(localization, { en: "Female", ar: "أنثى" }),
 		],
-	});
-
-	composer.textInput("gender_details", {
-		question: translate(localization, {
-			en: "Details (if any)",
-			ar: "التفاصيل (إن وجدت)",
-		}),
-		required: false,
 	});
 
 	// --- Core FUO Criteria and Fever Characteristics (Adapted) ---

@@ -45,9 +45,8 @@ export function createCPPHistoryFormComposer(localization = "en", theme) {
   composer.choiceInput("sex", {
     question: translate(localization, { en: "Sex / Gender", ar: "الجنس / النوع" }),
     choices: [
-      translate(localization, { en: "Female", ar: "أنثى" }),
       translate(localization, { en: "Male", ar: "ذكر" }),
-      translate(localization, { en: "Other / prefer not to say", ar: "آخر / أفضل عدم التصريح" }),
+      translate(localization, { en: "Female", ar: "أنثى" }),
     ],
   });
 

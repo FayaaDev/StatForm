@@ -33,8 +33,34 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// 1. Onset - Activity
-	composer.slide({ pageProgress: "1/30" });
+	// 1. Age
+	composer.slide({ pageProgress: "1/32" });
+	composer.numberInput("age", {
+		question: translate(localization, {
+			en: "What is your age?",
+			ar: "العمر",
+		}),
+		min: 1,
+		max: 120,
+		required: true,
+	});
+
+	// 2. Gender
+	composer.slide({ pageProgress: "2/32" });
+	composer.choiceInput("gender", {
+		question: translate(localization, {
+			en: "Gender",
+			ar: "الجنس",
+		}),
+		choices: [
+			translate(localization, { en: "Male", ar: "ذكر" }),
+			translate(localization, { en: "Female", ar: "أنثى" }),
+		],
+		required: true,
+	});
+
+	// 3. Onset - Activity
+	composer.slide({ pageProgress: "3/32" });
 	composer.choiceInput("onset_activity", {
 		question: translate(localization, {
 			en: "What were you doing when the pain started?",
@@ -57,7 +83,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 2. Onset - Type
-	composer.slide({ pageProgress: "2/30" });
+	composer.slide({ pageProgress: "4/32" });
 	composer.choiceInput("onset_type", {
 		question: translate(localization, {
 			en: "Did the pain start suddenly or gradually?",
@@ -78,7 +104,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 3. Location
-	composer.slide({ pageProgress: "3/30" });
+	composer.slide({ pageProgress: "5/32" });
 	composer.choiceInput("location", {
 		question: translate(localization, {
 			en: "Where is the pain exactly?",
@@ -102,7 +128,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 4. Radiation
-	composer.slide({ pageProgress: "4/30" });
+	composer.slide({ pageProgress: "6/32" });
 	composer.choiceInput("radiation", {
 		question: translate(localization, {
 			en: "Does the pain radiate (move) anywhere?",
@@ -126,7 +152,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 5. Character
-	composer.slide({ pageProgress: "5/30" });
+	composer.slide({ pageProgress: "7/32" });
 	composer.choiceInput("character", {
 		question: translate(localization, {
 			en: "How does the pain feel?",
@@ -151,7 +177,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 6. Severity
-	composer.slide({ pageProgress: "6/30" });
+	composer.slide({ pageProgress: "8/32" });
 	composer.numberInput("severity", {
 		question: translate(localization, {
 			en: "Severity (0-10)?",
@@ -162,7 +188,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 7. Duration
-	composer.slide({ pageProgress: "7/30" });
+	composer.slide({ pageProgress: "9/32" });
 	composer.textInput("duration", {
 		question: translate(localization, {
 			en: "How long does the pain last?",
@@ -171,7 +197,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 8. Aggravating Factors - Exertion
-	composer.slide({ pageProgress: "8/30" });
+	composer.slide({ pageProgress: "10/32" });
 	composer.choiceInput("agg_exertion", {
 		question: translate(localization, {
 			en: "Does exertion (walking/stairs) make it worse?",
@@ -193,7 +219,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 9. Aggravating Factors - Breathing/Position
-	composer.slide({ pageProgress: "9/30" });
+	composer.slide({ pageProgress: "11/32" });
 	composer.choiceInput("agg_breathing", {
 		question: translate(localization, {
 			en: "Does deep breathing or changing position make it worse?",
@@ -215,7 +241,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 10. Relieving Factors
-	composer.slide({ pageProgress: "10/30" });
+	composer.slide({ pageProgress: "12/32" });
 	composer.textInput("relieving", {
 		question: translate(localization, {
 			en: "What makes it better? (Rest, Nitrates/GTN, Leaning forward, Antacids)",
@@ -224,7 +250,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 11. Associated - Nausea/Sweating
-	composer.slide({ pageProgress: "11/30" });
+	composer.slide({ pageProgress: "13/32" });
 	composer.choiceInput("assoc_autonomic", {
 		question: translate(localization, {
 			en: "Did you have nausea, vomiting, or sweating (diaphoresis)?",
@@ -246,7 +272,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 12. Associated - SOB
-	composer.slide({ pageProgress: "12/30" });
+	composer.slide({ pageProgress: "14/32" });
 	composer.choiceInput("assoc_sob", {
 		question: translate(localization, {
 			en: "Shortness of breath (Dyspnea)?",
@@ -268,7 +294,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 13. Associated - Palpitations/Syncope
-	composer.slide({ pageProgress: "13/30" });
+	composer.slide({ pageProgress: "15/32" });
 	composer.choiceInput("assoc_palp", {
 		question: translate(localization, {
 			en: "Palpitations or Fainting (Syncope)?",
@@ -290,7 +316,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 14. Associated - Other
-	composer.slide({ pageProgress: "14/30" });
+	composer.slide({ pageProgress: "16/32" });
 	composer.textInput("assoc_other", {
 		question: translate(localization, {
 			en: "Other symptoms (Cough, Fever, Hemoptysis)?",
@@ -299,7 +325,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 15. Risk Factors - Cardiac (HTN/DM)
-	composer.slide({ pageProgress: "15/30" });
+	composer.slide({ pageProgress: "17/32" });
 	composer.choiceInput("rf_cardiac_major", {
 		question: translate(localization, {
 			en: "Do you have Hypertension (High BP) or Diabetes?",
@@ -321,7 +347,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 16. Risk Factors - Cardiac (Cholesterol/Smoking)
-	composer.slide({ pageProgress: "16/30" });
+	composer.slide({ pageProgress: "18/32" });
 	composer.choiceInput("rf_cardiac_lifestyle", {
 		question: translate(localization, {
 			en: "High Cholesterol or Smoker?",
@@ -343,7 +369,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 17. Risk Factors - Family History
-	composer.slide({ pageProgress: "17/30" });
+	composer.slide({ pageProgress: "19/32" });
 	composer.choiceInput("rf_family", {
 		question: translate(localization, {
 			en: "Family history of heart attacks (MI) under age 55?",
@@ -365,7 +391,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 18. Risk Factors - PE (DVT/Leg Pain)
-	composer.slide({ pageProgress: "18/30" });
+	composer.slide({ pageProgress: "20/32" });
 	composer.choiceInput("rf_pe_dvt", {
 		question: translate(localization, {
 			en: "Any calf pain/swelling or history of DVT?",
@@ -387,7 +413,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 19. Risk Factors - PE (Immobility/Surgery/Cancer)
-	composer.slide({ pageProgress: "19/30" });
+	composer.slide({ pageProgress: "21/32" });
 	composer.choiceInput("rf_pe_major", {
 		question: translate(localization, {
 			en: "Recent surgery, long travel (immobility), or active cancer?",
@@ -409,7 +435,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 20. History - Previous Episodes
-	composer.slide({ pageProgress: "20/30" });
+	composer.slide({ pageProgress: "22/32" });
 	composer.choiceInput("history_prev", {
 		question: translate(localization, {
 			en: "Have you had this pain before?",
@@ -431,7 +457,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 21. History - Cardiac interventions
-	composer.slide({ pageProgress: "21/30" });
+	composer.slide({ pageProgress: "23/32" });
 	composer.textInput("history_cardiac_interventions", {
 		question: translate(localization, {
 			en: "Prior Stents, CABG, or Angiography?",
@@ -440,7 +466,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 22. Medications
-	composer.slide({ pageProgress: "22/30" });
+	composer.slide({ pageProgress: "24/32" });
 	composer.textInput("medications", {
 		question: translate(localization, {
 			en: "Current medications (Aspirin, Blood thinners, Inhalers)?",
@@ -449,7 +475,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 23. Allergies
-	composer.slide({ pageProgress: "23/30" });
+	composer.slide({ pageProgress: "25/32" });
 	composer.textInput("allergies", {
 		question: translate(localization, {
 			en: "Allergies?",
@@ -458,7 +484,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 24. Social History
-	composer.slide({ pageProgress: "24/30" });
+	composer.slide({ pageProgress: "26/32" });
 	composer.textInput("social_history", {
 		question: translate(localization, {
 			en: "Smoking (packs/day), Alcohol, Illicit drugs (Cocaine)?",
@@ -467,7 +493,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// Review of Systems - GI (GERD)
-	composer.slide({ pageProgress: "25/30" });
+	composer.slide({ pageProgress: "27/32" });
 	composer.h2(
 		translate(localization, {
 			en: "Review of Systems",
@@ -496,7 +522,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// ROS - Musculoskeletal
-	composer.slide({ pageProgress: "26/30" });
+	composer.slide({ pageProgress: "28/32" });
 	composer.choiceInput("ros_msk", {
 		question: translate(localization, {
 			en: "Did you lift anything heavy recently or have trauma to chest?",
@@ -518,7 +544,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// ROS - Respiratory (Infection)
-	composer.slide({ pageProgress: "27/30" });
+	composer.slide({ pageProgress: "29/32" });
 	composer.choiceInput("ros_resp_infection", {
 		question: translate(localization, {
 			en: "Recent flu, cold, or upper respiratory infection?",
@@ -540,7 +566,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 28. Panic/Anxiety
-	composer.slide({ pageProgress: "28/30" });
+	composer.slide({ pageProgress: "30/32" });
 	composer.choiceInput("ros_psych", {
 		question: translate(localization, {
 			en: "Any history of panic attacks or severe anxiety?",
@@ -562,7 +588,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// 29. Other
-	composer.slide({ pageProgress: "29/30" });
+	composer.slide({ pageProgress: "31/32" });
 	composer.textInput("ros_other", {
 		question: translate(localization, {
 			en: "Any other symptoms?",
@@ -571,7 +597,7 @@ export function createChestPainHistoryFormComposer(localization = "en", theme) {
 	});
 
 	// Generate Story
-	composer.slide({ pageProgress: "30/30" });
+	composer.slide({ pageProgress: "32/32" });
 	composer.h2(
 		translate(localization, {
 			en: "Patient Story",

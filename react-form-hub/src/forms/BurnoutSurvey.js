@@ -33,6 +33,31 @@ export function createBurnoutSurveyComposer(localization = "en", theme) {
         })
     );
 
+    // 1. Age
+    composer.slide({ pageProgress: `1/${10 + 2}` });
+    composer.numberInput("age", {
+        question: translate(localization, {
+            en: "What is your age?",
+            ar: "العمر",
+        }),
+        min: 1,
+        max: 120,
+        required: true,
+    });
+
+    // 2. Gender
+    composer.slide({ pageProgress: `2/${10 + 2}` });
+    composer.choiceInput("gender", {
+        question: translate(localization, {
+            en: "Gender",
+            ar: "الجنس",
+        }),
+        choices: [
+            translate(localization, { en: "Male", ar: "ذكر" }),
+            translate(localization, { en: "Female", ar: "أنثى" }),
+        ],
+        required: true,
+    });
 
     const choices = localization === "ar"
         ? ["أبداً", "نادراً", "أحياناً", "غالباً", "دائماً"]
@@ -82,7 +107,7 @@ export function createBurnoutSurveyComposer(localization = "en", theme) {
     ];
 
     questions.forEach((q, index) => {
-        composer.slide({ pageProgress: `${index + 1}/${questions.length}` });
+        composer.slide({ pageProgress: `${index + 3}/${questions.length + 2}` });
         composer.choiceInput(`q${index + 1}`, {
             question: translate(localization, {
                 en: q.en,

@@ -38,7 +38,7 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	composer.numberInput("age", {
 		question: translate(localization, {
 			en: "What is your age?",
-			ar: "ما هو عمرك؟",
+			ar: "العمر",
 		}),
 		min: 1,
 		max: 120
@@ -48,8 +48,8 @@ export function createAcuteAbdomenFormComposer(localization = "en", theme) {
 	composer.slide({ pageProgress: "2/27" });
 	composer.choiceInput("gender", {
 		question: translate(localization, {
-			en: "What's your gender?",
-			ar: "ما هو جنسك؟",
+			en: "Gender",
+			ar: "الجنس",
 		}),
 		choices: [
 			translate(localization, { en: "Male", ar: "ذكر" }),

@@ -44,11 +44,10 @@ export function createDepressionHistoryFormComposer(localization = "en", theme) 
   // 2. Gender / Sex
   composer.slide({ pageProgress: "2/20" });
   composer.choiceInput("sex", {
-    question: translate(localization, { en: "Sex / Gender", ar: "الجنس / النوع" }),
+    question: translate(localization, { en: "Gender", ar: "الجنس" }),
     choices: [
-      translate(localization, { en: "Female", ar: "أنثى" }),
       translate(localization, { en: "Male", ar: "ذكر" }),
-      translate(localization, { en: "Other / prefer not to say", ar: "آخر / أفضل عدم التصريح" }),
+      translate(localization, { en: "Female", ar: "أنثى" }),
     ],
   });
 
