@@ -21,14 +21,14 @@ export function createDyspneaFormComposer(localization = "en", theme) {
 	// Header ----------------------------------------------------
 	composer.h1(
 		translate(localization, {
-			en: "Dyspnea (Shortness of Breath) History Form",
+			en: "Dyspnea History Form",
 			ar: "نموذج تاريخ ضيق التنفس",
 		}),
 	);
 
 	composer.p(
 		translate(localization, {
-			en: "Structured history-taking template for dyspnea (shortness of breath).",
+			en: "Shortness of Breath",
 			ar: "نموذج منظم لأخذ التاريخ المرضي لشكوى ضيق التنفس.",
 		}),
 	);

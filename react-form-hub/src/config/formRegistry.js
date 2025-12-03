@@ -55,8 +55,8 @@ export const formRegistry = [
 		themes: ["personal"],
 		path: "neurology-history",
 		title: {
-			en: "Neurology History",
-			ar: "التاريخ العصبي",
+			en: "Seizure",
+			ar: "الصرع",
 		},
 	},
 	{
@@ -65,7 +65,7 @@ export const formRegistry = [
 		path: "acute-abdomen",
 		title: {
 			en: "Acute Abdomen",
-			ar: "البطن الحاد",
+			ar: "ألم البطن",
 		},
 	},
 	{
@@ -73,8 +73,8 @@ export const formRegistry = [
 		themes: ["personal"],
 		path: "chest-pain",
 		title: {
-			en: "Chest Pain History",
-			ar: "تاريخ ألم الصدر",
+			en: "Chest Pain",
+			ar: " ألم الصدر",
 		},
 	},
 	{
@@ -82,8 +82,8 @@ export const formRegistry = [
 		themes: ["personal"],
 		path: "fever-unknown-origin",
 		title: {
-			en: "Fever of Unknown Origin (FUO)",
-			ar: "حمى مجهولة المصدر (FUO)",
+			en: "Fever of Unknown Origin",
+			ar: "حمى مجهولة المصدر ",
 		},
 	},
 	{
@@ -91,8 +91,8 @@ export const formRegistry = [
 		themes: ["personal"],
 		path: "cough-history",
 		title: {
-			en: "Cough History and Assessment",
-			ar: "تاريخ وتقييم السعال",
+			en: "Cough",
+			ar: "  السعال",
 		},
 	},
 	{
@@ -100,8 +100,17 @@ export const formRegistry = [
 		themes: ["personal"],
 		path: "dyspnea-history",
 		title: {
-			en: "Dyspnea (Shortness of Breath) History",
+			en: "Dyspnea",
 			ar: "تاريخ ضيق التنفس",
+		},
+	},
+	{
+		id: "pelvic-pain",
+		themes: ["personal"],
+		path: "pelvic-pain",
+		title: {
+			en: "Chronic Pelvic Pain",
+			ar: "تاريخ ألم الحوض المزمن",
 		},
 	},
 ];

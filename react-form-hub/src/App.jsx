@@ -14,6 +14,7 @@ import ChestPainPage from "./pages/ChestPainPage";
 import FeverOfUnknownOriginPage from "./pages/FeverOfUnknownOriginPage";
 import CoughPage from "./pages/CoughPage";
 import DyspneaPage from "./pages/DyspneaPage";
+import PelvicPainPage from "./pages/PelvicPainPage";
 import "./App.css";
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
 					<Route path="fever-unknown-origin" element={<FeverOfUnknownOriginPage />} />
 					<Route path="cough-history" element={<CoughPage />} />
 					<Route path="dyspnea-history" element={<DyspneaPage />} />
+					<Route path="pelvic-pain" element={<PelvicPainPage />} />
 				</Route>
 
 				{/* PHA Theme Routes */}
