@@ -113,6 +113,15 @@ export const formRegistry = [
 			ar: "تاريخ ألم الحوض المزمن",
 		},
 	},
+	{
+		id: "depression-history",
+		themes: ["personal"],
+		path: "depression-history",
+		title: {
+			en: "Depression",
+			ar: "الاكتئاب",
+		},
+	},
 ];
 
 // Helper to get forms for a specific theme
