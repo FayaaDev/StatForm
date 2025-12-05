@@ -59,7 +59,7 @@ const HomePage = () => {
 			getStarted: { en: "Get Started", ar: "ابدأ الآن" },
 		},
 		hero: {
-			badge: { en: "Free for Limited Time", ar: "مجاني لفترة محدودة" },
+			badge: { en: "It's Free!", ar: "منتج مجاني!" },
 			title: { en: "StatForm", ar: "ستات فورم" },
 			subtitle: {
 				en: "Quick Documentation for Modern Physicians",
