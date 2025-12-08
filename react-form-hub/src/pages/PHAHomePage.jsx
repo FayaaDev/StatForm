@@ -8,7 +8,7 @@ const PHAHomePage = () => {
 
 	// Filter forms by PHA theme
 	const availableForms = formRegistry.filter((form) =>
-		form.themes.includes("pha")
+		form.themes.includes("pha"),
 	);
 
 	const translations = {
@@ -28,14 +28,19 @@ const PHAHomePage = () => {
 
 	return (
 		<div className="pha-home-page">
+			{/* PHA Top Header Bar */}
+			<div className="pha-top-header">
+				<button className="pha-lang-toggle" onClick={toggleLanguage}>
+					{currentLang === "ar" ? "English" : "العربية"}
+				</button>
+				<div className="pha-logo">
+					<img src={theme.logo.path} alt={theme.logo.alt} />
+				</div>
+			</div>
+
 			<div className="pha-container">
 				{/* PHA Header */}
 				<div className="pha-header">
-					<div className="pha-header-top">
-						<button className="pha-lang-toggle" onClick={toggleLanguage}>
-							{currentLang === "ar" ? "English" : "العربية"}
-						</button>
-					</div>
 					<h1 className="pha-title">{translations.title[currentLang]}</h1>
 					<p className="pha-subtitle">{translations.subtitle[currentLang]}</p>
 				</div>

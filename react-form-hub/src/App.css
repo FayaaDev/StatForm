@@ -71,7 +71,7 @@
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 20px;
-	padding-top: 20px;
+	padding-top: 160px; /* Account for header (100px) + progress bar (60px) */
 	padding-bottom: 20px;
 }
 
@@ -215,7 +215,6 @@
 	box-shadow: 0 2px 8px rgba(77, 18, 47, 0.2);
 }
 
-
 /* Main Content Area */
 .hero-section,
 .review-section,
@@ -235,7 +234,11 @@
 	align-items: center;
 	gap: 8px;
 	padding: 8px 20px;
-	background: linear-gradient(135deg, rgba(77, 18, 47, 0.1), rgba(77, 18, 47, 0.05));
+	background: linear-gradient(
+		135deg,
+		rgba(77, 18, 47, 0.1),
+		rgba(77, 18, 47, 0.05)
+	);
 	border: 1px solid rgba(77, 18, 47, 0.2);
 	border-radius: 100px;
 	font-size: 14px;
@@ -377,7 +380,11 @@
 	justify-content: center;
 	width: 64px;
 	height: 64px;
-	background: linear-gradient(135deg, rgba(77, 18, 47, 0.1), rgba(77, 18, 47, 0.05));
+	background: linear-gradient(
+		135deg,
+		rgba(77, 18, 47, 0.1),
+		rgba(77, 18, 47, 0.05)
+	);
 	border-radius: 16px;
 	color: var(--theme-primary);
 	margin: 0 0 24px 0;
@@ -386,7 +393,11 @@
 
 .feature-card:hover .feature-icon {
 	transform: scale(1.1) rotate(5deg);
-	background: linear-gradient(135deg, rgba(77, 18, 47, 0.15), rgba(77, 18, 47, 0.08));
+	background: linear-gradient(
+		135deg,
+		rgba(77, 18, 47, 0.15),
+		rgba(77, 18, 47, 0.08)
+	);
 }
 
 .feature-title {
@@ -471,7 +482,6 @@
 }
 
 @keyframes pulse {
-
 	0%,
 	100% {
 		transform: scale(1);
@@ -492,7 +502,7 @@
 /* Make sure form content doesn't overlap with navigation */
 @media (max-width: 768px) {
 	.form-container {
-		padding-top: 20px;
+		padding-top: 140px; /* Reduced for mobile: header (80px) + progress bar (60px) */
 	}
 }
 
@@ -600,7 +610,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(135deg, rgba(77, 18, 47, 0.1), rgba(77, 18, 47, 0.05));
+	background: linear-gradient(
+		135deg,
+		rgba(77, 18, 47, 0.1),
+		rgba(77, 18, 47, 0.05)
+	);
 	border-radius: 12px;
 	color: var(--theme-primary);
 	transition: all 0.3s ease;
@@ -608,7 +622,11 @@
 
 .form-link-card:hover .form-card-icon {
 	transform: scale(1.1);
-	background: linear-gradient(135deg, rgba(77, 18, 47, 0.15), rgba(77, 18, 47, 0.08));
+	background: linear-gradient(
+		135deg,
+		rgba(77, 18, 47, 0.15),
+		rgba(77, 18, 47, 0.08)
+	);
 }
 
 .form-card-content {
@@ -781,7 +799,11 @@
 .success-icon {
 	width: 64px;
 	height: 64px;
-	background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(34, 197, 94, 0.1));
+	background: linear-gradient(
+		135deg,
+		rgba(34, 197, 94, 0.2),
+		rgba(34, 197, 94, 0.1)
+	);
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
@@ -808,7 +830,7 @@
 	text-align: left;
 }
 
-.code-display>p {
+.code-display > p {
 	font-size: 1rem;
 	color: var(--theme-text);
 	margin-bottom: 32px;
@@ -844,7 +866,7 @@
 	background-color: #1e1e1e;
 	color: #d4d4d4;
 	border: none;
-	font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+	font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
 	font-size: 0.9rem;
 	line-height: 1.6;
 	margin: 0;
@@ -1290,19 +1312,43 @@
 /* PHA HomePage Styles - Simple and Clean */
 .pha-home-page {
 	min-height: 100vh;
-	padding: 40px 20px;
 	background: linear-gradient(135deg, #ffffff 0%, #f8fafb 100%);
+}
+
+.pha-top-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px 40px;
+	background: rgba(255, 255, 255, 0.95);
+	border-bottom: 1px solid rgba(9, 89, 92, 0.1);
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	backdrop-filter: blur(10px);
+}
+
+.pha-logo {
+	display: flex;
+	align-items: center;
+}
+
+.pha-logo img {
+	height: 60px;
+	width: auto;
 }
 
 .pha-container {
 	max-width: 800px;
 	margin: 0 auto;
+	padding: 0 20px;
+	padding-top: 100px;
 }
 
 .pha-header {
 	text-align: center;
 	margin-bottom: 60px;
-	padding: 80px 20px 40px 20px;
+	padding: 60px 20px 40px 20px;
 }
 
 .pha-title {
@@ -1339,19 +1385,13 @@
 }
 
 /* PHA Language Toggle */
-.pha-header-top {
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 20px;
-}
-
 .pha-lang-toggle {
-	padding: 8px 16px;
+	padding: 10px 20px;
 	background: transparent;
 	color: var(--theme-primary);
 	border: 1.5px solid var(--theme-primary);
-	border-radius: 6px;
-	font-size: 0.95rem;
+	border-radius: 8px;
+	font-size: 1rem;
 	font-weight: 500;
 	cursor: pointer;
 	transition: all 0.3s ease;
@@ -1361,10 +1401,8 @@
 .pha-lang-toggle:hover {
 	background: var(--theme-primary);
 	color: white;
-	transform: translateY(-1px);
 	box-shadow: 0 2px 8px rgba(9, 89, 92, 0.2);
 }
-
 
 .pha-form-list {
 	display: flex;
@@ -1437,6 +1475,10 @@
 }
 
 /* RTL Support for PHA HomePage */
+[dir="rtl"] .pha-top-header {
+	flex-direction: row-reverse;
+}
+
 [dir="rtl"] .pha-form-arrow {
 	transform: rotate(180deg);
 }
@@ -1447,6 +1489,19 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
+	.pha-top-header {
+		padding: 15px 20px;
+	}
+
+	.pha-logo img {
+		height: 50px;
+	}
+
+	.pha-lang-toggle {
+		padding: 8px 16px;
+		font-size: 0.9rem;
+	}
+
 	.pha-title {
 		font-size: 2rem;
 	}
