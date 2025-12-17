@@ -12,15 +12,15 @@ export const formRegistry = [
 	// 		ar: "النموذج التجريبي",
 	// 	},
 	// },
-	{
-		id: "tool1_operations",
-		themes: ["pha"],
-		path: "tool1_operations",
-		title: {
-			en: "Evaluation Tool 1",
-			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
-		},
-	},
+	// {
+	// 	id: "tool1_operations",
+	// 	themes: ["pha"],
+	// 	path: "tool1_operations",
+	// 	title: {
+	// 		en: "Evaluation Tool 1",
+	// 		ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
+	// 	},
+	// },
 	{
 		id: "epidemiology-form",
 		themes: ["pha"],
