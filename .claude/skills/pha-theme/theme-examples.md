@@ -210,7 +210,7 @@ function FormLinks() {
 				Demo Form
 			</Link>
 			<Link to="/tool1_operations" className="form-link-card">
-				Supervision & Coordination tool - Operations
+				Supervision & Coordination tool
 			</Link>
 			<Link to="/survey-form" className="form-link-card">
 				Survey Form

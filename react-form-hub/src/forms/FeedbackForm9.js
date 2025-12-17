@@ -16,14 +16,14 @@ export function createFeedbackForm9Composer(localization = "en", theme) {
 	// Welcome slide
 	composer.h1(
 		translate(localization, {
-			en: "Evaluation Tool 9 - Operations",
-			ar: "اداة التقييم 9 - العمليات التشغيلية",
+			en: "Evaluation Tool 9",
+			ar: "اداة التقييم 9 ",
 		}),
 	);
 	composer.p(
 		translate(localization, {
 			en: "Please complete this evaluation form.",
-			ar: "يرجى إكمال اداة التقييم.",
+			ar: "يرجى إكمال أداة التقييم.",
 		}),
 	);
 

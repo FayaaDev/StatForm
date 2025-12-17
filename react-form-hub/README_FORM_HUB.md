@@ -51,7 +51,7 @@ src/
 ├── pages/
 │   ├── HomePage.jsx          # Landing page
 │   ├── DemoFormPage.jsx      # Demo form page
-│   └── FeedbackFormPage.jsx  # Supervision & Coordination tool - Operations page
+│   └── FeedbackFormPage.jsx  # Supervision & Coordination tool page
 ├── utils/
 │   └── translate.js          # Translation utility
 ├── App.jsx                   # Main app with routing

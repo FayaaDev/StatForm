@@ -17,8 +17,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool1_operations",
 		title: {
-			en: "Evaluation Tool 1 - Operations",
-			ar: "اداة التقييم 1 - العمليات التشغيلية",
+			en: "Evaluation Tool 1",
+			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
 		},
 	},
 	{
@@ -26,8 +26,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool2_operations",
 		title: {
-			en: "Evaluation Tool 2 - Operations",
-			ar: "اداة التقييم 2 - العمليات التشغيلية",
+			en: "Evaluation Tool 2",
+			ar: "اداة التقييم 2 ",
 		},
 	},
 	{
@@ -35,8 +35,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool3_operations",
 		title: {
-			en: "Evaluation Tool 3 - Operations",
-			ar: "اداة التقييم 3 - العمليات التشغيلية",
+			en: "Evaluation Tool 3",
+			ar: "اداة التقييم 3 ",
 		},
 	},
 	{
@@ -44,8 +44,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool4_operations",
 		title: {
-			en: "Evaluation Tool 4 - Operations",
-			ar: "اداة التقييم 4 - العمليات التشغيلية",
+			en: "Evaluation Tool 4",
+			ar: "اداة التقييم 4 ",
 		},
 	},
 	{
@@ -53,8 +53,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool5_operations",
 		title: {
-			en: "Evaluation Tool 5 - Operations",
-			ar: "اداة التقييم 5 - العمليات التشغيلية",
+			en: "Evaluation Tool 5",
+			ar: "اداة التقييم 5 ",
 		},
 	},
 	{
@@ -62,8 +62,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool6_operations",
 		title: {
-			en: "Evaluation Tool 6 - Operations",
-			ar: "اداة التقييم 6 - العمليات التشغيلية",
+			en: "Evaluation Tool 6",
+			ar: "اداة التقييم 6 ",
 		},
 	},
 	{
@@ -71,8 +71,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool7_operations",
 		title: {
-			en: "Evaluation Tool 7 - Operations",
-			ar: "اداة التقييم 7 - العمليات التشغيلية",
+			en: "Evaluation Tool 7",
+			ar: "اداة التقييم 7 ",
 		},
 	},
 	{
@@ -80,8 +80,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool8_operations",
 		title: {
-			en: "Evaluation Tool 8 - Operations",
-			ar: "اداة التقييم 8 - العمليات التشغيلية",
+			en: "Evaluation Tool 8",
+			ar: "اداة التقييم 8 ",
 		},
 	},
 	{
@@ -89,8 +89,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool9_operations",
 		title: {
-			en: "Evaluation Tool 9 - Operations",
-			ar: "اداة التقييم 9 - العمليات التشغيلية",
+			en: "Evaluation Tool 9",
+			ar: "اداة التقييم 9 ",
 		},
 	},
 	{
@@ -98,8 +98,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool10_operations",
 		title: {
-			en: "Evaluation Tool 10 - Operations",
-			ar: "اداة التقييم 10 - العمليات التشغيلية",
+			en: "Evaluation Tool 10",
+			ar: "اداة التقييم 10 ",
 		},
 	},
 	{
@@ -107,8 +107,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool11_operations",
 		title: {
-			en: "Evaluation Tool 11 - Operations",
-			ar: "اداة التقييم 11 - العمليات التشغيلية",
+			en: "Evaluation Tool 11",
+			ar: "اداة التقييم 11 ",
 		},
 	},
 	{
@@ -116,8 +116,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool12_operations",
 		title: {
-			en: "Evaluation Tool 12 - Operations",
-			ar: "اداة التقييم 12 - العمليات التشغيلية",
+			en: "Evaluation Tool 12",
+			ar: "اداة التقييم 12 ",
 		},
 	},
 	{
@@ -125,8 +125,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool13_operations",
 		title: {
-			en: "Evaluation Tool 13 - Operations",
-			ar: "اداة التقييم 13 - العمليات التشغيلية",
+			en: "Evaluation Tool 13",
+			ar: "اداة التقييم 13 ",
 		},
 	},
 	{
@@ -134,8 +134,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool14_operations",
 		title: {
-			en: "Evaluation Tool 14 - Operations",
-			ar: "اداة التقييم 14 - العمليات التشغيلية",
+			en: "Evaluation Tool 14",
+			ar: "اداة التقييم 14 ",
 		},
 	},
 	{
@@ -143,8 +143,8 @@ export const formRegistry = [
 		themes: ["pha"],
 		path: "tool15_operations",
 		title: {
-			en: "Evaluation Tool 15 - Operations",
-			ar: "اداة التقييم 15 - العمليات التشغيلية",
+			en: "Evaluation Tool 15",
+			ar: "اداة التقييم 15 ",
 		},
 	},
 	// {
