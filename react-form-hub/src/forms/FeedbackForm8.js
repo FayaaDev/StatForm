@@ -1,14 +1,14 @@
 import { translate } from "../utils/translate.js";
 import { GOOGLE_SCRIPT_URL, getSharedFormConfig } from "./formUtils.js";
 
-export function createFeedbackFormComposer(localization = "en", theme) {
+export function createFeedbackForm8Composer(localization = "en", theme) {
 	if (!window.Composer) {
 		console.error("Composer not loaded yet");
 		return null;
 	}
 
 	const composer = new window.Composer({
-		id: "tool1_operations",
+		id: "tool8_operations",
 		...getSharedFormConfig(localization, theme),
 		postUrl: GOOGLE_SCRIPT_URL,
 	});
@@ -16,8 +16,8 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	// Welcome slide
 	composer.h1(
 		translate(localization, {
-			en: "Evaluation Tool 1 - Operations",
-			ar: "اداة التقييم 1 - العمليات التشغيلية",
+			en: "Evaluation Tool 8 - Operations",
+			ar: "اداة التقييم 8 - العمليات التشغيلية",
 		}),
 	);
 	composer.p(
