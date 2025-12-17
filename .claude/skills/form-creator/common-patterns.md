@@ -548,7 +548,7 @@ const {
 	slides,
 	jumpToSlide
 } = useFormController({
-	formId: "feedback-form",
+	formId: "tool1_operations",
 	currentLang: currentLang,
 
 	// Custom completion handler
@@ -562,7 +562,7 @@ const {
 		// window.location.href = "/thank-you";
 
 		// Option 3: Trigger custom analytics
-		// trackEvent('form_completed', { formId: 'feedback-form' });
+		// trackEvent('form_completed', { formId: 'tool1_operations' });
 
 		// Option 4: Show custom modal
 		// openModal({ type: 'success', message: 'Form submitted!' });

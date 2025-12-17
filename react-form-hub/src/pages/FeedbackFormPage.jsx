@@ -22,7 +22,7 @@ const FeedbackFormPage = () => {
 		jumpToSlide,
 		maxVisitedSlideIndex
 	} = useFormController({
-		formId: "feedback-form-container",
+		formId: "tool1_operations-container",
 		currentLang
 	});
 
@@ -54,7 +54,7 @@ const FeedbackFormPage = () => {
 				<FormRenderer
 					composer={composer}
 					options={options}
-					id="feedback-form-container"
+					id="tool1_operations-container"
 					onMount={setFormInstance}
 				/>
 			</div>

@@ -209,8 +209,8 @@ function FormLinks() {
 			<Link to="/demo-form" className="form-link-card">
 				Demo Form
 			</Link>
-			<Link to="/feedback-form" className="form-link-card">
-				Feedback Form
+			<Link to="/tool1_operations" className="form-link-card">
+				Supervision & Coordination tool - Operations
 			</Link>
 			<Link to="/survey-form" className="form-link-card">
 				Survey Form
@@ -263,7 +263,7 @@ function Navigation() {
 			<Link to="/demo-form" className="nav-link">
 				Demo
 			</Link>
-			<Link to="/feedback-form" className="nav-link">
+			<Link to="/tool1_operations" className="nav-link">
 				Feedback
 			</Link>
 			<Link to="/survey-form" className="nav-link">

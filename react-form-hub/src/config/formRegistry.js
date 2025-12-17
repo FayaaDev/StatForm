@@ -13,12 +13,12 @@ export const formRegistry = [
 	// 	},
 	// },
 	{
-		id: "feedback-form",
+		id: "tool1_operations",
 		themes: ["pha"],
-		path: "feedback-form",
+		path: "tool1_operations",
 		title: {
-			en: "Feedback Form",
-			ar: "نموذج الملاحظات",
+			en: "Supervision & Coordination tool - Operations",
+			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية",
 		},
 	},
 	// {

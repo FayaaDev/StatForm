@@ -8,7 +8,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	}
 
 	const composer = new window.Composer({
-		id: "feedback-form",
+		id: "tool1_operations",
 		...getSharedFormConfig(localization, theme),
 		postUrl: GOOGLE_SCRIPT_URL,
 	});
@@ -16,14 +16,14 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	// Welcome slide
 	composer.h1(
 		translate(localization, {
-			en: "Evaluation Form",
-			ar: "نموذج التقييم",
+			en: "Supervision & Coordination tool - Operations",
+			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية",
 		}),
 	);
 	composer.p(
 		translate(localization, {
 			en: "Please complete this evaluation form.",
-			ar: "يرجى إكمال نموذج التقييم هذا.",
+			ar: "يرجى إكمال اداة التقييم.",
 		}),
 	);
 
@@ -108,8 +108,32 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["أحمد محمد", "فاطمة علي", "محمد حسن", "سارة أحمد", "علي محمود"]
-				: ["Ahmed Mohammed", "Fatima Ali", "Mohammed Hassan", "Sarah Ahmed", "Ali Mahmoud"],
+				? [
+					"د. عبدالله قيسي",
+					"د. محمد الحازمي",
+					"أد.زكي منور",
+					"د. خالد الشرواني",
+					"د. خالد العنزي",
+					"د. يزيد خليفة",
+					"د. عمر دفع الله",
+					"د. صديق نور الدين",
+					"أ. احمد غزواني",
+					"د. وحيد",
+					"د. ثامر باخميس"
+				]
+				: [
+					"Dr. Abdullah Qaisi",
+					"Dr. Mohammed Al-Hazmi",
+					"Prof. Zaki Munawar",
+					"Dr. Khaled Al-Sharawani",
+					"Dr. Khaled Al-Anazi",
+					"Dr. Yazeed Khalifa",
+					"Dr. Omar Dafaallah",
+					"Dr. Sadiq Noor Al-Din",
+					"Mr. Ahmed Ghazwani",
+					"Dr. Waheed",
+					"Dr. Thamer Bakhamis"
+				],
 		required: true,
 	});
 
