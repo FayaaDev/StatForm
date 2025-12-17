@@ -18,6 +18,9 @@ import PelvicPainPage from "./pages/PelvicPainPage";
 import DepressionPage from "./pages/DepressionPage";
 import DischargeSummaryPage from "./pages/DischargeSummaryPage";
 import SOAPPage from "./pages/SOAPPage";
+import EpidemiologyFormPage from "./pages/EpidemiologyFormPage";
+import AnimalAssessmentFormPage from "./pages/AnimalAssessmentFormPage";
+import EntomologyFormPage from "./pages/EntomologyFormPage";
 import "./App.css";
 
 function App() {
@@ -62,6 +65,9 @@ function App() {
 					<Route index element={<PHAHomePage />} />
 					{/* <Route path="demo-form" element={<DemoFormPage />} /> */}
 					<Route path="tool1_operations" element={<FeedbackFormPage />} />
+					<Route path="epidemiology-form" element={<EpidemiologyFormPage />} />
+					<Route path="animal-assessment-form" element={<AnimalAssessmentFormPage />} />
+					<Route path="entomology-form" element={<EntomologyFormPage />} />
 					{/* <Route path="survey-form" element={<SurveyFormPage />} /> */}
 					{/* <Route path="tester-form" element={<TesterFormPage />} /> */}
 				</Route>

@@ -21,6 +21,33 @@ export const formRegistry = [
 			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
 		},
 	},
+	{
+		id: "epidemiology-form",
+		themes: ["pha"],
+		path: "epidemiology-form",
+		title: {
+			en: "Epidemiology Form",
+			ar: "التقصي الوبائي للحالات",
+		},
+	},
+	{
+		id: "animal-assessment-form",
+		themes: ["pha"],
+		path: "animal-assessment-form",
+		title: {
+			en: "Animal Assessment Form",
+			ar: "التقصي الحيواني",
+		},
+	},
+	{
+		id: "entomology-form",
+		themes: ["pha"],
+		path: "entomology-form",
+		title: {
+			en: "Entomology Form",
+			ar: "الاستكشاف والمكافحة الحشرية",
+		},
+	},
 	// {
 	// 	id: "survey-form",
 	// 	themes: ["pha"],
