@@ -3,15 +3,15 @@
 
 export const formRegistry = [
 	// PHA exclusive forms
-	{
-		id: "demo-form",
-		themes: ["pha"],
-		path: "demo-form",
-		title: {
-			en: "Demo Form",
-			ar: "النموذج التجريبي",
-		},
-	},
+	// {
+	// 	id: "demo-form",
+	// 	themes: ["pha"],
+	// 	path: "demo-form",
+	// 	title: {
+	// 		en: "Demo Form",
+	// 		ar: "النموذج التجريبي",
+	// 	},
+	// },
 	{
 		id: "feedback-form",
 		themes: ["pha"],
@@ -21,24 +21,24 @@ export const formRegistry = [
 			ar: "نموذج الملاحظات",
 		},
 	},
-	{
-		id: "survey-form",
-		themes: ["pha"],
-		path: "survey-form",
-		title: {
-			en: "Survey Form",
-			ar: "نموذج الاستبيان",
-		},
-	},
-	{
-		id: "tester-form",
-		themes: ["pha"],
-		path: "tester-form",
-		title: {
-			en: "Assets Turnover Form",
-			ar: "نموذج تسليم الأصول",
-		},
-	},
+	// {
+	// 	id: "survey-form",
+	// 	themes: ["pha"],
+	// 	path: "survey-form",
+	// 	title: {
+	// 		en: "Survey Form",
+	// 		ar: "نموذج الاستبيان",
+	// 	},
+	// },
+	// {
+	// 	id: "tester-form",
+	// 	themes: ["pha"],
+	// 	path: "tester-form",
+	// 	title: {
+	// 		en: "Assets Turnover Form",
+	// 		ar: "نموذج تسليم الأصول",
+	// 	},
+	// },
 
 	// Personal (main) theme exclusive forms
 	// ============================================
