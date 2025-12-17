@@ -25,8 +25,14 @@ const FormProgressBar = ({
 	const handleScroll = (direction) => {
 		if (scrollContainerRef.current) {
 			const scrollAmount = 200;
+			// For RTL, flip the scroll direction
+			const isRtl = currentLang === "ar";
+			const actualDirection = isRtl 
+				? (direction === "left" ? "right" : "left")
+				: direction;
+			
 			scrollContainerRef.current.scrollBy({
-				left: direction === "left" ? -scrollAmount : scrollAmount,
+				left: actualDirection === "left" ? -scrollAmount : scrollAmount,
 				behavior: "smooth",
 			});
 		}
@@ -158,6 +164,20 @@ const FormProgressBar = ({
                     border-radius: 2px;
                 }
 
+                /* RTL Support for Arabic */
+                [dir="rtl"] #progress-bar-fill {
+                    left: auto;
+                    right: 0;
+                }
+
+                [dir="rtl"] .progress-track {
+                    direction: rtl;
+                }
+
+                [dir="rtl"] .nav-arrow svg {
+                    transform: scaleX(-1);
+                }
+
                 .progress-circle {
                     position: relative;
                     z-index: 3;
@@ -215,7 +235,7 @@ const FormProgressBar = ({
                 }
                 `}
 			</style>
-			<div id="circular-progress-nav">
+			<div id="circular-progress-nav" dir={currentLang === "ar" ? "rtl" : "ltr"}>
 				<button
 					className="nav-arrow"
 					onClick={() => handleScroll("left")}
