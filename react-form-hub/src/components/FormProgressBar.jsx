@@ -40,31 +40,33 @@ const FormProgressBar = ({
 
 	// Auto-scroll to active circle
 	useEffect(() => {
-		if (
-			activeStepIndex >= 0 &&
-			activeStepIndex < stepsCount &&
-			scrollContainerRef.current
-		) {
-			const circles =
-				scrollContainerRef.current.querySelectorAll(".progress-circle");
-			const activeCircle = circles[activeStepIndex];
+		// Small delay to ensure DOM is ready
+		const scrollTimeout = setTimeout(() => {
+			if (
+				activeStepIndex >= 0 &&
+				activeStepIndex < stepsCount &&
+				scrollContainerRef.current
+			) {
+				const circles =
+					scrollContainerRef.current.querySelectorAll(".progress-circle");
+				const activeCircle = circles[activeStepIndex];
 
-			if (activeCircle) {
-				const container = scrollContainerRef.current;
-				const circleLeft = activeCircle.offsetLeft;
-				const circleWidth = activeCircle.offsetWidth;
-				const containerWidth = container.offsetWidth;
-
-				// Calculate the position to center the circle
-				const targetScroll = circleLeft - containerWidth / 2 + circleWidth / 2;
-
-				container.scrollTo({
-					left: targetScroll,
-					behavior: "smooth",
-				});
+				if (activeCircle) {
+					const container = scrollContainerRef.current;
+					const isRtl = currentLang === "ar";
+					
+					// Use scrollIntoView for better cross-browser support
+					activeCircle.scrollIntoView({
+						behavior: "smooth",
+						block: "nearest",
+						inline: "center"
+					});
+				}
 			}
-		}
-	}, [activeStepIndex, stepsCount]);
+		}, 100);
+
+		return () => clearTimeout(scrollTimeout);
+	}, [activeStepIndex, stepsCount, currentLang]);
 
 	if (stepsCount <= 0) return null;
 
@@ -219,16 +221,29 @@ const FormProgressBar = ({
 
                 @media (max-width: 768px) {
                     #circular-progress-nav {
-                        top: 70px;
-                        left: 20px;
-                        right: 20px;
-                        padding: 8px 20px;
+                        top: 90px;
+                        left: 10px;
+                        right: 10px;
+                        padding: 6px 10px;
+                    }
+
+                    #progress-scroll-container {
+                        max-width: calc(100% - 60px);
+                        padding: 5px 10px;
+                    }
+
+                    .progress-track {
+                        gap: 8px;
                     }
 
                     .progress-circle {
-                        width: 28px;
-                        height: 28px;
-                        font-size: 11px;
+                        width: 26px;
+                        height: 26px;
+                        font-size: 10px;
+                    }
+
+                    .nav-arrow {
+                        padding: 4px;
                     }
 
                     .nav-arrow svg {

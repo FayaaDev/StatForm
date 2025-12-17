@@ -502,7 +502,7 @@
 /* Make sure form content doesn't overlap with navigation */
 @media (max-width: 768px) {
 	.form-container {
-		padding-top: 140px; /* Reduced for mobile: header (80px) + progress bar (60px) */
+		padding-top: 160px; /* Account for logo (70px) + progress bar (70px) + spacing */
 	}
 }
 
