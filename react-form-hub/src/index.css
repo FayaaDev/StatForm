@@ -35,8 +35,12 @@ html,
 body {
 	margin: 0;
 	padding: 0;
+	width: 100%;
+	height: 100%;
 	background-color: var(--theme-background);
 	font-family: var(--theme-font-family);
+	overscroll-behavior-y: none;
+	overflow-x: hidden;
 }
 
 #root {
