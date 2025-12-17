@@ -74,14 +74,15 @@ const FormProgressBar = ({
 				{`
                 #circular-progress-nav {
                     position: fixed;
-                    top: 100px;
-                    left: 0;
-                    width: 100%;
+                    top: 20px;
+                    left: 200px;
+                    right: 200px;
                     z-index: 900;
                     background: rgba(255, 255, 255, 0.95);
                     backdrop-filter: blur(8px);
-                    border-bottom: 1px solid #e0e0e0;
-                    padding: 15px 140px;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    padding: 10px 20px;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
                     display: flex;
                     justify-content: center;
@@ -218,8 +219,10 @@ const FormProgressBar = ({
 
                 @media (max-width: 768px) {
                     #circular-progress-nav {
-                        top: 80px;
-                        padding: 10px 40px;
+                        top: 70px;
+                        left: 20px;
+                        right: 20px;
+                        padding: 8px 20px;
                     }
 
                     .progress-circle {
