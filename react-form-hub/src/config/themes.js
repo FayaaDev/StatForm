@@ -17,10 +17,10 @@ export const themes = {
 		},
 		font: {
 			family: "Majalla",
-			url: "/font/majalla.ttf", // Same font as PHA
+			url: "/statform/font/majalla.ttf", // Same font as PHA
 		},
 		logo: {
-			path: "/MainLogo.png",
+			path: "/statform/MainLogo.png",
 			alt: "Medical Forms Logo",
 		},
 	},
@@ -39,10 +39,10 @@ export const themes = {
 		},
 		font: {
 			family: "Majalla",
-			url: "/font/majalla.ttf",
+			url: "/statform/font/majalla.ttf",
 		},
 		logo: {
-			path: "/logos/PHAlogo.png",
+			path: "/statform/logos/PHAlogo.png",
 			alt: "PHA Logo",
 		},
 	},

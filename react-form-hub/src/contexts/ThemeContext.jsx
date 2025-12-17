@@ -30,13 +30,13 @@ export function ThemeProvider({ theme: themeId, children }) {
 			document.title = "PHA Form Hub";
 			if (favicon) {
 				favicon.type = "image/png";
-				favicon.href = "/logos/PHAlogo.png";
+				favicon.href = "/statform/logos/PHAlogo.png";
 			}
 		} else {
 			document.title = "StatForm - Intelligent Documentation";
 			if (favicon) {
 				favicon.type = "image/svg+xml";
-				favicon.href = "/statform-favicon.svg";
+				favicon.href = "/statform/statform-favicon.svg";
 			}
 		}
 	}, [theme]);

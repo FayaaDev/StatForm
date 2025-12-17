@@ -783,13 +783,13 @@ const HomePage = () => {
 								{translations.footer.tagline[currentLang]}
 							</p>
 							<a
-								href="/FreeLanceCertificate.pdf"
+								href="/statform/FreeLanceCertificate.pdf"
 								target="_blank"
 								rel="noopener noreferrer"
 								className="footer-certificate-link"
 							>
 								<img
-									src="/FreeLanceLogo.png"
+									src="/statform/FreeLanceLogo.png"
 									alt="Freelance Certificate"
 									className="footer-certificate-logo"
 								/>

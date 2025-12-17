@@ -22,7 +22,7 @@ import "./App.css";
 
 function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/statform">
 			<Routes>
 				{/* Personal Theme Routes */}
 				<Route

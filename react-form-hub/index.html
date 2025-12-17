@@ -19,11 +19,12 @@
 			const updateStylesheet = () => {
 				const locale = localStorage.getItem("localization") || "en";
 				const stylesheet = document.getElementById("formsmd-stylesheet");
+				const basePath = "/statform";
 				if (locale === "ar") {
-					stylesheet.href = "/formsmd.rtl.min.css";
+					stylesheet.href = basePath + "/formsmd.rtl.min.css";
 					document.documentElement.dir = "rtl";
 				} else {
-					stylesheet.href = "/formsmd.min.css";
+					stylesheet.href = basePath + "/formsmd.min.css";
 					document.documentElement.dir = "ltr";
 				}
 				document.documentElement.lang = locale;
