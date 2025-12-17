@@ -19,7 +19,8 @@ const FeedbackFormPage = () => {
 		containerProps,
 		activeSlideIndex,
 		slides,
-		jumpToSlide
+		jumpToSlide,
+		maxVisitedSlideIndex
 	} = useFormController({
 		formId: "feedback-form-container",
 		currentLang
@@ -47,6 +48,7 @@ const FeedbackFormPage = () => {
 				excludeEnd={0}
 				onStepClick={jumpToSlide}
 				currentLang={currentLang}
+				maxVisitedSlideIndex={maxVisitedSlideIndex}
 			/>
 			<div {...containerProps}>
 				<FormRenderer

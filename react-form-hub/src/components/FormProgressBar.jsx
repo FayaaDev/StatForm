@@ -1,79 +1,81 @@
 import React, { useEffect, useRef } from "react";
 
 const FormProgressBar = ({
-	currentSlideIndex,
-	totalSlides,
-	excludeStart = 0,
-	excludeEnd = 0,
-	onStepClick,
-	currentLang = "en",
+    currentSlideIndex,
+    totalSlides,
+    excludeStart = 0,
+    excludeEnd = 0,
+    onStepClick,
+
+    maxVisitedSlideIndex = 0,
+    currentLang = "en",
 }) => {
-	const scrollContainerRef = useRef(null);
+    const scrollContainerRef = useRef(null);
 
-	// Calculate the number of steps (circles) to show
-	// If totalSlides is 0 or undefined, stepsCount is 0
-	const stepsCount = Math.max(0, totalSlides - excludeStart - excludeEnd);
+    // Calculate the number of steps (circles) to show
+    // If totalSlides is 0 or undefined, stepsCount is 0
+    const stepsCount = Math.max(0, totalSlides - excludeStart - excludeEnd);
 
-	// Calculate the active step index (0-based) relative to the steps shown
-	// If currentSlideIndex is within the excluded start, it's -1 (or less)
-	// If currentSlideIndex is within the excluded end, it's stepsCount (or more)
-	const activeStepIndex = currentSlideIndex - excludeStart;
+    // Calculate the active step index (0-based) relative to the steps shown
+    // If currentSlideIndex is within the excluded start, it's -1 (or less)
+    // If currentSlideIndex is within the excluded end, it's stepsCount (or more)
+    const activeStepIndex = currentSlideIndex - excludeStart;
 
-	// Helper for translation
-	const translate = (lang, obj) => obj[lang] || obj["en"];
+    // Helper for translation
+    const translate = (lang, obj) => obj[lang] || obj["en"];
 
-	const handleScroll = (direction) => {
-		if (scrollContainerRef.current) {
-			const scrollAmount = 200;
-			// For RTL, flip the scroll direction
-			const isRtl = currentLang === "ar";
-			const actualDirection = isRtl 
-				? (direction === "left" ? "right" : "left")
-				: direction;
-			
-			scrollContainerRef.current.scrollBy({
-				left: actualDirection === "left" ? -scrollAmount : scrollAmount,
-				behavior: "smooth",
-			});
-		}
-	};
+    const handleScroll = (direction) => {
+        if (scrollContainerRef.current) {
+            const scrollAmount = 200;
+            // For RTL, flip the scroll direction
+            const isRtl = currentLang === "ar";
+            const actualDirection = isRtl
+                ? (direction === "left" ? "right" : "left")
+                : direction;
 
-	// Auto-scroll to active circle
-	useEffect(() => {
-		// Small delay to ensure DOM is ready
-		const scrollTimeout = setTimeout(() => {
-			if (
-				activeStepIndex >= 0 &&
-				activeStepIndex < stepsCount &&
-				scrollContainerRef.current
-			) {
-				const circles =
-					scrollContainerRef.current.querySelectorAll(".progress-circle");
-				const activeCircle = circles[activeStepIndex];
+            scrollContainerRef.current.scrollBy({
+                left: actualDirection === "left" ? -scrollAmount : scrollAmount,
+                behavior: "smooth",
+            });
+        }
+    };
 
-				if (activeCircle) {
-					const container = scrollContainerRef.current;
-					const isRtl = currentLang === "ar";
-					
-					// Use scrollIntoView for better cross-browser support
-					activeCircle.scrollIntoView({
-						behavior: "smooth",
-						block: "nearest",
-						inline: "center"
-					});
-				}
-			}
-		}, 100);
+    // Auto-scroll to active circle
+    useEffect(() => {
+        // Small delay to ensure DOM is ready
+        const scrollTimeout = setTimeout(() => {
+            if (
+                activeStepIndex >= 0 &&
+                activeStepIndex < stepsCount &&
+                scrollContainerRef.current
+            ) {
+                const circles =
+                    scrollContainerRef.current.querySelectorAll(".progress-circle");
+                const activeCircle = circles[activeStepIndex];
 
-		return () => clearTimeout(scrollTimeout);
-	}, [activeStepIndex, stepsCount, currentLang]);
+                if (activeCircle) {
+                    const container = scrollContainerRef.current;
+                    const isRtl = currentLang === "ar";
 
-	if (stepsCount <= 0) return null;
+                    // Use scrollIntoView for better cross-browser support
+                    activeCircle.scrollIntoView({
+                        behavior: "smooth",
+                        block: "nearest",
+                        inline: "center"
+                    });
+                }
+            }
+        }, 100);
 
-	return (
-		<>
-			<style>
-				{`
+        return () => clearTimeout(scrollTimeout);
+    }, [activeStepIndex, stepsCount, currentLang]);
+
+    if (stepsCount <= 0) return null;
+
+    return (
+        <>
+            <style>
+                {`
                 #circular-progress-nav {
                     position: fixed;
                     top: 20px;
@@ -252,71 +254,80 @@ const FormProgressBar = ({
                     }
                 }
                 `}
-			</style>
-			<div id="circular-progress-nav" dir={currentLang === "ar" ? "rtl" : "ltr"}>
-				<button
-					className="nav-arrow"
-					onClick={() => handleScroll("left")}
-					aria-label="Scroll left"
-				>
-					<svg viewBox="0 0 24 24">
-						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
-					</svg>
-				</button>
+            </style>
+            <div id="circular-progress-nav" dir={currentLang === "ar" ? "rtl" : "ltr"}>
+                <button
+                    className="nav-arrow"
+                    onClick={() => handleScroll("left")}
+                    aria-label="Scroll left"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                    </svg>
+                </button>
 
-				<div id="progress-scroll-container" ref={scrollContainerRef}>
-					<div className="progress-track">
-						<div className="progress-line-bg"></div>
-						<div
-							id="progress-bar-fill"
-							style={{
-								width: `${Math.max(0, Math.min(100, (activeStepIndex / (stepsCount - 1)) * 100))}%`,
-							}}
-						></div>
-						{Array.from({ length: stepsCount }).map((_, index) => {
-							let statusClass = "";
-							if (index === activeStepIndex) {
-								statusClass = "active";
-							} else if (index < activeStepIndex) {
-								statusClass = "completed";
-							}
-							// If activeStepIndex is beyond the steps (e.g. last slide), all are completed
-							if (activeStepIndex >= stepsCount) {
-								statusClass = "completed";
-							}
+                <div id="progress-scroll-container" ref={scrollContainerRef}>
+                    <div className="progress-track">
+                        <div className="progress-line-bg"></div>
+                        <div
+                            id="progress-bar-fill"
+                            style={{
+                                width: `${Math.max(0, Math.min(100, (activeStepIndex / (stepsCount - 1)) * 100))}%`,
+                            }}
+                        ></div>
+                        {Array.from({ length: stepsCount }).map((_, index) => {
+                            let statusClass = "";
+                            if (index === activeStepIndex) {
+                                statusClass = "active";
+                            } else if (index < activeStepIndex) {
+                                statusClass = "completed";
+                            }
+                            // If activeStepIndex is beyond the steps (e.g. last slide), all are completed
+                            if (activeStepIndex >= stepsCount) {
+                                statusClass = "completed";
+                            }
 
-							return (
-								<div
-									key={index}
-									className={`progress-circle ${statusClass}`}
-									data-step-index={index}
-									title={translate(currentLang, {
-										en: `Question ${index + 1}`,
-										ar: `السؤال ${index + 1}`,
-									})}
-									onClick={() =>
-										onStepClick && onStepClick(index + excludeStart)
-									}
-								>
-									{index + 1}
-								</div>
-							);
-						})}
-					</div>
-				</div>
+                            const adjustedIndex = index + excludeStart;
+                            const isClickable = adjustedIndex <= maxVisitedSlideIndex;
 
-				<button
-					className="nav-arrow"
-					onClick={() => handleScroll("right")}
-					aria-label="Scroll right"
-				>
-					<svg viewBox="0 0 24 24">
-						<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-					</svg>
-				</button>
-			</div>
-		</>
-	);
+                            return (
+                                <div
+                                    key={index}
+                                    className={`progress-circle ${statusClass}`}
+                                    data-step-index={index}
+                                    title={translate(currentLang, {
+                                        en: `Question ${index + 1}`,
+                                        ar: `السؤال ${index + 1}`,
+                                    })}
+                                    style={{
+                                        cursor: isClickable ? "pointer" : "not-allowed",
+                                        opacity: isClickable ? 1 : 0.5,
+                                    }}
+                                    onClick={() => {
+                                        if (isClickable && onStepClick) {
+                                            onStepClick(adjustedIndex);
+                                        }
+                                    }}
+                                >
+                                    {index + 1}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                <button
+                    className="nav-arrow"
+                    onClick={() => handleScroll("right")}
+                    aria-label="Scroll right"
+                >
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                    </svg>
+                </button>
+            </div>
+        </>
+    );
 };
 
 export default FormProgressBar;

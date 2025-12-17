@@ -36,8 +36,8 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["اليوم الأول", "اليوم الثاني", "اليوم الثالث", "اليوم الرابع", "اليوم الخامس"]
-				: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5"],
+				? ["اليوم الأول", "اليوم الثاني", "اليوم الثالث",]
+				: ["Day 1", "Day 2", "Day 3"],
 		required: true,
 	});
 
@@ -50,8 +50,38 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["الموقع الأول", "الموقع الثاني", "الموقع الثالث", "الموقع الرابع"]
-				: ["Location 1", "Location 2", "Location 3", "Location 4"],
+				? [
+					"الحالة الاولى",
+					"سوق المواشي",
+					"المسلخ العشوائي",
+					"سكن العمالة",
+					"موقع خطر محتمل 1",
+					"موقع خطر محتمل 2",
+					"موقع خطر محتمل 3",
+					"موقع خطر محتمل 4",
+					"موقع خطر محتمل 5",
+					"موقع خطر محتمل 6",
+					"موقع خطر محتمل 7",
+					"موقع خطر محتمل 8",
+					"حظيرة X",
+					"حظيرة Y"
+				]
+				: [
+					"First Case",
+					"Livestock Market",
+					"Informal Slaughterhouse",
+					"Labor Housing",
+					"Potential Hazard Site 1",
+					"Potential Hazard Site 2",
+					"Potential Hazard Site 3",
+					"Potential Hazard Site 4",
+					"Potential Hazard Site 5",
+					"Potential Hazard Site 6",
+					"Potential Hazard Site 7",
+					"Potential Hazard Site 8",
+					"Pen X",
+					"Pen Y"
+				],
 		required: true,
 	});
 

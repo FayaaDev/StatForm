@@ -9,6 +9,7 @@ export const useFormController = ({
 }) => {
     const [formInstance, setFormInstance] = useState(null);
     const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+    const [maxVisitedSlideIndex, setMaxVisitedSlideIndex] = useState(0);
     const [slides, setSlides] = useState([]);
 
     // Handle form mount
@@ -33,6 +34,7 @@ export const useFormController = ({
                 const index = allSlides.indexOf(activeSlide);
                 if (index !== -1) {
                     setActiveSlideIndex(index);
+                    setMaxVisitedSlideIndex(prev => Math.max(prev, index));
                 }
             }
         };
@@ -227,6 +229,7 @@ export const useFormController = ({
             onKeyUp: handleInputKeyEvents
         },
         activeSlideIndex,
+        maxVisitedSlideIndex,
         slides,
         jumpToSlide
     };
