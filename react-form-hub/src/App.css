@@ -2,6 +2,14 @@
 .hub-layout {
 	min-height: 100vh;
 	position: relative;
+	overflow-x: hidden;
+}
+
+/* Override formsmd library min-height to prevent unnecessary scrolling */
+.fmd-form-root,
+.fmd-form-container,
+.fmd-slides-container {
+	min-height: auto !important;
 }
 
 .logo {
@@ -67,7 +75,6 @@
 /* Form Container */
 .form-container {
 	width: 100%;
-	min-height: 100vh;
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 20px;
@@ -1342,13 +1349,13 @@
 	max-width: 800px;
 	margin: 0 auto;
 	padding: 0 20px;
-	padding-top: 100px;
+	padding-top: 40px;
 }
 
 .pha-header {
 	text-align: center;
-	margin-bottom: 60px;
-	padding: 60px 20px 40px 20px;
+	margin-bottom: 40px;
+	padding: 20px 20px 20px 20px;
 }
 
 .pha-title {

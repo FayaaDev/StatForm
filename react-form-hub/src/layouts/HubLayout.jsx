@@ -36,7 +36,7 @@ const HubLayout = () => {
 	// Determine root path based on theme
 	const rootPath = theme.id === "pha" ? "/pha" : "/";
 	const location = useLocation();
-	const isHomePage = location.pathname === "/" || location.pathname === "/pha";
+	const isHomePage = location.pathname === "/" || location.pathname === "/pha" || location.pathname === "/pha/";
 
 	return (
 		<div className="hub-layout">

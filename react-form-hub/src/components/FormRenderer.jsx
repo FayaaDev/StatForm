@@ -53,7 +53,7 @@ const FormRenderer = ({ composer, options = {}, id, onMount }) => {
 		<div
 			id={id}
 			ref={containerRef}
-			style={{ width: "100%", minHeight: "100vh" }}
+			style={{ width: "100%" }}
 		/>
 	);
 };
