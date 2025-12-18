@@ -6,12 +6,12 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		console.error("Composer not loaded yet");
 		return null;
 	}
-
 	const composer = new window.Composer({
 		id: "entomology-form",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "علم الحشرات",
+		postUrl: "https://script.google.com/macros/s/AKfycbxcQC3YWxYWlxWcdpwW1KUa3dxRO6afA4pU5kqDOtZrcJQsayM3yLgXzQWXi1Jx7bA0DA/exec",
+		_sheetName: "الاستكشاف والمكافحة الحشرية",
+		_sheetId: "1lNOOEtvfuxo2vD20scc4voZDfE08CN6X5RpreXTzdEc",
 	});
 
 	// Welcome slide
@@ -23,13 +23,27 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	);
 	composer.p(
 		translate(localization, {
-			en: "Please complete this entomology investigation form.",
+			en: "Please complete this  form.",
 			ar: "الاستكشاف والمكافحة الحشرية",
 		}),
 	);
 
-	// Question 1: Date
-	composer.slide({ pageProgress: "1/66" });
+	// Question 1: Investigation Number
+	composer.slide({ pageProgress: "1/70" });
+	composer.textInput("investigation_number", {
+		question: translate(localization, {
+			en: "Investigation Number",
+			ar: "رمز التقصي",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter investigation number",
+			ar: "أدخل رمز التقصي",
+		}),
+		required: true,
+	});
+
+	// Question 2: Date
+	composer.slide({ pageProgress: "2/70" });
 	composer.textInput("date", {
 		question: translate(localization, {
 			en: "Date",
@@ -43,7 +57,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 2: Coordinates
-	composer.slide({ pageProgress: "2/66" });
+	composer.slide({ pageProgress: "3/70" });
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
@@ -57,35 +71,117 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 3: Residential District Name
-	composer.slide({ pageProgress: "3/66" });
-	composer.textInput("residential_district", {
+	composer.slide({ pageProgress: "4/70" });
+	composer.selectBox("residential_district", {
 		question: translate(localization, {
 			en: "Residential District Name",
 			ar: "اسم الحي السكني",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"أبو شعيب",
+						"أبو عروة",
+						"أجياد",
+						"أحد",
+						"الأندلس",
+						"البحيرات",
+						"البرابر",
+						"البركة",
+						"البيبان",
+						"البساتين",
+						"أخرى",
+					]
+				: [
+						"Abu Shuaib",
+						"Abu Arwa",
+						"Ajyad",
+						"Uhud",
+						"Al-Andalus",
+						"Al-Buhayrat",
+						"Al-Barabir",
+						"Al-Birka",
+						"Al-Biban",
+						"Al-Basatin",
+						"Other",
+					],
+		required: true,
+	});
+
+	// Question 3a: Other Residential District (conditional)
+	composer.textInput("residential_district_other", {
+		question: translate(localization, {
+			en: "Specify Other District",
+			ar: "حدد الحي الآخر",
 		}),
 		placeholder: translate(localization, {
 			en: "Enter district name",
 			ar: "أدخل اسم الحي",
 		}),
 		required: true,
+		displayCondition: {
+			dependencies: ["residential_district"],
+			condition: "residential_district == 'أخرى' or residential_district == 'Other'",
+		},
 	});
 
 	// Question 4: Valley Name (for Schistosomiasis and Malaria)
-	composer.slide({ pageProgress: "4/66" });
-	composer.textInput("valley_name", {
+	composer.slide({ pageProgress: "5/70" });
+	composer.selectBox("valley_name", {
 		question: translate(localization, {
 			en: "Valley Name (for Schistosomiasis and Malaria)",
 			ar: "اسم الوادي (خاص بالبلهارسيا والملاريا)",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"أبو شعيب",
+						"أبو عروة",
+						"أجياد",
+						"أحد",
+						"الأندلس",
+						"البحيرات",
+						"البرابر",
+						"البركة",
+						"البيبان",
+						"البساتين",
+						"أخرى",
+					]
+				: [
+						"Abu Shuaib",
+						"Abu Arwa",
+						"Ajyad",
+						"Uhud",
+						"Al-Andalus",
+						"Al-Buhayrat",
+						"Al-Barabir",
+						"Al-Birka",
+						"Al-Biban",
+						"Al-Basatin",
+						"Other",
+					],
+		required: false,
+	});
+
+	// Question 4a: Other Valley Name (conditional)
+	composer.textInput("valley_name_other", {
+		question: translate(localization, {
+			en: "Specify Other Valley",
+			ar: "حدد الوادي الآخر",
 		}),
 		placeholder: translate(localization, {
 			en: "Enter valley name",
 			ar: "أدخل اسم الوادي",
 		}),
 		required: false,
+		displayCondition: {
+			dependencies: ["valley_name"],
+			condition: "valley_name == 'أخرى' or valley_name == 'Other'",
+		},
 	});
 
 	// Question 5: Breeding Site Description and Type
-	composer.slide({ pageProgress: "5/66" });
+	composer.slide({ pageProgress: "6/70" });
 	composer.textInput("breeding_site_description", {
 		question: translate(localization, {
 			en: "Breeding Site Description and Type",
@@ -99,35 +195,239 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 6: Other Breeding Site
-	composer.slide({ pageProgress: "6/66" });
-	composer.textInput("other_breeding_site", {
+	composer.slide({ pageProgress: "7/70" });
+	composer.selectBox("other_breeding_site", {
 		question: translate(localization, {
 			en: "Other (Specify Breeding Site)",
 			ar: "أخرى (حدد بؤرة التوالد)",
 		}),
-		placeholder: translate(localization, {
-			en: "Specify other breeding site",
-			ar: "حدد بؤرة التوالد الأخرى",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"دورة مياه",
+						"مخزن",
+						"غرفة نوم",
+						"غرفة معيشة",
+						"مطبخ",
+						"بدروم",
+						"سطح",
+						"مدخل منزل",
+						"مواقف سيارات",
+						"خزان صرف صحي",
+						"خزان مكشوف",
+						"نقاط تفتيش",
+						"مستشفى",
+						"قاعة افراح",
+						"ورشة",
+						"مصنع",
+						"محطة كهرباء",
+						"معرض سيارات",
+						"مستودع",
+						"بنشر",
+						"تشليح سيارات",
+						"مصنع بلك",
+						"مسلخ",
+						"محل غاز",
+						"مبني حكومي",
+						"محطة بنزين",
+						"مدرسة او معهد",
+						"جامعة",
+						"شركة",
+						"مسجد",
+						"مطعم",
+						"اماكن ترفيهية",
+						"مكاتب",
+						"مركز تجاري",
+						"محطة معالجة مياه",
+						"محل تجاري",
+						"أحواش",
+						"استراحات",
+						"مجري سيل",
+						"مستنقع",
+						"بحيرة",
+						"حظائر حيوان",
+						"حلقة اغنام",
+						"بنقلة سمك",
+						"بركة ماء عذبه",
+						"بركة ماء ملوثة",
+						"حمام سباحة",
+						"ارض خضراء",
+						"ملعب كرة قدم",
+						"قرية سياحية",
+						"مشتل",
+						"مزرعة",
+						"متحف",
+						"حديقة",
+						"مبنى تحت الإنشاء",
+						"مرمى بلدية",
+						"طريق",
+						"مخطط",
+						"منطقة صحراوية",
+						"أخرى",
+					]
+				: [
+						"Bathroom",
+						"Storage",
+						"Bedroom",
+						"Living Room",
+						"Kitchen",
+						"Basement",
+						"Roof",
+						"House Entrance",
+						"Parking",
+						"Sewage Tank",
+						"Open Tank",
+						"Checkpoint",
+						"Hospital",
+						"Wedding Hall",
+						"Workshop",
+						"Factory",
+						"Power Station",
+						"Car Showroom",
+						"Warehouse",
+						"Tire Shop",
+						"Car Scrapyard",
+						"Block Factory",
+						"Slaughterhouse",
+						"Gas Station",
+						"Government Building",
+						"Petrol Station",
+						"School or Institute",
+						"University",
+						"Company",
+						"Mosque",
+						"Restaurant",
+						"Entertainment Venue",
+						"Offices",
+						"Shopping Center",
+						"Water Treatment Plant",
+						"Commercial Shop",
+						"Yards",
+						"Rest Areas",
+						"Stream",
+						"Swamp",
+						"Lake",
+						"Animal Pens",
+						"Sheep Pen",
+						"Fish Pond",
+						"Freshwater Pool",
+						"Polluted Water Pool",
+						"Swimming Pool",
+						"Green Land",
+						"Football Field",
+						"Tourist Village",
+						"Nursery",
+						"Farm",
+						"Museum",
+						"Garden",
+						"Building Under Construction",
+						"Municipal Dump",
+						"Road",
+						"Planning Area",
+						"Desert Area",
+						"Other",
+					],
 		required: false,
 	});
 
+	// Question 6a: Other Breeding Site Specification (conditional)
+	composer.textInput("other_breeding_site_specify", {
+		question: translate(localization, {
+			en: "Specify Other Breeding Site",
+			ar: "حدد بؤرة التوالد الأخرى",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter breeding site details",
+			ar: "أدخل تفاصيل بؤرة التوالد",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["other_breeding_site"],
+			condition: "other_breeding_site == 'أخرى' or other_breeding_site == 'Other'",
+		},
+	});
+
 	// Question 7: Risk Factors
-	composer.slide({ pageProgress: "7/66" });
-	composer.textInput("risk_factors", {
+	composer.slide({ pageProgress: "8/70" });
+	composer.selectBox("risk_factors", {
 		question: translate(localization, {
 			en: "Risk Factors",
 			ar: "عوامل الخطورة",
 		}),
-		placeholder: translate(localization, {
-			en: "List risk factors",
-			ar: "اذكر عوامل الخطورة",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"حاويات مياه مهملة",
+						"التسريبات",
+						"البرادات",
+						"خزانات مكشوفة",
+						"صاج المكيف",
+						"صاج البرادات",
+						"حمامات غير مستخدمة",
+						"مزارع الحيوانات",
+						"مسالخ الحيوانات",
+						"تواجد الحيوانات الأليفة",
+						"فراء الحيوانات",
+						"المحاجر البيطرية",
+						"فضلات الحيوانات",
+						"مسابح مهملة",
+						"مزهريات",
+						"احواض زينة/اسماك",
+						"خزان علوي",
+						"حاويات النفايات",
+						"الإطارات",
+						"حوض اسمنتي",
+						"مياه سطحية",
+						"مياه للري",
+						"أخرى",
+					]
+				: [
+						"Abandoned Water Containers",
+						"Leaks",
+						"Coolers",
+						"Open Tanks",
+						"AC Trays",
+						"Cooler Trays",
+						"Unused Bathrooms",
+						"Animal Farms",
+						"Animal Slaughterhouses",
+						"Presence of Pets",
+						"Animal Fur",
+						"Veterinary Quarantines",
+						"Animal Waste",
+						"Abandoned Pools",
+						"Vases",
+						"Decorative/Fish Tanks",
+						"Overhead Tank",
+						"Waste Containers",
+						"Tires",
+						"Cement Basin",
+						"Surface Water",
+						"Irrigation Water",
+						"Other",
+					],
 		required: false,
 	});
 
+	// Question 7a: Other Risk Factor Specification (conditional)
+	composer.textInput("risk_factors_other", {
+		question: translate(localization, {
+			en: "Specify Other Risk Factor",
+			ar: "حدد عامل الخطورة الآخر",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter risk factor details",
+			ar: "أدخل تفاصيل عامل الخطورة",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["risk_factors"],
+			condition: "risk_factors == 'أخرى' or risk_factors == 'Other'",
+		},
+	});
+
 	// Question 8: Risk Factor Result
-	composer.slide({ pageProgress: "8/66" });
+	composer.slide({ pageProgress: "9/70" });
 	composer.selectBox("risk_factor_result", {
 		question: translate(localization, {
 			en: "Risk Factor Result",
@@ -135,13 +435,13 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["إيجابي", "سلبي", "غير محدد"]
-				: ["Positive", "Negative", "Undetermined"],
+				? ["إيجابي", "سلبي"]
+				: ["Positive", "Negative"],
 		required: false,
 	});
 
 	// Question 9: Site Exploration Status
-	composer.slide({ pageProgress: "9/66" });
+	composer.slide({ pageProgress: "10/70" });
 	composer.selectBox("site_exploration_status", {
 		question: translate(localization, {
 			en: "Site Exploration Status",
@@ -149,31 +449,78 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["تم الاستكشاف", "لم يتم الاستكشاف", "استكشاف جزئي"]
-				: ["Explored", "Not Explored", "Partially Explored"],
+				? [
+						"تم الاستكشاف الكامل",
+						"تم الاستكشاف داخل المنزل فقط",
+						"تم استكشاف فناء المنزل فقط",
+						"تم استكشاف المنطقة المحيطة بالفناء فقط",
+						"تم استكشاف الفناء والمنطقة المحيطة به",
+						"لم يتم الاستكشاف",
+					]
+				: [
+						"Fully Explored",
+						"Explored Inside House Only",
+						"Explored House Yard Only",
+						"Explored Area Surrounding Yard Only",
+						"Explored Yard and Surrounding Area",
+						"Not Explored",
+					],
 		required: false,
 	});
 
 	// Question 10: Reasons for Not Completing Exploration
-	composer.slide({ pageProgress: "10/66" });
-	composer.textInput("exploration_incomplete_reasons", {
+	composer.slide({ pageProgress: "11/70" });
+	composer.selectBox("exploration_incomplete_reasons", {
 		question: translate(localization, {
 			en: "Reasons for not completing exploration",
 			ar: "أسباب عدم استكمال عملية الاستكشاف",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter reasons",
-			ar: "أدخل الأسباب",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"لايوجد أحد",
+						"لايوجد محرم",
+						"لايوجد أداة استكشاف",
+						"لايوجد موظف استكشاف",
+						"صاحب المنزل لايرغب",
+						"صعوبة الوصول للمكان",
+						"أخرى",
+					]
+				: [
+						"No One Present",
+						"No Guardian Present",
+						"No Exploration Tools",
+						"No Exploration Staff",
+						"Homeowner Refuses",
+						"Difficult to Access Location",
+						"Other",
+					],
 		required: false,
 	});
 
+	// Question 10a: Other Exploration Incomplete Reason (conditional)
+	composer.textInput("exploration_incomplete_reasons_other", {
+		question: translate(localization, {
+			en: "Specify Other Reason",
+			ar: "حدد السبب الآخر",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter other reason",
+			ar: "أدخل السبب الآخر",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["exploration_incomplete_reasons"],
+			condition: "exploration_incomplete_reasons == 'أخرى' or exploration_incomplete_reasons == 'Other'",
+		},
+	});
+
 	// Question 11: Other Exploration Incomplete Reason
-	composer.slide({ pageProgress: "11/66" });
+	composer.slide({ pageProgress: "12/70" });
 	composer.textInput("other_exploration_incomplete", {
 		question: translate(localization, {
 			en: "Other (Specify reason for not completing exploration)",
-			ar: "أخرى (حدد سبب عدم استكمال الاستكشاف)",
+			ar: "أخرى (حدد سبب عدم استكشاف الموقع)",
 		}),
 		placeholder: translate(localization, {
 			en: "Specify other reason",
@@ -183,7 +530,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 12: Aquatic Stage Present
-	composer.slide({ pageProgress: "12/66" });
+	composer.slide({ pageProgress: "13/70" });
 	composer.choiceInput("aquatic_stage_present", {
 		question: translate(localization, {
 			en: "Is there aquatic stage?",
@@ -197,7 +544,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 13: Adult Mosquitoes Present
-	composer.slide({ pageProgress: "13/66" });
+	composer.slide({ pageProgress: "14/70" });
 	composer.choiceInput("adult_mosquitoes_present", {
 		question: translate(localization, {
 			en: "Are there adult mosquitoes?",
@@ -211,7 +558,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 14: Ticks Present
-	composer.slide({ pageProgress: "14/66" });
+	composer.slide({ pageProgress: "15/70" });
 	composer.choiceInput("ticks_present", {
 		question: translate(localization, {
 			en: "Are there ticks?",
@@ -225,43 +572,98 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 15: Control Performed at Site
-	composer.slide({ pageProgress: "15/66" });
-	composer.choiceInput("control_performed", {
+	composer.slide({ pageProgress: "16/70" });
+	composer.selectBox("control_performed", {
 		question: translate(localization, {
 			en: "Was control performed at the site?",
 			ar: "هل تمت المكافحة بالموقع؟",
 		}),
-		choices: [
-			translate(localization, { en: "Yes", ar: "نعم" }),
-			translate(localization, { en: "No", ar: "لا" }),
-		],
-		downkeys: ["Y", "N"],
+		options:
+			localization === "ar"
+				? [
+						"تمت المكافحة بشكل كامل",
+						"تمت المكافحة داخل المنزل فقط",
+						"تم مكافحة فناء المنزل فقط",
+						"تمت مكافحة المنطقة المحيطة بالفناء فقط",
+						"تمت مكافحة الفناء والمنطقة المحيطة به",
+						"لم تتم المكافحة",
+					]
+				: [
+						"Fully Controlled",
+						"Controlled Inside House Only",
+						"Controlled House Yard Only",
+						"Controlled Area Surrounding Yard Only",
+						"Controlled Yard and Surrounding Area",
+						"Not Controlled",
+					],
+		required: false,
 	});
 
 	// Question 16: Reason for Not Performing Control
-	composer.slide({ pageProgress: "16/66" });
-	composer.textInput("no_control_reason", {
+	composer.slide({ pageProgress: "17/70" });
+	composer.selectBox("no_control_reason", {
 		question: translate(localization, {
 			en: "Reason for not performing control",
 			ar: "سبب عدم المكافحة في حال لم تتم",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter reason",
-			ar: "أدخل السبب",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"لايوجد أحد",
+						"لايوجد محرم",
+						"لايوجد أداة مكافحة",
+						"لايوجد موظف مكافحة",
+						"صاحب المنزل لايرغب",
+						"صعوبة الوصول للمكان",
+						"أخرى",
+					]
+				: [
+						"No One Present",
+						"No Guardian Present",
+						"No Control Tools",
+						"No Control Staff",
+						"Homeowner Refuses",
+						"Difficult to Access Location",
+						"Other",
+					],
 		required: false,
 		displayCondition: {
 			dependencies: ["control_performed"],
-			condition: "control_performed == 'No' or control_performed == 'لا'",
+			condition: "control_performed == 'لم تتم المكافحة' or control_performed == 'Not Controlled'",
+		},
+	});
+
+	// Question 16a: Other Control Reason (conditional)
+	composer.textInput("no_control_reason_other", {
+		question: translate(localization, {
+			en: "Specify Other Reason",
+			ar: "حدد السبب الآخر",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter other reason",
+			ar: "أدخل السبب الآخر",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["no_control_reason"],
+			condition: "no_control_reason == 'أخرى' or no_control_reason == 'Other'",
 		},
 	});
 
 	// Control Information Section
-	composer.slide({ pageProgress: "17/66" });
+	composer.slide({ pageProgress: "18/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Control Information",
 			ar: "معلومات المكافحة",
+		}),
+	);
+
+	// Larval Control Subsection
+	composer.h3(
+		translate(localization, {
+			en: "Larval Stage Control",
+			ar: "مكافحة الطور اليرقي",
 		}),
 	);
 
@@ -273,27 +675,65 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["كيميائية", "بيولوجية", "ميكانيكية", "متكاملة", "لا يوجد"]
-				: ["Chemical", "Biological", "Mechanical", "Integrated", "None"],
+				? [
+						"بيئي -الردم",
+						"بيئي -تغطية الحاوية",
+						"بيئي -تفريغ وتنظيف الحاوية",
+						"بيئي -تنظيف وتفريغ مشرب الحيوانات",
+						"بيئي -توصيل أنابيب مياه",
+						"بيئي -معالجة شبكة المياه",
+						"كيميائي -مبيدات مجموعة الفوسفات العضوية",
+						"كيميائي -أنواع من الزيوت المعدنية",
+						"كيميائي -مبيدات كولونية عضوية",
+						"كيميائي -منظمات نمو الحشرات",
+						"حيوي -مبيدات اليرقات البكتيرية",
+						"حيوي -الأسماك",
+						"حيوي -المجدافيات المفترسة",
+						"حيوي -البكتيريا المنتجة للسموم الداخلية",
+					]
+				: [
+						"Environmental - Landfill",
+						"Environmental - Container Covering",
+						"Environmental - Container Emptying and Cleaning",
+						"Environmental - Animal Waterer Cleaning and Emptying",
+						"Environmental - Water Pipe Installation",
+						"Environmental - Water Network Treatment",
+						"Chemical - Organophosphate Pesticides",
+						"Chemical - Types of Mineral Oils",
+						"Chemical - Organic Colonial Pesticides",
+						"Chemical - Insect Growth Regulators",
+						"Biological - Bacterial Larvicides",
+						"Biological - Fish",
+						"Biological - Predatory Copepods",
+						"Biological - Endotoxin-producing Bacteria",
+					],
 		required: false,
 	});
 
 	// Question 18: Pesticide Group Type
-	composer.slide({ pageProgress: "18/66" });
-	composer.textInput("pesticide_group_type", {
+	composer.slide({ pageProgress: "19/70" });
+	composer.selectBox("pesticide_group_type", {
 		question: translate(localization, {
 			en: "Type of Pesticide Group",
 			ar: "نوع مجموعة المبيد",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter pesticide group",
-			ar: "أدخل مجموعة المبيد",
-		}),
+		options:
+			localization === "ar"
+				? ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates"]
+				: ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates"],
 		required: false,
 	});
 
+	// Adult Mosquito Control Subsection
+	composer.slide({ pageProgress: "20/70" });
+	composer.h3(
+		translate(localization, {
+			en: "Adult Mosquito Control",
+			ar: "مكافحة البعوض البالغ",
+		}),
+	);
+
 	// Question 19: Type of Control 2
-	composer.slide({ pageProgress: "19/66" });
 	composer.selectBox("control_type_2", {
 		question: translate(localization, {
 			en: "Type of Control (Secondary)",
@@ -301,27 +741,47 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["كيميائية", "بيولوجية", "ميكانيكية", "متكاملة", "لا يوجد"]
-				: ["Chemical", "Biological", "Mechanical", "Integrated", "None"],
+				? [
+						"استخدام مبيدات الأثر الباقي",
+						"استخدام مبيدات الرش الفراغي",
+						"التضبيب الحراري",
+						"الناموسيات المشبعة",
+						"رذاذ متناهي الصغر",
+					]
+				: [
+						"Use of Residual Effect Pesticides",
+						"Use of Space Spray Pesticides",
+						"Thermal Fogging",
+						"Insecticide-treated Nets",
+						"Ultra-low Volume Spray",
+					],
 		required: false,
 	});
 
 	// Question 20: Pesticide Group Type 2
-	composer.slide({ pageProgress: "20/66" });
-	composer.textInput("pesticide_group_type_2", {
+	composer.slide({ pageProgress: "21/70" });
+	composer.selectBox("pesticide_group_type_2", {
 		question: translate(localization, {
 			en: "Type of Pesticide Group (Secondary)",
 			ar: "نوع مجموعة المبيد (ثانوي)",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter pesticide group",
-			ar: "أدخل مجموعة المبيد",
-		}),
+		options:
+			localization === "ar"
+				? ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates"]
+				: ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates"],
 		required: false,
 	});
 
+	// Tick Control Subsection
+	composer.slide({ pageProgress: "22/70" });
+	composer.h3(
+		translate(localization, {
+			en: "Tick Control",
+			ar: "مكافحة القراد",
+		}),
+	);
+
 	// Question 21: Type of Control 3
-	composer.slide({ pageProgress: "21/66" });
 	composer.selectBox("control_type_3", {
 		question: translate(localization, {
 			en: "Type of Control (Tertiary)",
@@ -329,27 +789,47 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["كيميائية", "بيولوجية", "ميكانيكية", "متكاملة", "لا يوجد"]
-				: ["Chemical", "Biological", "Mechanical", "Integrated", "None"],
+				? [
+						"بيئي (إزالة حشرة القراد ميكانيكياً)",
+						"بيئي (تنظيف أماكن تواجد الحيوانات)",
+						"بيئي (ابعاد الحيوانات خارج مقر السكن)",
+						"بيئي (شفط القراد وبيوضها بالمكنسة)",
+						"حيوي (الدواجن)",
+						"بيئي (استخدام الملابس التي تغطي كامل الجسم)",
+						"كيميائي (استخدام المطهرات)",
+						"كيميائي (استخدام المواد الطاردة للقراد)",
+						"كيميائي (استخدام المبيدات الحشرية)",
+					]
+				: [
+						"Environmental (Mechanical Tick Removal)",
+						"Environmental (Cleaning Animal Areas)",
+						"Environmental (Keeping Animals Away from Residence)",
+						"Environmental (Vacuuming Ticks and Eggs)",
+						"Biological (Poultry)",
+						"Environmental (Wearing Full-Body Covering Clothes)",
+						"Chemical (Using Disinfectants)",
+						"Chemical (Using Tick Repellents)",
+						"Chemical (Using Insecticides)",
+					],
 		required: false,
 	});
 
 	// Question 22: Pesticide Group Type 3
-	composer.slide({ pageProgress: "22/66" });
-	composer.textInput("pesticide_group_type_3", {
+	composer.slide({ pageProgress: "23/70" });
+	composer.selectBox("pesticide_group_type_3", {
 		question: translate(localization, {
 			en: "Type of Pesticide Group (Tertiary)",
 			ar: "نوع مجموعة المبيد (ثالث)",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter pesticide group",
-			ar: "أدخل مجموعة المبيد",
-		}),
+		options:
+			localization === "ar"
+				? ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates", "Bti", "Growth inhibator"]
+				: ["Pyrethroids", "Carbamates", "Organochlorines", "Organophosphates", "Bti", "Growth inhibator"],
 		required: false,
 	});
 
 	// Pesticide Details Section
-	composer.slide({ pageProgress: "23/66" });
+	composer.slide({ pageProgress: "24/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Pesticide Details",
@@ -371,7 +851,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 24: Commercial Name of Pesticide
-	composer.slide({ pageProgress: "24/66" });
+	composer.slide({ pageProgress: "25/70" });
 	composer.textInput("pesticide_commercial_name", {
 		question: translate(localization, {
 			en: "Commercial Name of Pesticide",
@@ -385,7 +865,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 25: Active Ingredient Concentration
-	composer.slide({ pageProgress: "25/66" });
+	composer.slide({ pageProgress: "26/70" });
 	composer.textInput("active_ingredient_concentration", {
 		question: translate(localization, {
 			en: "Active Ingredient Concentration",
@@ -399,7 +879,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 26: Pesticide Amount Consumed
-	composer.slide({ pageProgress: "26/66" });
+	composer.slide({ pageProgress: "27/70" });
 	composer.numberInput("pesticide_amount_consumed", {
 		question: translate(localization, {
 			en: "Pesticide Amount Consumed (kg/L)",
@@ -410,7 +890,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 27: Spraying Method
-	composer.slide({ pageProgress: "27/66" });
+	composer.slide({ pageProgress: "28/70" });
 	composer.selectBox("spraying_method", {
 		question: translate(localization, {
 			en: "Spraying Method",
@@ -418,13 +898,31 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["رش يدوي", "رش آلي", "تبخير", "ضباب حراري", "ضباب بارد", "أخرى"]
-				: ["Manual Spray", "Mechanical Spray", "Fumigation", "Thermal Fog", "Cold Fog", "Other"],
+				? [
+						"ضباب خارجي",
+						"ضباب داخلي",
+						"رذاذ داخلي",
+						"رذاذ خارجي",
+						"مكافحة يرقات",
+						"رش ذو اثر باقي",
+						"طائرة",
+						"درون",
+					]
+				: [
+						"Outdoor Fogging",
+						"Indoor Fogging",
+						"Indoor Spray",
+						"Outdoor Spray",
+						"Larvae Control",
+						"Residual Spray",
+						"Aircraft",
+						"Drone",
+					],
 		required: false,
 	});
 
 	// Question 28: Area Covered by Pesticide
-	composer.slide({ pageProgress: "28/66" });
+	composer.slide({ pageProgress: "29/70" });
 	composer.numberInput("area_covered_pesticide", {
 		question: translate(localization, {
 			en: "Area Covered by Pesticide (m²)",
@@ -435,7 +933,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 29: Type of Treated Site
-	composer.slide({ pageProgress: "29/66" });
+	composer.slide({ pageProgress: "30/70" });
 	composer.selectBox("treated_site_type", {
 		question: translate(localization, {
 			en: "Type of Treated Site",
@@ -448,8 +946,25 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
+	// Question 29a: Other Treated Site Type (conditional)
+	composer.textInput("treated_site_type_other", {
+		question: translate(localization, {
+			en: "Specify Other Treated Site Type",
+			ar: "حدد نوع الموقع المعالج الآخر",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter site type",
+			ar: "أدخل نوع الموقع",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["treated_site_type"],
+			condition: "treated_site_type == 'أخرى' or treated_site_type == 'Other'",
+		},
+	});
+
 	// Question 30: Residual Pesticide Spraying
-	composer.slide({ pageProgress: "30/66" });
+	composer.slide({ pageProgress: "31/70" });
 	composer.choiceInput("residual_pesticide_spraying", {
 		question: translate(localization, {
 			en: "Residual Pesticide Spraying",
@@ -463,7 +978,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 31: Number of Sprayed Rooms
-	composer.slide({ pageProgress: "31/66" });
+	composer.slide({ pageProgress: "32/70" });
 	composer.numberInput("sprayed_rooms_count", {
 		question: translate(localization, {
 			en: "Number of Sprayed Rooms",
@@ -474,7 +989,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 32: Sprayed Area
-	composer.slide({ pageProgress: "32/66" });
+	composer.slide({ pageProgress: "33/70" });
 	composer.numberInput("sprayed_area", {
 		question: translate(localization, {
 			en: "Sprayed Area (m²)",
@@ -485,7 +1000,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Additional Pesticide Information
-	composer.slide({ pageProgress: "33/66" });
+	composer.slide({ pageProgress: "34/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Additional Pesticide Information",
@@ -507,7 +1022,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 34: Concentration
-	composer.slide({ pageProgress: "34/66" });
+	composer.slide({ pageProgress: "35/70" });
 	composer.textInput("concentration", {
 		question: translate(localization, {
 			en: "Concentration",
@@ -521,7 +1036,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 35: Quantity
-	composer.slide({ pageProgress: "35/66" });
+	composer.slide({ pageProgress: "36/70" });
 	composer.numberInput("quantity", {
 		question: translate(localization, {
 			en: "Quantity",
@@ -532,7 +1047,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Trap Information Section
-	composer.slide({ pageProgress: "36/66" });
+	composer.slide({ pageProgress: "37/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Trap Information",
@@ -540,25 +1055,48 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 36: Trap Type
-	composer.selectBox("trap_type", {
+	// Number of Traps
+	composer.numberInput("number_of_traps", {
 		question: translate(localization, {
-			en: "Trap Type",
-			ar: "نوع المصيدة",
+			en: "Number of Traps",
+			ar: "عدد المصائد",
 		}),
-		options:
-			localization === "ar"
-				? ["مصيدة ضوئية", "مصيدة CO2", "مصيدة لاصقة", "مصيدة مائية", "أخرى", "لا يوجد"]
-				: ["Light Trap", "CO2 Trap", "Sticky Trap", "Water Trap", "Other", "None"],
+		min: 0,
+		max: 4,
 		required: false,
 	});
 
-	// Question 37: Is Trap Positive
-	composer.slide({ pageProgress: "37/66" });
-	composer.choiceInput("trap_positive", {
+	// Trap 1
+	composer.slide({ pageProgress: "38/70" });
+	composer.selectBox("trap_1_type", {
 		question: translate(localization, {
-			en: "Is the trap positive?",
-			ar: "هل المصيدة إيجابية؟",
+			en: "Trap 1 - Type",
+			ar: "المصيدة 1 - النوع",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					]
+				: [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					],
+		required: false,
+	});
+
+	composer.slide({ pageProgress: "39/70" });
+	composer.choiceInput("trap_1_positive", {
+		question: translate(localization, {
+			en: "Trap 1 - Is the trap positive?",
+			ar: "المصيدة 1 - هل المصيدة إيجابية؟",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -567,12 +1105,11 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 38: Trap Coordinates
-	composer.slide({ pageProgress: "38/66" });
-	composer.textInput("trap_coordinates", {
+	composer.slide({ pageProgress: "40/70" });
+	composer.textInput("trap_1_coordinates", {
 		question: translate(localization, {
-			en: "Trap Coordinates",
-			ar: "احداثيات المصيدة",
+			en: "Trap 1 - Coordinates",
+			ar: "المصيدة 1 - الاحداثيات",
 		}),
 		placeholder: translate(localization, {
 			en: "Enter trap coordinates",
@@ -581,8 +1118,164 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Sample Information Section
-	composer.slide({ pageProgress: "39/66" });
+	// Trap 2
+	composer.slide({ pageProgress: "41/70" });
+	composer.selectBox("trap_2_type", {
+		question: translate(localization, {
+			en: "Trap 2 - Type",
+			ar: "المصيدة 2 - النوع",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					]
+				: [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					],
+		required: false,
+	});
+
+	composer.slide({ pageProgress: "42/70" });
+	composer.choiceInput("trap_2_positive", {
+		question: translate(localization, {
+			en: "Trap 2 - Is the trap positive?",
+			ar: "المصيدة 2 - هل المصيدة إيجابية؟",
+		}),
+		choices: [
+			translate(localization, { en: "Yes", ar: "نعم" }),
+			translate(localization, { en: "No", ar: "لا" }),
+		],
+		downkeys: ["Y", "N"],
+	});
+
+	composer.slide({ pageProgress: "43/70" });
+	composer.textInput("trap_2_coordinates", {
+		question: translate(localization, {
+			en: "Trap 2 - Coordinates",
+			ar: "المصيدة 2 - الاحداثيات",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter trap coordinates",
+			ar: "أدخل احداثيات المصيدة",
+		}),
+		required: false,
+	});
+
+	// Trap 3
+	composer.slide({ pageProgress: "44/70" });
+	composer.selectBox("trap_3_type", {
+		question: translate(localization, {
+			en: "Trap 3 - Type",
+			ar: "المصيدة 3 - النوع",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					]
+				: [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					],
+		required: false,
+	});
+
+	composer.slide({ pageProgress: "45/70" });
+	composer.choiceInput("trap_3_positive", {
+		question: translate(localization, {
+			en: "Trap 3 - Is the trap positive?",
+			ar: "المصيدة 3 - هل المصيدة إيجابية؟",
+		}),
+		choices: [
+			translate(localization, { en: "Yes", ar: "نعم" }),
+			translate(localization, { en: "No", ar: "لا" }),
+		],
+		downkeys: ["Y", "N"],
+	});
+
+	composer.slide({ pageProgress: "46/70" });
+	composer.textInput("trap_3_coordinates", {
+		question: translate(localization, {
+			en: "Trap 3 - Coordinates",
+			ar: "المصيدة 3 - الاحداثيات",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter trap coordinates",
+			ar: "أدخل احداثيات المصيدة",
+		}),
+		required: false,
+	});
+
+	// Trap 4
+	composer.slide({ pageProgress: "47/70" });
+	composer.selectBox("trap_4_type", {
+		question: translate(localization, {
+			en: "Trap 4 - Type",
+			ar: "المصيدة 4 - النوع",
+		}),
+		options:
+			localization === "ar"
+				? [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					]
+				: [
+						"CDC light trap & mosquito net",
+						"Electric traps (Blackhole)",
+						"The BG sentinel traps",
+						"smart trap",
+						"Ovitraps",
+					],
+		required: false,
+	});
+
+	composer.slide({ pageProgress: "48/70" });
+	composer.choiceInput("trap_4_positive", {
+		question: translate(localization, {
+			en: "Trap 4 - Is the trap positive?",
+			ar: "المصيدة 4 - هل المصيدة إيجابية؟",
+		}),
+		choices: [
+			translate(localization, { en: "Yes", ar: "نعم" }),
+			translate(localization, { en: "No", ar: "لا" }),
+		],
+		downkeys: ["Y", "N"],
+	});
+
+	composer.slide({ pageProgress: "49/70" });
+	composer.textInput("trap_4_coordinates", {
+		question: translate(localization, {
+			en: "Trap 4 - Coordinates",
+			ar: "المصيدة 4 - الاحداثيات",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter trap coordinates",
+			ar: "أدخل احداثيات المصيدة",
+		}),
+		required: false,
+	});
+
+	// Sample Information Section (starts at 50 = 37 + 12 trap slides + 1)
+	composer.slide({ pageProgress: "50/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Sample Information",
@@ -604,7 +1297,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 40: Sample Collection Date
-	composer.slide({ pageProgress: "40/66" });
+	composer.slide({ pageProgress: "51/70" });
 	composer.textInput("sample_collection_date", {
 		question: translate(localization, {
 			en: "Sample Collection Date",
@@ -618,7 +1311,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 41: Sample Classification Date
-	composer.slide({ pageProgress: "41/66" });
+	composer.slide({ pageProgress: "52/70" });
 	composer.textInput("sample_classification_date", {
 		question: translate(localization, {
 			en: "Sample Classification Date",
@@ -632,7 +1325,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 42: Total Aquatic Stage Mosquitoes
-	composer.slide({ pageProgress: "42/66" });
+	composer.slide({ pageProgress: "53/70" });
 	composer.numberInput("total_aquatic_stage", {
 		question: translate(localization, {
 			en: "Total Aquatic Stage Mosquitoes in Sample",
@@ -643,7 +1336,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 43: Total Adult Mosquitoes
-	composer.slide({ pageProgress: "43/66" });
+	composer.slide({ pageProgress: "54/70" });
 	composer.numberInput("total_adult_mosquitoes", {
 		question: translate(localization, {
 			en: "Total Adult Mosquitoes in Sample",
@@ -654,7 +1347,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 44: Total Ticks
-	composer.slide({ pageProgress: "44/66" });
+	composer.slide({ pageProgress: "55/70" });
 	composer.numberInput("total_ticks", {
 		question: translate(localization, {
 			en: "Total Ticks in Sample",
@@ -665,7 +1358,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 45: Total Sandflies
-	composer.slide({ pageProgress: "45/66" });
+	composer.slide({ pageProgress: "56/70" });
 	composer.numberInput("total_sandflies", {
 		question: translate(localization, {
 			en: "Total Sandflies in Sample",
@@ -676,21 +1369,39 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 46: Tick Classification
-	composer.slide({ pageProgress: "46/66" });
-	composer.textInput("tick_classification", {
+	composer.slide({ pageProgress: "57/70" });
+	composer.selectBox("tick_classification", {
 		question: translate(localization, {
 			en: "Tick Classification by Type and Stage",
 			ar: "تصنيف القراد حسب النوع و الطور",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter classification",
-			ar: "أدخل التصنيف",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"Soft tick (Ornithodoros)",
+						"Soft tick (Otobius)",
+						"Hard tick (Amblyomma)",
+						"Hard tick (Dermacentor)",
+						"Hard tick (Haemaphysalis)",
+						"Hard tick (Hyalomma)",
+						"Hard tick (Ixodes)",
+						"Hard tick (Rhipicephalus)",
+					]
+				: [
+						"Soft tick (Ornithodoros)",
+						"Soft tick (Otobius)",
+						"Hard tick (Amblyomma)",
+						"Hard tick (Dermacentor)",
+						"Hard tick (Haemaphysalis)",
+						"Hard tick (Hyalomma)",
+						"Hard tick (Ixodes)",
+						"Hard tick (Rhipicephalus)",
+					],
 		required: false,
 	});
 
 	// Aedes Mosquito Classification Section
-	composer.slide({ pageProgress: "47/66" });
+	composer.slide({ pageProgress: "58/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Aedes Mosquito Classification",
@@ -709,7 +1420,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 48: 3rd + 4th (Aedes)
-	composer.slide({ pageProgress: "48/66" });
+	composer.slide({ pageProgress: "59/70" });
 	composer.numberInput("aedes_3rd_4th", {
 		question: translate(localization, {
 			en: "3rd + 4th Instar (Aedes)",
@@ -720,7 +1431,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 49: Adult M (Aedes)
-	composer.slide({ pageProgress: "49/66" });
+	composer.slide({ pageProgress: "60/70" });
 	composer.numberInput("aedes_adult_m", {
 		question: translate(localization, {
 			en: "Adult Male (Aedes)",
@@ -731,7 +1442,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 50: Adult F (Aedes)
-	composer.slide({ pageProgress: "50/66" });
+	composer.slide({ pageProgress: "61/70" });
 	composer.numberInput("aedes_adult_f", {
 		question: translate(localization, {
 			en: "Adult Female (Aedes)",
@@ -742,18 +1453,37 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 51: Ae.spp. (Aedes)
-	composer.slide({ pageProgress: "51/66" });
-	composer.numberInput("aedes_spp", {
+	composer.slide({ pageProgress: "62/70" });
+	composer.selectBox("aedes_spp", {
 		question: translate(localization, {
 			en: "Ae.spp. (Aedes species)",
 			ar: "أنواع الزاعجة (Ae.spp.)",
 		}),
-		min: 0,
-		max: 100000,
+		options:
+			localization === "ar"
+				? [
+						"Aedes aegypti",
+						"Aedes vexans",
+						"Aedes vittatus",
+						"Aedes albopictus",
+						"Aedes caballus",
+						"Aedes caspius",
+						"Not specified",
+					]
+				: [
+						"Aedes aegypti",
+						"Aedes vexans",
+						"Aedes vittatus",
+						"Aedes albopictus",
+						"Aedes caballus",
+						"Aedes caspius",
+						"Not specified",
+					],
+		required: false,
 	});
 
 	// Culex Mosquito Classification Section
-	composer.slide({ pageProgress: "52/66" });
+	composer.slide({ pageProgress: "63/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Culex Mosquito Classification",
@@ -772,7 +1502,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 53: 3rd + 4th (Culex)
-	composer.slide({ pageProgress: "53/66" });
+	composer.slide({ pageProgress: "64/70" });
 	composer.numberInput("culex_3rd_4th", {
 		question: translate(localization, {
 			en: "3rd + 4th Instar (Culex)",
@@ -783,7 +1513,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 54: Adult M (Culex)
-	composer.slide({ pageProgress: "54/66" });
+	composer.slide({ pageProgress: "65/70" });
 	composer.numberInput("culex_adult_m", {
 		question: translate(localization, {
 			en: "Adult Male (Culex)",
@@ -794,7 +1524,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 55: Adult F (Culex)
-	composer.slide({ pageProgress: "55/66" });
+	composer.slide({ pageProgress: "66/70" });
 	composer.numberInput("culex_adult_f", {
 		question: translate(localization, {
 			en: "Adult Female (Culex)",
@@ -805,18 +1535,73 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 56: Culex spp.
-	composer.slide({ pageProgress: "56/66" });
-	composer.numberInput("culex_spp", {
+	composer.slide({ pageProgress: "67/70" });
+	composer.selectBox("culex_spp", {
 		question: translate(localization, {
 			en: "Culex spp. (Culex species)",
 			ar: "أنواع الكيولكس (Culex spp.)",
 		}),
-		min: 0,
-		max: 100000,
+		options:
+			localization === "ar"
+				? [
+						"Cx. pipiens",
+						"Cx. pusillus",
+						"Cx.decens",
+						"Cx. duttoni",
+						"Cx.laticinctus",
+						"Cx. mattinglyi",
+						"Cx.mimeticus",
+						"Cx. perexiguus",
+						"Cx.quinquefasciatus",
+						"Cx. simpsoni",
+						"Cx.sinaiticus",
+						"Cx. sitiens",
+						"Cx. theileri",
+						"Cx.tritaeniorhynchus",
+						"Cx. nebulosus",
+						"Cx.arbieeni Salem",
+						"Cx. univittatus",
+						"Cx. salisburiensis",
+						"Cx.bitaeniorhynchus",
+						"Cs. longiareolata",
+						"Cs. subochrea",
+						"Lt. tigripes",
+						"Cq.richiardii",
+						"Ur. unguiculata",
+						"Not specified",
+					]
+				: [
+						"Cx. pipiens",
+						"Cx. pusillus",
+						"Cx.decens",
+						"Cx. duttoni",
+						"Cx.laticinctus",
+						"Cx. mattinglyi",
+						"Cx.mimeticus",
+						"Cx. perexiguus",
+						"Cx.quinquefasciatus",
+						"Cx. simpsoni",
+						"Cx.sinaiticus",
+						"Cx. sitiens",
+						"Cx. theileri",
+						"Cx.tritaeniorhynchus",
+						"Cx. nebulosus",
+						"Cx.arbieeni Salem",
+						"Cx. univittatus",
+						"Cx. salisburiensis",
+						"Cx.bitaeniorhynchus",
+						"Cs. longiareolata",
+						"Cs. subochrea",
+						"Lt. tigripes",
+						"Cq.richiardii",
+						"Ur. unguiculata",
+						"Not specified",
+					],
+		required: false,
 	});
 
 	// Anopheles Mosquito Classification Section
-	composer.slide({ pageProgress: "57/66" });
+	composer.slide({ pageProgress: "68/70" });
 	composer.h2(
 		translate(localization, {
 			en: "Anopheles Mosquito Classification",
@@ -835,7 +1620,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 58: 3rd + 4th (Anopheles)
-	composer.slide({ pageProgress: "58/66" });
+	composer.slide({ pageProgress: "69/70" });
 	composer.numberInput("anopheles_3rd_4th", {
 		question: translate(localization, {
 			en: "3rd + 4th Instar (Anopheles)",
@@ -846,7 +1631,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 59: Adult M (Anopheles)
-	composer.slide({ pageProgress: "59/66" });
+	composer.slide({ pageProgress: "70/70" });
 	composer.numberInput("anopheles_adult_m", {
 		question: translate(localization, {
 			en: "Adult Male (Anopheles)",
@@ -856,8 +1641,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		max: 100000,
 	});
 
-	// Question 60: Adult F (Anopheles)
-	composer.slide({ pageProgress: "60/66" });
+	// Question 60: Adult F (Anopheles) - remove pageProgress as it's on same slide
 	composer.numberInput("anopheles_adult_f", {
 		question: translate(localization, {
 			en: "Adult Female (Anopheles)",
@@ -867,19 +1651,46 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		max: 100000,
 	});
 
-	// Question 61: An.spp. (Anopheles)
-	composer.slide({ pageProgress: "61/66" });
-	composer.numberInput("anopheles_spp", {
+	// Question 61: An.spp. (Anopheles) - remove pageProgress as it's on same slide
+	composer.selectBox("anopheles_spp", {
 		question: translate(localization, {
 			en: "An.spp. (Anopheles species)",
 			ar: "أنواع الأنوفيليس (An.spp.)",
 		}),
-		min: 0,
-		max: 100000,
+		options:
+			localization === "ar"
+				? [
+						"An. fluviatilis",
+						"An. multicolor",
+						"An.pharoensis",
+						"An.pretoriensis",
+						"An.pulcherrimus",
+						"An.rhodesiensis",
+						"An.sergentii",
+						"An. stephensi",
+						"An. subpictus",
+						"An. superpictus",
+						"An. turkhudi",
+						"Not specified",
+					]
+				: [
+						"An. fluviatilis",
+						"An. multicolor",
+						"An.pharoensis",
+						"An.pretoriensis",
+						"An.pulcherrimus",
+						"An.rhodesiensis",
+						"An.sergentii",
+						"An. stephensi",
+						"An. subpictus",
+						"An. superpictus",
+						"An. turkhudi",
+						"Not specified",
+					],
+		required: false,
 	});
 
-	// Sandfly Classification Section
-	composer.slide({ pageProgress: "62/66" });
+	// Sandfly Classification Section - remove pageProgress as it's on same slide
 	composer.h2(
 		translate(localization, {
 			en: "Sandfly Classification",
@@ -887,7 +1698,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 62: Adult M (Sandfly)
+	// Question 62: Adult M (Sandfly) - remove pageProgress as it's on same slide
 	composer.numberInput("sandfly_adult_m", {
 		question: translate(localization, {
 			en: "Adult Male (Sandfly)",
@@ -897,8 +1708,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		max: 100000,
 	});
 
-	// Question 63: Adult F (Sandfly)
-	composer.slide({ pageProgress: "63/66" });
+	// Question 63: Adult F (Sandfly) - remove pageProgress as it's on same slide
 	composer.numberInput("sandfly_adult_f", {
 		question: translate(localization, {
 			en: "Adult Female (Sandfly)",
@@ -908,30 +1718,137 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		max: 100000,
 	});
 
-	// Question 64: Ser.spp (Sandfly)
-	composer.slide({ pageProgress: "64/66" });
-	composer.numberInput("sandfly_ser_spp", {
+	// Question 64: Ser.spp (Sandfly) - remove pageProgress as it's on same slide
+	composer.selectBox("sandfly_ser_spp", {
 		question: translate(localization, {
 			en: "Ser.spp (Sergentomyia species)",
 			ar: "أنواع سيرجنتوميا (Ser.spp)",
 		}),
-		min: 0,
-		max: 100000,
+		options:
+			localization === "ar"
+				? [
+						"S.affinis",
+						"S.calcrata",
+						"S.sattii",
+						"S. suberecta",
+						"S. inermis",
+						"S. fremits",
+						"S. freetownesis",
+						"S. magna",
+						"S. darlingi",
+						"S. kirki",
+						"S. serrata",
+						"S. hunti",
+						"S. dureni",
+						"S. collarti",
+						"S. decipiens",
+						"S. heischi",
+						"S. adleri",
+						"S. tiberiadis",
+						"S.schwetzi",
+						"S.taizi",
+						"S.fallax",
+						"S.antennata",
+						"S. africana",
+						"S.palestinensis",
+						"S. christophersi",
+						"S. clydei",
+						"S. calcarata",
+						"S. magna",
+						"S. dreyfussi",
+						"S. squamipleuris",
+						"S. sonyae",
+						"S. dolichopa",
+						"S. multidens",
+						"S. yusafi",
+						"S. schoutedeni",
+						"Not specified",
+					]
+				: [
+						"S.affinis",
+						"S.calcrata",
+						"S.sattii",
+						"S. suberecta",
+						"S. inermis",
+						"S. fremits",
+						"S. freetownesis",
+						"S. magna",
+						"S. darlingi",
+						"S. kirki",
+						"S. serrata",
+						"S. hunti",
+						"S. dureni",
+						"S. collarti",
+						"S. decipiens",
+						"S. heischi",
+						"S. adleri",
+						"S. tiberiadis",
+						"S.schwetzi",
+						"S.taizi",
+						"S.fallax",
+						"S.antennata",
+						"S. africana",
+						"S.palestinensis",
+						"S. christophersi",
+						"S. clydei",
+						"S. calcarata",
+						"S. magna",
+						"S. dreyfussi",
+						"S. squamipleuris",
+						"S. sonyae",
+						"S. dolichopa",
+						"S. multidens",
+						"S. yusafi",
+						"S. schoutedeni",
+						"Not specified",
+					],
+		required: false,
 	});
 
-	// Question 65: Ph.spp (Sandfly)
-	composer.slide({ pageProgress: "65/66" });
-	composer.numberInput("sandfly_ph_spp", {
+	// Question 65: Ph.spp (Sandfly) - remove pageProgress as it's on same slide
+	composer.selectBox("sandfly_ph_spp", {
 		question: translate(localization, {
 			en: "Ph.spp (Phlebotomus species)",
 			ar: "أنواع فليبوتوموس (Ph.spp)",
 		}),
-		min: 0,
-		max: 100000,
+		options:
+			localization === "ar"
+				? [
+						"P. bergeroti",
+						"P. papatasi",
+						"P. alexandri",
+						"P. sergenti",
+						"P. arabicus",
+						"P.orientalis",
+						"P.kazeruni",
+						"P.saevus",
+						"P.duboscqi",
+						"P.longipes",
+						"P.pedifer",
+						"P.rodhaini",
+						"P.martini",
+						"Not specified",
+					]
+				: [
+						"P. bergeroti",
+						"P. papatasi",
+						"P. alexandri",
+						"P. sergenti",
+						"P. arabicus",
+						"P.orientalis",
+						"P.kazeruni",
+						"P.saevus",
+						"P.duboscqi",
+						"P.longipes",
+						"P.pedifer",
+						"P.rodhaini",
+						"P.martini",
+						"Not specified",
+					],
+		required: false,
 	});
 
-	// Snail Information Section
-	composer.slide({ pageProgress: "66/66" });
+	// Snail Information Section - remove pageProgress as it's on same slide
 	composer.h2(
 		translate(localization, {
 			en: "Snail Information",
@@ -939,7 +1856,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 66: Snails Present
+	// Question 66: Snails Present - remove pageProgress as it's on same slide
 	composer.choiceInput("snails_present", {
 		question: translate(localization, {
 			en: "Are there snails?",
@@ -952,7 +1869,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 67: Total Snails
+	// Question 67: Total Snails - remove pageProgress as it's on same slide
 	composer.numberInput("total_snails", {
 		question: translate(localization, {
 			en: "Total Snails in Sample",
@@ -966,16 +1883,32 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// Question 68: Snail Type
-	composer.textInput("snail_type", {
+	// Question 68: Snail Type - remove pageProgress as it's on same slide
+	composer.selectBox("snail_type", {
 		question: translate(localization, {
 			en: "Snail Type",
 			ar: "نوع القواقع",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter snail type",
-			ar: "أدخل نوع القواقع",
-		}),
+		options:
+			localization === "ar"
+				? [
+						"Biomphalaria",
+						"Physa",
+						"Melanoides",
+						"Gyraulus",
+						"Lymnaea",
+						"Bulinus",
+						"Not specified",
+					]
+				: [
+						"Biomphalaria",
+						"Physa",
+						"Melanoides",
+						"Gyraulus",
+						"Lymnaea",
+						"Bulinus",
+						"Not specified",
+					],
 		required: false,
 		displayCondition: {
 			dependencies: ["snails_present"],

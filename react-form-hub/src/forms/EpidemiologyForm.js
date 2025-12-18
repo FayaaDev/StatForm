@@ -10,8 +10,9 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "epidemiology-form",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "التقصي الوبائي للحالات",
+		postUrl: "https://script.google.com/macros/s/AKfycbxcQC3YWxYWlxWcdpwW1KUa3dxRO6afA4pU5kqDOtZrcJQsayM3yLgXzQWXi1Jx7bA0DA/exec",
+		_sheetName: "استمارة التقصي الوبائي للحالات",
+		_sheetId: "1lNOOEtvfuxo2vD20scc4voZDfE08CN6X5RpreXTzdEc",
 	});
 
 	// Welcome slide
