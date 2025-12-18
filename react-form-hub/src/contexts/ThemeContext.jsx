@@ -26,17 +26,18 @@ export function ThemeProvider({ theme: themeId, children }) {
 
 		// Update favicon and page title based on theme
 		const favicon = document.getElementById("favicon");
+		const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
 		if (theme.id === "pha") {
 			document.title = "PHA Form Hub";
 			if (favicon) {
 				favicon.type = "image/png";
-				favicon.href = "/statform/logos/PHAlogo.png";
+				favicon.href = `${baseUrl}/logos/PHAlogo.png`;
 			}
 		} else {
 			document.title = "StatForm - Intelligent Documentation";
 			if (favicon) {
 				favicon.type = "image/svg+xml";
-				favicon.href = "/statform/statform-favicon.svg";
+				favicon.href = `${baseUrl}/statform-favicon.svg`;
 			}
 		}
 	}, [theme]);

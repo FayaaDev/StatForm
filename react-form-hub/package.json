@@ -6,6 +6,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"build:root": "vite build",
+		"build:subdir": "VITE_BASE_PATH=/statform/ vite build",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},

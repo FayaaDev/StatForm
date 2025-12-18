@@ -1,6 +1,11 @@
 // Theme configuration for multi-theme support
 // Each theme defines colors, fonts, and branding assets
 
+// Get base URL at runtime
+const getBaseUrl = () => {
+	return import.meta.env.BASE_URL.replace(/\/$/, "");
+};
+
 export const themes = {
 	personal: {
 		id: "personal",
@@ -17,10 +22,14 @@ export const themes = {
 		},
 		font: {
 			family: "Majalla",
-			url: "/statform/font/majalla.ttf", // Same font as PHA
+			get url() {
+				return `${getBaseUrl()}/font/majalla.ttf`;
+			},
 		},
 		logo: {
-			path: "/statform/MainLogo.png",
+			get path() {
+				return `${getBaseUrl()}/MainLogo.png`;
+			},
 			alt: "Medical Forms Logo",
 		},
 	},
@@ -39,10 +48,14 @@ export const themes = {
 		},
 		font: {
 			family: "Majalla",
-			url: "/statform/font/majalla.ttf",
+			get url() {
+				return `${getBaseUrl()}/font/majalla.ttf`;
+			},
 		},
 		logo: {
-			path: "/statform/logos/PHAlogo.png",
+			get path() {
+				return `${getBaseUrl()}/logos/PHAlogo.png`;
+			},
 			alt: "PHA Logo",
 		},
 	},

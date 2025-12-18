@@ -25,7 +25,7 @@ import "./App.css";
 
 function App() {
 	return (
-		<BrowserRouter basename="/statform">
+		<BrowserRouter basename={import.meta.env.BASE_URL}>
 			<Routes>
 				{/* Personal Theme Routes */}
 				<Route

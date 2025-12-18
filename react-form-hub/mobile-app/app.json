@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "نظام مراقبة الأمراض",
+    "slug": "malaria-form-mobile",
+    "version": "1.0.7",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#09595C"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.malaria.form.mobile",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#063E40"
+      },
+      "package": "com.malaria.form.mobile",
+      "versionCode": 1,
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a4227e7d-bd80-41de-a6c0-8cc0a0155567"
+      }
+    },
+    "plugins": [
+      "expo-secure-store",
+      [
+        "expo-updates",
+        {
+          "enabled": false
+        }
+      ]
+    ],
+    "owner": "fayaa",
+    "updates": {
+      "enabled": false,
+      "url": "https://u.expo.dev/a4227e7d-bd80-41de-a6c0-8cc0a0155567"
+    }
+  }
+}

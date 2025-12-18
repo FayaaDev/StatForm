@@ -2,24 +2,24 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<link rel="icon" id="favicon" type="image/svg+xml" href="/statform-favicon.svg" />
+		<link rel="icon" id="favicon" type="image/svg+xml" href="%BASE_URL%statform-favicon.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>StatForm - Intelligent Documentation</title>
 		<link
 			id="formsmd-stylesheet"
 			rel="stylesheet"
 			type="text/css"
-			href="/formsmd.min.css"
+			href="%BASE_URL%formsmd.min.css"
 		/>
 		<!-- Load Forms.md scripts before React app -->
-		<script src="/composer.bundle.min.js"></script>
-		<script src="/formsmd.bundle.min.js"></script>
+		<script src="%BASE_URL%composer.bundle.min.js"></script>
+		<script src="%BASE_URL%formsmd.bundle.min.js"></script>
 		<script>
 			// Dynamically load the correct CSS based on language
 			const updateStylesheet = () => {
 				const locale = localStorage.getItem("localization") || "en";
 				const stylesheet = document.getElementById("formsmd-stylesheet");
-				const basePath = "/statform";
+				const basePath = "%BASE_URL%".replace(/\/$/, "");
 				if (locale === "ar") {
 					stylesheet.href = basePath + "/formsmd.rtl.min.css";
 					document.documentElement.dir = "rtl";
