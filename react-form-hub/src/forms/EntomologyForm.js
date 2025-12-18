@@ -9,9 +9,9 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "entomology-form",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbxcQC3YWxYWlxWcdpwW1KUa3dxRO6afA4pU5kqDOtZrcJQsayM3yLgXzQWXi1Jx7bA0DA/exec",
+		postUrl: "https://script.google.com/macros/s/AKfycbyTgCrHwnb9b2mna9CULKd-kBfWMoZzMLRrj4tuOtumG-_FQ7wYxl99fsAO5Cg7mmTNnQ/exec",
 		_sheetName: "الاستكشاف والمكافحة الحشرية",
-		_sheetId: "1lNOOEtvfuxo2vD20scc4voZDfE08CN6X5RpreXTzdEc",
+		_sheetId: "11xxGYXPb3Gi0VkXeWVki1jw0p_SgZUTxkpsig1hCKok",
 	});
 
 	// Welcome slide
