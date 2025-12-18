@@ -15,7 +15,7 @@ cat << 'EOF'
   $ ./update-statform.sh
 
   Manual Build & Deploy:
-  $ cd react-form-hub && npm run build
+  $ cd react-form-hub && npm run build:subdir
   $ rsync -avz -e "ssh -i ~/.ssh/drfayaa_deploy_key" \
     --exclude='.DS_Store' --delete \
     ./dist/ root@192.64.87.218:/var/www/drfayaa/dist/statform/
@@ -92,7 +92,8 @@ cat << 'EOF'
   $ cd react-form-hub
   $ rm -rf node_modules dist package-lock.json
   $ npm install
-  $ npm run build
+  $ npm run build:subdir  # For drfayaa.com/statform
+  $ npm run build:root    # For statform.app
 
   Check asset URLs (all should include /statform/):
   $ grep -r "src=\"/" react-form-hub/src/

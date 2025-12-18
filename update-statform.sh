@@ -42,8 +42,8 @@ fi
 
 # Build the React app
 echo ""
-echo -e "${YELLOW}→ Building React application...${NC}"
-npm run build
+echo -e "${YELLOW}→ Building React application for subdirectory deployment...${NC}"
+npm run build:subdir
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}✗ Build failed!${NC}"
