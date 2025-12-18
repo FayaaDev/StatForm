@@ -10,8 +10,9 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "animal-assessment-form",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم الحيوانات",
+		postUrl: "https://script.google.com/macros/s/AKfycbyGxKsPTk6f8zobbeMa7EjeR8S1kyaVhte9PGNDRkUcn0I22HiXqoDbwzyNdkD8BcrPXw/exec",
+		_sheetName: "التقصي الحيواني",
+		_sheetId: "1pjnsNQr8qzWBQ118kO6lNUrFMg4ySDAllpM3MBgy-6M",
 	});
 
 	// Welcome slide
@@ -28,8 +29,22 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 1: Date
-	composer.slide({ pageProgress: "1/50" });
+	// Question 1: Investigation Code
+	composer.slide({ pageProgress: "1/54" });
+	composer.textInput("investigation_code", {
+		question: translate(localization, {
+			en: "Investigation Code",
+			ar: "رمز التقصي",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter investigation code",
+			ar: "أدخل رمز التقصي",
+		}),
+		required: false,
+	});
+
+	// Question 2: Date
+	composer.slide({ pageProgress: "2/54" });
 	composer.textInput("date", {
 		question: translate(localization, {
 			en: "Date",
@@ -42,8 +57,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 2: Coordinates
-	composer.slide({ pageProgress: "2/50" });
+	// Question 3: Coordinates
+	composer.slide({ pageProgress: "3/54" });
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
@@ -56,8 +71,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 3: City
-	composer.slide({ pageProgress: "3/50" });
+	// Question 4: City
+	composer.slide({ pageProgress: "4/54" });
 	composer.textInput("city", {
 		question: translate(localization, {
 			en: "City",
@@ -70,8 +85,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 4: District
-	composer.slide({ pageProgress: "4/50" });
+	// Question 5: District
+	composer.slide({ pageProgress: "5/54" });
 	composer.textInput("district", {
 		question: translate(localization, {
 			en: "District",
@@ -84,8 +99,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 5: Site Type
-	composer.slide({ pageProgress: "5/50" });
+	// Question 6: Site Type
+	composer.slide({ pageProgress: "6/54" });
 	composer.selectBox("site_type", {
 		question: translate(localization, {
 			en: "Site Type",
@@ -98,8 +113,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 6: Site Description
-	composer.slide({ pageProgress: "6/50" });
+	// Question 7: Site Description
+	composer.slide({ pageProgress: "7/54" });
 	composer.textInput("site_description", {
 		question: translate(localization, {
 			en: "Site Description",
@@ -112,8 +127,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 7: Site Name
-	composer.slide({ pageProgress: "7/50" });
+	// Question 8: Site Name
+	composer.slide({ pageProgress: "8/54" });
 	composer.textInput("site_name", {
 		question: translate(localization, {
 			en: "Site Name",
@@ -126,8 +141,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 8: Owner Name
-	composer.slide({ pageProgress: "8/50" });
+	// Question 9: Owner Name
+	composer.slide({ pageProgress: "9/54" });
 	composer.textInput("owner_name", {
 		question: translate(localization, {
 			en: "Owner Name",
@@ -140,8 +155,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 9: Owner Mobile Number
-	composer.slide({ pageProgress: "9/50" });
+	// Question 10: Owner Mobile Number
+	composer.slide({ pageProgress: "10/54" });
 	composer.textInput("owner_mobile", {
 		question: translate(localization, {
 			en: "Owner Mobile Number",
@@ -155,7 +170,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Health Assessment Section
-	composer.slide({ pageProgress: "10/50" });
+	composer.slide({ pageProgress: "11/54" });
 	composer.h2(
 		translate(localization, {
 			en: "Site Health Assessment",
@@ -163,11 +178,11 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 10: Residence Present
+	// Question 11: Residence Present
 	composer.choiceInput("residence_present", {
 		question: translate(localization, {
-			en: "Is there a residence?",
-			ar: "هل يوجد مسكن؟",
+			en: "Is there a residence near the site?",
+			ar: "هل يوجد مسكن بالقرب من الموقع",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -176,8 +191,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 11: Standing Water
-	composer.slide({ pageProgress: "11/50" });
+	// Question 12: Standing Water
+	composer.slide({ pageProgress: "12/54" });
 	composer.choiceInput("standing_water", {
 		question: translate(localization, {
 			en: "Is there standing water?",
@@ -190,26 +205,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 12: Waste Management
-	composer.slide({ pageProgress: "12/50" });
-	composer.selectBox("waste_management", {
+	// Question 13: Waste Management
+	composer.slide({ pageProgress: "13/54" });
+	composer.choiceInput("waste_management", {
 		question: translate(localization, {
-			en: "Waste Management",
-			ar: "إدارة نفايات",
-		}),
-		options:
-			localization === "ar"
-				? ["جيدة", "مقبولة", "سيئة", "غير موجودة"]
-				: ["Good", "Acceptable", "Poor", "None"],
-		required: false,
-	});
-
-	// Question 13: Milk Collection/Consumption
-	composer.slide({ pageProgress: "13/50" });
-	composer.choiceInput("milk_collection", {
-		question: translate(localization, {
-			en: "Milk consumption/collection present?",
-			ar: "هل يوجد استهلاك أو جمع للحليب؟",
+			en: "Poor Waste Management?",
+			ar: "إدارة نفايات سيئة",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -218,12 +219,26 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 14: Animal Slaughter
-	composer.slide({ pageProgress: "14/50" });
+	// Question 14: Animal Products Collection/Consumption
+	composer.slide({ pageProgress: "14/54" });
+	composer.choiceInput("animal_products", {
+		question: translate(localization, {
+			en: "Consumption, collection or sale of animal products?",
+			ar: "استهلاك, جمع او بيع للمنتجات الحيوانية",
+		}),
+		choices: [
+			translate(localization, { en: "Yes", ar: "نعم" }),
+			translate(localization, { en: "No", ar: "لا" }),
+		],
+		downkeys: ["Y", "N"],
+	});
+
+	// Question 15: Animal Slaughter
+	composer.slide({ pageProgress: "15/54" });
 	composer.choiceInput("animal_slaughter", {
 		question: translate(localization, {
-			en: "Is there animal slaughter?",
-			ar: "هل يوجد ذبح للحيوانات؟",
+			en: "Animal slaughter at the site?",
+			ar: "ذبح للحيوانات بالموقع",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -232,12 +247,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 15: Suspected Disease Presence
-	composer.slide({ pageProgress: "15/50" });
-	composer.choiceInput("suspected_disease", {
+	// Question 16: Suspected Rodents Presence
+	composer.slide({ pageProgress: "16/54" });
+	composer.choiceInput("suspected_rodents", {
 		question: translate(localization, {
-			en: "Suspected disease presence?",
-			ar: "هل يوجد اشتباه بوجود مرض؟",
+			en: "Suspected rodents presence?",
+			ar: "اشتباه وجود قوارض",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -246,12 +261,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 16: Ticks Present
-	composer.slide({ pageProgress: "16/50" });
+	// Question 17: Ticks Present
+	composer.slide({ pageProgress: "17/54" });
 	composer.choiceInput("ticks_present", {
 		question: translate(localization, {
-			en: "Are there ticks present?",
-			ar: "هل يوجد قراد بالموقع؟",
+			en: "Ticks present on animals?",
+			ar: "وجود قراد بالحيوانات",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -260,12 +275,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 17: Breeding Sites
-	composer.slide({ pageProgress: "17/50" });
+	// Question 18: Mosquito Breeding Sites
+	composer.slide({ pageProgress: "18/54" });
 	composer.choiceInput("breeding_sites", {
 		question: translate(localization, {
-			en: "Are there breeding sites?",
-			ar: "هل يوجد بؤر توالد للحشرات؟",
+			en: "Mosquito breeding sites?",
+			ar: "بؤر توالد للبعوض",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -274,12 +289,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 18: High Density
-	composer.slide({ pageProgress: "18/50" });
+	// Question 19: High Mosquito Density
+	composer.slide({ pageProgress: "19/54" });
 	composer.choiceInput("high_density", {
 		question: translate(localization, {
-			en: "Is there high density?",
-			ar: "هل يوجد كثافة عالية؟",
+			en: "High mosquito density?",
+			ar: "كثافة عالية للبعوض",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -289,7 +304,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Animal Information Section
-	composer.slide({ pageProgress: "19/50" });
+	composer.slide({ pageProgress: "20/54" });
 	composer.h2(
 		translate(localization, {
 			en: "Animal Information",
@@ -297,7 +312,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 19: Animal Type
+	// Question 20: Animal Type
 	composer.selectBox("animal_type", {
 		question: translate(localization, {
 			en: "Animal Type",
@@ -310,8 +325,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 20: Animal Classification
-	composer.slide({ pageProgress: "20/50" });
+	// Question 21: Animal Classification
+	composer.slide({ pageProgress: "21/54" });
 	composer.textInput("animal_classification", {
 		question: translate(localization, {
 			en: "Animal Classification",
@@ -324,8 +339,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 21: Animal ID Number
-	composer.slide({ pageProgress: "21/50" });
+	// Question 22: Animal ID Number
+	composer.slide({ pageProgress: "22/54" });
 	composer.textInput("animal_id", {
 		question: translate(localization, {
 			en: "Animal ID Number",
@@ -338,8 +353,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 22: Animal Age
-	composer.slide({ pageProgress: "22/50" });
+	// Question 23: Animal Age
+	composer.slide({ pageProgress: "23/54" });
 	composer.numberInput("animal_age", {
 		question: translate(localization, {
 			en: "Animal Age (years)",
@@ -349,8 +364,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		max: 50,
 	});
 
-	// Question 23: Animal Gender
-	composer.slide({ pageProgress: "23/50" });
+	// Question 24: Animal Gender
+	composer.slide({ pageProgress: "24/54" });
 	composer.choiceInput("animal_gender", {
 		question: translate(localization, {
 			en: "Animal Gender",
@@ -362,8 +377,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		],
 	});
 
-	// Question 24: Herd Size
-	composer.slide({ pageProgress: "24/50" });
+	// Question 25: Herd Size
+	composer.slide({ pageProgress: "25/54" });
 	composer.numberInput("herd_size", {
 		question: translate(localization, {
 			en: "Number of Animals in Herd",
@@ -373,8 +388,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		max: 10000,
 	});
 
-	// Question 25: Number Affected
-	composer.slide({ pageProgress: "25/50" });
+	// Question 26: Number Affected
+	composer.slide({ pageProgress: "26/54" });
 	composer.numberInput("number_affected", {
 		question: translate(localization, {
 			en: "Number Affected from Herd",
@@ -384,8 +399,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		max: 10000,
 	});
 
-	// Question 26: Number Deceased
-	composer.slide({ pageProgress: "26/50" });
+	// Question 27: Number Deceased
+	composer.slide({ pageProgress: "27/54" });
 	composer.numberInput("number_deceased", {
 		question: translate(localization, {
 			en: "Number Deceased from Herd",
@@ -395,8 +410,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		max: 10000,
 	});
 
-	// Question 27: Imported Animal
-	composer.slide({ pageProgress: "27/50" });
+	// Question 28: Imported Animal
+	composer.slide({ pageProgress: "28/54" });
 	composer.choiceInput("is_imported", {
 		question: translate(localization, {
 			en: "Is the animal imported?",
@@ -409,7 +424,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 28: Import Country
+	// Question 29: Import Country
 	composer.textInput("import_country", {
 		question: translate(localization, {
 			en: "Import Country",
@@ -426,7 +441,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// Question 29: Import Date
+	// Question 30: Import Date
 	composer.textInput("import_date", {
 		question: translate(localization, {
 			en: "Import Date",
@@ -443,8 +458,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// Question 30: Animal Moved in 30 Days
-	composer.slide({ pageProgress: "28/50" });
+	// Question 31: Animal Moved in 30 Days
+	composer.slide({ pageProgress: "31/54" });
 	composer.choiceInput("moved_30_days", {
 		question: translate(localization, {
 			en: "Was the animal moved within 30 days?",
@@ -457,7 +472,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 31: Locations in 30 Days
+	// Question 32: Locations in 30 Days
 	composer.textInput("locations_30_days", {
 		question: translate(localization, {
 			en: "Locations where animal was present within 30 days",
@@ -474,8 +489,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// Question 32: Vaccinated
-	composer.slide({ pageProgress: "29/50" });
+	// Question 33: Vaccinated
+	composer.slide({ pageProgress: "33/54" });
 	composer.choiceInput("is_vaccinated", {
 		question: translate(localization, {
 			en: "Is the animal vaccinated?",
@@ -488,7 +503,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 33: Vaccination Company Details
+	// Question 34: Vaccination Company Details
 	composer.textInput("vaccination_company", {
 		question: translate(localization, {
 			en: "Operational Number and Company Name for Vaccination",
@@ -505,7 +520,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		},
 	});
 
-	// Question 34: Vaccination Date
+	// Question 35: Vaccination Date
 	composer.textInput("vaccination_date", {
 		question: translate(localization, {
 			en: "Vaccination Date",
@@ -523,7 +538,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Clinical Signs Section
-	composer.slide({ pageProgress: "30/50" });
+	composer.slide({ pageProgress: "36/54" });
 	composer.h2(
 		translate(localization, {
 			en: "Health Status and Clinical Signs",
@@ -531,7 +546,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 35: General Health Status
+	// Question 36: General Health Status
 	composer.selectBox("health_status", {
 		question: translate(localization, {
 			en: "General Health Status",
@@ -544,8 +559,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: true,
 	});
 
-	// Question 36: Fever
-	composer.slide({ pageProgress: "31/50" });
+	// Question 37: Fever
+	composer.slide({ pageProgress: "37/54" });
 	composer.choiceInput("fever", {
 		question: translate(localization, {
 			en: "Fever",
@@ -558,8 +573,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 37: Physical Weakness/Depression
-	composer.slide({ pageProgress: "32/50" });
+	// Question 38: Physical Weakness/Depression
+	composer.slide({ pageProgress: "38/54" });
 	composer.choiceInput("weakness_depression", {
 		question: translate(localization, {
 			en: "Physical Weakness / Depression",
@@ -572,8 +587,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 38: Bloody Diarrhea
-	composer.slide({ pageProgress: "33/50" });
+	// Question 39: Bloody Diarrhea
+	composer.slide({ pageProgress: "39/54" });
 	composer.choiceInput("bloody_diarrhea", {
 		question: translate(localization, {
 			en: "Bloody Diarrhea",
@@ -586,8 +601,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 39: Dehydration
-	composer.slide({ pageProgress: "34/50" });
+	// Question 40: Dehydration
+	composer.slide({ pageProgress: "40/54" });
 	composer.choiceInput("dehydration", {
 		question: translate(localization, {
 			en: "Dehydration",
@@ -600,12 +615,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 40: Excessive Nasal Discharge
-	composer.slide({ pageProgress: "35/50" });
+	// Question 41: Excessive Nasal Discharge
+	composer.slide({ pageProgress: "41/54" });
 	composer.choiceInput("nasal_discharge", {
 		question: translate(localization, {
 			en: "Excessive Nasal Mucous Discharge",
-			ar: "إفراط بالافرازات المخاطية من الأنف",
+			ar: "إفراط بالافرازات المخاطية من الانف",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -614,8 +629,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 41: Excessive Salivation
-	composer.slide({ pageProgress: "36/50" });
+	// Question 42: Excessive Salivation
+	composer.slide({ pageProgress: "42/54" });
 	composer.choiceInput("salivation", {
 		question: translate(localization, {
 			en: "Excessive Salivation from Mouth",
@@ -628,8 +643,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 42: Excessive Tearing
-	composer.slide({ pageProgress: "37/50" });
+	// Question 43: Excessive Tearing
+	composer.slide({ pageProgress: "43/54" });
 	composer.choiceInput("excessive_tearing", {
 		question: translate(localization, {
 			en: "Excessive Tearing",
@@ -642,8 +657,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 43: Loss of Appetite
-	composer.slide({ pageProgress: "38/50" });
+	// Question 44: Loss of Appetite
+	composer.slide({ pageProgress: "44/54" });
 	composer.choiceInput("loss_of_appetite", {
 		question: translate(localization, {
 			en: "Loss of Appetite",
@@ -656,12 +671,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 44: Decreased Milk Production
-	composer.slide({ pageProgress: "39/50" });
+	// Question 45: Decreased Milk Production
+	composer.slide({ pageProgress: "45/54" });
 	composer.choiceInput("decreased_milk_production", {
 		question: translate(localization, {
 			en: "Decreased Milk Production",
-			ar: "انخفاض محصول الحليب",
+			ar: "إنخفاض محصول الحليب",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -670,8 +685,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 45: Abortion
-	composer.slide({ pageProgress: "40/50" });
+	// Question 46: Abortion
+	composer.slide({ pageProgress: "46/54" });
 	composer.choiceInput("abortion", {
 		question: translate(localization, {
 			en: "Abortion",
@@ -684,12 +699,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 46: Newborn Death/Fetal Deformities
-	composer.slide({ pageProgress: "41/50" });
+	// Question 47: Newborn Death/Fetal Deformities
+	composer.slide({ pageProgress: "47/54" });
 	composer.choiceInput("newborn_death_deformities", {
 		question: translate(localization, {
 			en: "Newborn Death and Fetal Deformities",
-			ar: "نفوق مواليد وتشوهات أجنة",
+			ar: "نفوق مواليد وتشوهات أجنه",
 		}),
 		choices: [
 			translate(localization, { en: "Yes", ar: "نعم" }),
@@ -698,8 +713,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 47: Increased Respiratory Rate
-	composer.slide({ pageProgress: "42/50" });
+	// Question 48: Increased Respiratory Rate
+	composer.slide({ pageProgress: "48/54" });
 	composer.choiceInput("increased_respiratory_rate", {
 		question: translate(localization, {
 			en: "Increased Respiratory Rate",
@@ -712,8 +727,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 48: Death
-	composer.slide({ pageProgress: "43/50" });
+	// Question 49: Death
+	composer.slide({ pageProgress: "49/54" });
 	composer.choiceInput("death", {
 		question: translate(localization, {
 			en: "Death",
@@ -726,12 +741,12 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
-	// Question 49: Other Signs/Symptoms
-	composer.slide({ pageProgress: "44/50" });
+	// Question 50: Other Signs/Symptoms
+	composer.slide({ pageProgress: "50/54" });
 	composer.textInput("other_signs", {
 		question: translate(localization, {
 			en: "Other Signs and Symptoms (Specify)",
-			ar: "أعراض وعلامات أخرى (حدد)",
+			ar: "أعراض وعلامات اخرى (حدد)",
 		}),
 		placeholder: translate(localization, {
 			en: "Specify other symptoms",
@@ -740,8 +755,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 50: Preliminary Diagnosis
-	composer.slide({ pageProgress: "45/50" });
+	// Question 51: Preliminary Diagnosis
+	composer.slide({ pageProgress: "51/54" });
 	composer.textInput("preliminary_diagnosis", {
 		question: translate(localization, {
 			en: "Preliminary Diagnosis",
@@ -755,7 +770,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Sample Information Section
-	composer.slide({ pageProgress: "46/50" });
+	composer.slide({ pageProgress: "52/54" });
 	composer.h2(
 		translate(localization, {
 			en: "Sample Information",
@@ -763,7 +778,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 	);
 
-	// Question 51: Animal Sample Code
+	// Question 52: Animal Sample Code
 	composer.textInput("animal_sample_code", {
 		question: translate(localization, {
 			en: "Animal Sample Code",
@@ -776,8 +791,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 52: Animal Sample Type
-	composer.slide({ pageProgress: "47/50" });
+	// Question 53: Animal Sample Type
+	composer.slide({ pageProgress: "53/54" });
 	composer.selectBox("animal_sample_type", {
 		question: translate(localization, {
 			en: "Animal Sample Type",
@@ -790,8 +805,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		required: false,
 	});
 
-	// Question 53: Number of Samples
-	composer.slide({ pageProgress: "48/50" });
+	// Question 54: Number of Samples
+	composer.slide({ pageProgress: "54/54" });
 	composer.numberInput("number_of_samples", {
 		question: translate(localization, {
 			en: "Number of Samples",
