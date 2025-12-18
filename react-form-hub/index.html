@@ -17,7 +17,7 @@
 		<script>
 			// Dynamically load the correct CSS based on language
 			const updateStylesheet = () => {
-				const locale = localStorage.getItem("localization") || "en";
+				const locale = localStorage.getItem("localization") || "ar";
 				const stylesheet = document.getElementById("formsmd-stylesheet");
 				const basePath = "%BASE_URL%".replace(/\/$/, "");
 				if (locale === "ar") {

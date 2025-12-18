@@ -5,7 +5,7 @@ import { useTheme } from "../contexts/ThemeContext";
 const HubLayout = () => {
 	const theme = useTheme();
 	const [currentLang, setCurrentLang] = useState(() => {
-		return localStorage.getItem("localization") || "en";
+		return localStorage.getItem("localization") || "ar";
 	});
 
 	const toggleLanguage = () => {
