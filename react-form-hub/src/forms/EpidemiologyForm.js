@@ -30,7 +30,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	);
 
 		// Question 1: District
-	composer.slide({ pageProgress: "1/59" });
+	composer.slide({ pageProgress: "1/62" });
 	composer.selectBox("District", {
 		question: translate(localization, {
 			en: "District",
@@ -85,7 +85,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 2: investigation location
-	composer.slide({ pageProgress: "2/59" });
+	composer.slide({ pageProgress: "2/62" });
 	composer.choiceInput("investigation_location", {
 		question: translate(localization, {
 			en: "Location of Investigation",
@@ -99,7 +99,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 3: Report Date
-	composer.slide({ pageProgress: "3/59" });
+	composer.slide({ pageProgress: "3/62" });
 	composer.dateInput("report_date", {
 		question: translate(localization, {
 			en: "Report Date",
@@ -113,7 +113,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 4: Coordinates
-	composer.slide({ pageProgress: "4/59" });
+	composer.slide({ pageProgress: "4/62" });
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
@@ -127,7 +127,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 5: Case Classification
-	composer.slide({ pageProgress: "5/59" });
+	composer.slide({ pageProgress: "5/62" });
 	composer.selectBox("case_classification", {
 		question: translate(localization, {
 			en: "Case Classification",
@@ -141,7 +141,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 6: Field Visit Date
-	composer.slide({ pageProgress: "6/59" });
+	composer.slide({ pageProgress: "6/62" });
 	composer.dateInput("field_visit_date", {
 		question: translate(localization, {
 			en: "Field Visit Date",
@@ -155,7 +155,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 7: Investigation Code
-	composer.slide({ pageProgress: "7/59" });
+	composer.slide({ pageProgress: "7/62" });
 	composer.numberInput("investigation_code", {
 		question: translate(localization, {
 			en: "Investigation Code",
@@ -169,7 +169,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 8: Case Name
-	composer.slide({ pageProgress: "8/59" });
+	composer.slide({ pageProgress: "8/62" });
 	composer.textInput("case_name", {
 		question: translate(localization, {
 			en: "Case Name",
@@ -183,7 +183,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 9: Age
-	composer.slide({ pageProgress: "9/59" });
+	composer.slide({ pageProgress: "9/62" });
 	composer.numberInput("age", {
 		question: translate(localization, {
 			en: "Age",
@@ -199,7 +199,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 10: Gender
-	composer.slide({ pageProgress: "10/59" });
+	composer.slide({ pageProgress: "10/62" });
 	composer.selectBox("gender", {
 		question: translate(localization, {
 			en: "Gender",
@@ -213,7 +213,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 11: Nationality
-	composer.slide({ pageProgress: "11/59" });
+	composer.slide({ pageProgress: "11/62" });
 	composer.selectBox("nationality", {
 		question: translate(localization, {
 			en: "Nationality",
@@ -418,7 +418,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 12: Profession
-	composer.slide({ pageProgress: "12/59" });
+	composer.slide({ pageProgress: "12/62" });
 	composer.textInput("profession", {
 		question: translate(localization, {
 			en: "Profession",
@@ -432,7 +432,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 13: Workplace
-	composer.slide({ pageProgress: "13/59" });
+	composer.slide({ pageProgress: "13/62" });
 	composer.textInput("workplace", {
 		question: translate(localization, {
 			en: "Workplace",
@@ -446,7 +446,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 14: Work Address (District)
-	composer.slide({ pageProgress: "14/59" });
+	composer.slide({ pageProgress: "14/62" });
 	composer.textInput("work_address", {
 		question: translate(localization, {
 			en: "Work Address (District)",
@@ -460,7 +460,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 15: Language
-	composer.slide({ pageProgress: "15/59" });
+	composer.slide({ pageProgress: "15/62" });
 	composer.selectBox("language", {
 		question: translate(localization, {
 			en: "Language",
@@ -654,7 +654,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 16: Contact Number
-	composer.slide({ pageProgress: "16/59" });
+	composer.slide({ pageProgress: "16/62" });
 	composer.textInput("contact_number", {
 		question: translate(localization, {
 			en: "Contact Number",
@@ -668,7 +668,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 17: Investigation Status
-	composer.slide({ pageProgress: "17/59" });
+	composer.slide({ pageProgress: "17/62" });
 	composer.selectBox("investigation_status", {
 		question: translate(localization, {
 			en: "Investigation Status",
@@ -682,7 +682,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 18: Reason for Not Completing Investigation
-	composer.slide({ pageProgress: "18/59" });
+	composer.slide({ pageProgress: "18/62" });
 	composer.selectBox("investigation_incomplete_reason", {
 		question: translate(localization, {
 			en: "Reason for not completing investigation",
@@ -723,7 +723,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 20: Vaccination Record
-	composer.slide({ pageProgress: "19/59" });
+	composer.slide({ pageProgress: "19/62" });
 	composer.selectBox("vaccination_record", {
 		question: translate(localization, {
 			en: "Vaccination Record",
@@ -739,7 +739,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 21: Medical History
-	composer.slide({ pageProgress: "20/59" });
+	composer.slide({ pageProgress: "20/62" });
 	composer.selectBox("medical_history", {
 		question: translate(localization, {
 			en: "Medical History of the Case",
@@ -769,7 +769,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 22: Other Medical Condition
-	composer.slide({ pageProgress: "21/59" });
+	composer.slide({ pageProgress: "21/62" });
 	composer.textInput("other_medical_condition", {
 		question: translate(localization, {
 			en: "Other (Specify Medical Condition)",
@@ -783,7 +783,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 23: Travel within 21 days
-	composer.slide({ pageProgress: "22/59" });
+	composer.slide({ pageProgress: "22/62" });
 	composer.choiceInput("travel_21_days", {
 		question: translate(localization, {
 			en: "Travel within 21 days",
@@ -1005,7 +1005,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 25: Direct Exposure
-	composer.slide({ pageProgress: "23/59" });
+	composer.slide({ pageProgress: "23/62" });
 	composer.selectBox("direct_exposure", {
 		question: translate(localization, {
 			en: "Direct Exposure",
@@ -1055,7 +1055,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 28: Indirect Exposure
-	composer.slide({ pageProgress: "24/59" });
+	composer.slide({ pageProgress: "24/62" });
 	composer.selectBox("indirect_exposure", {
 		question: translate(localization, {
 			en: "Indirect Exposure",
@@ -1102,7 +1102,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 31: Visit to Health Facility
-	composer.slide({ pageProgress: "25/59" });
+	composer.slide({ pageProgress: "25/62" });
 	composer.choiceInput("health_facility_visit", {
 		question: translate(localization, {
 			en: "Did the case visit a health facility for work, treatment, or visiting a patient?",
@@ -1116,7 +1116,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 32: Public Event Attendance
-	composer.slide({ pageProgress: "26/59" });
+	composer.slide({ pageProgress: "26/62" });
 	composer.choiceInput("public_event_attendance", {
 		question: translate(localization, {
 			en: "Did the case attend a public event with large attendance such as festival, party, wedding, Hajj, Umrah, etc.?",
@@ -1130,7 +1130,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 33: Traditional Healer Visit
-	composer.slide({ pageProgress: "27/59" });
+	composer.slide({ pageProgress: "27/62" });
 	composer.choiceInput("traditional_healer_visit", {
 		question: translate(localization, {
 			en: "Did the case visit a traditional healer or sheikh?",
@@ -1144,7 +1144,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 34: Wounds from Direct Exposure
-	composer.slide({ pageProgress: "28/59" });
+	composer.slide({ pageProgress: "28/62" });
 	composer.choiceInput("wounds_direct_exposure", {
 		question: translate(localization, {
 			en: "In case of direct exposure, are there laceration wounds?",
@@ -1157,9 +1157,89 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 		downkeys: ["Y", "N"],
 	});
 
+	// Question 35: Transplant in Last 14 Days
+	composer.slide({ pageProgress: "29/62" });
+	composer.selectBox("transplant_last_14_days", {
+		question: translate(localization, {
+			en: "Transplant in last 14 days",
+			ar: "خلال 14 يوم، هل تم عملية نقل؟",
+		}),
+		options:
+			localization === "ar"
+				? ["دم", "عضو", "أنسجة", "لا يوجد"]
+				: ["Blood", "Organ", "Tissue", "None"],
+		required: false,
+	});
+
+	// Question 36: Mosquito Exposure
+	composer.slide({ pageProgress: "30/62" });
+	composer.choiceInput("mosquito_exposure", {
+		question: translate(localization, {
+			en: "Mosquito exposure",
+			ar: "تم التعرض للبعوض",
+		}),
+		choices: [
+			translate(localization, { en: "Yes", ar: "نعم" }),
+			translate(localization, { en: "No", ar: "لا" }),
+		],
+		downkeys: ["Y", "N"],
+	});
+
+	// Question 37: Mosquito Exposure Date
+	composer.slide({ pageProgress: "31/62" });
+	composer.dateInput("mosquito_exposure_date", {
+		question: translate(localization, {
+			en: "Mosquito Exposure Date",
+			ar: "تاريخ التعرض للبعوض",
+		}),
+		placeholder: translate(localization, {
+			en: "Enter date (YYYY-MM-DD)",
+			ar: "أدخل التاريخ (YYYY-MM-DD)",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["mosquito_exposure"],
+			condition: "mosquito_exposure == 'Yes' or mosquito_exposure == 'نعم'",
+		},
+	});
+
+	// Question 38: Mosquito Exposure Location
+	composer.selectBox("mosquito_exposure_location", {
+		question: translate(localization, {
+			en: "Mosquito Exposure Location",
+			ar: "مكان التعرض للبعوض",
+		}),
+		options:
+			localization === "ar"
+				? ["داخل المنزل", "خارج المنزل", "مزرعة", "حظيرة", "أخرى (حدد)"]
+				: ["Inside house", "Outside house", "Farm", "Barn", "Other (mention)"],
+		required: false,
+		displayCondition: {
+			dependencies: ["mosquito_exposure"],
+			condition: "mosquito_exposure == 'Yes' or mosquito_exposure == 'نعم'",
+		},
+	});
+
+	// Question 39: Other Mosquito Exposure Location
+	composer.textInput("mosquito_exposure_location_other", {
+		question: translate(localization, {
+			en: "Other (Specify Location)",
+			ar: "أخرى (حدد المكان)",
+		}),
+		placeholder: translate(localization, {
+			en: "Specify other location",
+			ar: "حدد المكان الآخر",
+		}),
+		required: false,
+		displayCondition: {
+			dependencies: ["mosquito_exposure_location"],
+			condition: "mosquito_exposure_location == 'Other (mention)' or mosquito_exposure_location == 'أخرى (حدد)'",
+		},
+	});
+
 	
 	// Question 40: Number of Contacts
-	composer.slide({ pageProgress: "33/59" });
+	composer.slide({ pageProgress: "32/62" });
 	composer.numberInput("number_of_contacts", {
 		question: translate(localization, {
 			en: "Number of Contacts",
@@ -1170,7 +1250,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 41: Nature of Contact
-	composer.slide({ pageProgress: "34/59" });
+	composer.slide({ pageProgress: "33/62" });
 	composer.selectBox("contact_nature", {
 		question: translate(localization, {
 			en: "Nature of Contact",
@@ -1184,7 +1264,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 42: Building Condition
-	composer.slide({ pageProgress: "35/59" });
+	composer.slide({ pageProgress: "34/62" });
 	composer.selectBox("building_condition", {
 		question: translate(localization, {
 			en: "Building Condition",
@@ -1198,7 +1278,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 43: Number of Household Members
-	composer.slide({ pageProgress: "36/59" });
+	composer.slide({ pageProgress: "35/62" });
 	composer.numberInput("household_members", {
 		question: translate(localization, {
 			en: "Number of Household Members",
@@ -1209,7 +1289,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 44: Risk Factor Location
-	composer.slide({ pageProgress: "37/59" });
+	composer.slide({ pageProgress: "36/62" });
 	composer.selectBox("risk_factor_location", {
 		question: translate(localization, {
 			en: "Risk Factor Location",
@@ -1281,7 +1361,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 45: Risk Factors
-	composer.slide({ pageProgress: "38/59" });
+	composer.slide({ pageProgress: "37/62" });
 	composer.selectBox("risk_factors", {
 		question: translate(localization, {
 			en: "Risk Factors",
@@ -1333,7 +1413,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 47: Risk Factor Result
-	composer.slide({ pageProgress: "40/59" });
+	composer.slide({ pageProgress: "39/62" });
 	composer.selectBox("risk_factor_result", {
 		question: translate(localization, {
 			en: "Risk Factor Result",
@@ -1347,7 +1427,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 48: Number of Individuals Educated
-	composer.slide({ pageProgress: "41/59" });
+	composer.slide({ pageProgress: "40/62" });
 	composer.numberInput("individuals_educated", {
 		question: translate(localization, {
 			en: "Number of individuals who received health education at the case's home",
@@ -1358,7 +1438,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 49: Risk Factors Leading Opinion
-	composer.slide({ pageProgress: "42/59" });
+	composer.slide({ pageProgress: "41/62" });
 	composer.selectBox("risk_factors_opinion", {
 		question: translate(localization, {
 			en: "In your opinion, what are the risk factors that lead to mosquito breeding?",
@@ -1382,7 +1462,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 50: Mosquito Repellent Products
-	composer.slide({ pageProgress: "43/59" });
+	composer.slide({ pageProgress: "42/62" });
 	composer.selectBox("mosquito_repellent_products", {
 		question: translate(localization, {
 			en: "What mosquito repellent products do you use?",
@@ -1403,7 +1483,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 51: Diseases Transmitted Opinion
-	composer.slide({ pageProgress: "44/59" });
+	composer.slide({ pageProgress: "43/62" });
 	composer.selectBox("diseases_transmitted_opinion", {
 		question: translate(localization, {
 			en: "In your opinion, what diseases are transmitted through mosquito bites?",
@@ -1420,7 +1500,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 52: Action When Symptoms Appear
-	composer.slide({ pageProgress: "45/59" });
+	composer.slide({ pageProgress: "44/62" });
 	composer.selectBox("action_symptoms_appear", {
 		question: translate(localization, {
 			en: "What action is taken when symptoms appear?",
@@ -1435,7 +1515,7 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 	});
 
 	// Question 53: Health Education Status
-	composer.slide({ pageProgress: "46/59" });
+	composer.slide({ pageProgress: "45/62" });
 	composer.selectBox("health_education_status", {
 		question: translate(localization, {
 			en: "Health Education Status",
