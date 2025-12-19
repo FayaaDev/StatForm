@@ -45,7 +45,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 
 	// Question 2: Date
 	composer.slide({ pageProgress: "2/54" });
-	composer.textInput("date", {
+	composer.dateInput("date", {
 		question: translate(localization, {
 			en: "Date",
 			ar: "التاريخ",
@@ -442,7 +442,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Question 30: Import Date
-	composer.textInput("import_date", {
+	composer.dateInput("import_date", {
 		question: translate(localization, {
 			en: "Import Date",
 			ar: "تاريخ الاستيراد",
@@ -521,7 +521,7 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	});
 
 	// Question 35: Vaccination Date
-	composer.textInput("vaccination_date", {
+	composer.dateInput("vaccination_date", {
 		question: translate(localization, {
 			en: "Vaccination Date",
 			ar: "تاريخ التحصين",
