@@ -108,22 +108,22 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["مزرعة", "حظيرة", "سوق", "مسلخ", "أخرى"]
-				: ["Farm", "Barn", "Market", "Slaughterhouse", "Other"],
+				? ["مزرعة", "حظيرة", "حظيرة + مزرعة", "أخرى"]
+				: ["Farm", "Barn", "Farm + Barn", "Other"],
 		required: true,
 	});
 
 	// Question 7: Site Description
 	composer.slide({ pageProgress: "7/54" });
-	composer.textInput("site_description", {
+	composer.selectBox("site_description", {
 		question: translate(localization, {
 			en: "Site Description",
 			ar: "وصف الموقع",
 		}),
-		placeholder: translate(localization, {
-			en: "Describe the site",
-			ar: "صف الموقع",
-		}),
+		options:
+			localization === "ar"
+				? ["داخل النطاق العمراني", "خارج النطاق العمراني"]
+				: ["Within Urban Area", "Outside Urban Area"],
 		required: false,
 	});
 
@@ -313,29 +313,29 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 	);
 
 	// Question 20: Animal Type
-	composer.selectBox("animal_type", {
+	composer.textInput("animal_type", {
 		question: translate(localization, {
 			en: "Animal Type",
 			ar: "نوع الحيوان",
 		}),
-		options:
-			localization === "ar"
-				? ["أبقار", "أغنام", "ماعز", "إبل", "خيول", "دواجن", "أخرى"]
-				: ["Cattle", "Sheep", "Goats", "Camels", "Horses", "Poultry", "Other"],
+		placeholder: translate(localization, {
+			en: "Enter animal type",
+			ar: "أدخل نوع الحيوان",
+		}),
 		required: true,
 	});
 
 	// Question 21: Animal Classification
 	composer.slide({ pageProgress: "21/54" });
-	composer.textInput("animal_classification", {
+	composer.selectBox("animal_classification", {
 		question: translate(localization, {
 			en: "Animal Classification",
 			ar: "تصنيف الحيوان",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter classification",
-			ar: "أدخل التصنيف",
-		}),
+		options:
+			localization === "ar"
+				? ["داجنة", "اليفة", "سائبة", "برية"]
+				: ["Domesticated", "Tame", "Stray", "Wild"],
 		required: false,
 	});
 
@@ -554,8 +554,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["جيدة", "متوسطة", "سيئة", "حرجة"]
-				: ["Good", "Fair", "Poor", "Critical"],
+				? ["مريض", "سليم"]
+				: ["Healthy", "Diseased"],
 		required: true,
 	});
 
@@ -757,15 +757,15 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 
 	// Question 51: Preliminary Diagnosis
 	composer.slide({ pageProgress: "51/54" });
-	composer.textInput("preliminary_diagnosis", {
+	composer.selectBox("preliminary_diagnosis", {
 		question: translate(localization, {
 			en: "Preliminary Diagnosis",
 			ar: "التشخيص المبدئي",
 		}),
-		placeholder: translate(localization, {
-			en: "Enter diagnosis",
-			ar: "أدخل التشخيص",
-		}),
+		options:
+			localization === "ar"
+				? ["الضنك", "التشكنقونيا", "الزيكا", "غرب النيل", "الخرمة", "الوادي المتصدع", "القرم-الكونغو", "لاسا", "الصفراء", "ايبولا", "ماربورغ", "أخرى"]
+				: ["Dengue", "Chikungunya", "Zika", "West Nile", "Alkhurma", "Rift Valley", "Crimean-Congo", "Lassa Fever", "Yellow Fever", "Ebola", "Marburg", "Other"],
 		required: false,
 	});
 
@@ -800,8 +800,8 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 		}),
 		options:
 			localization === "ar"
-				? ["دم", "مسحة", "براز", "بول", "نسيج", "أخرى"]
-				: ["Blood", "Swab", "Feces", "Urine", "Tissue", "Other"],
+				? ["عينات متعددة", "عينة مصل دم", "عينة دم كامل", "عينة مسحة البلعوم الانفي", "عينة مسحة البلعوم", "عينة بول", "عينة براز", "عينة جلد", "عينة تقرحات جلدية", "عينة نخاع", "أخرى"]
+				: ["Multiple samples", "Serum sample", "Whole blood sample", "Nasopharyngeal swab sample", "Throat swab sample", "Urine sample", "Feces sample", "Skin sample", "Skin ulcers sample", "Bone marrow sample", "Other"],
 		required: false,
 	});
 
