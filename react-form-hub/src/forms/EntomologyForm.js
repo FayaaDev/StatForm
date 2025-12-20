@@ -72,39 +72,15 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 
 	// Question 3: Residential District Name
 	composer.slide({ pageProgress: "4/70" });
-	composer.selectBox("residential_district", {
+	composer.textInput("residential_district", {
 		question: translate(localization, {
 			en: "Residential District Name",
 			ar: "اسم الحي السكني",
 		}),
-		options:
-			localization === "ar"
-				? [
-					"أبو شعيب",
-					"أبو عروة",
-					"أجياد",
-					"أحد",
-					"الأندلس",
-					"البحيرات",
-					"البرابر",
-					"البركة",
-					"البيبان",
-					"البساتين",
-					"أخرى",
-				]
-				: [
-					"Abu Shuaib",
-					"Abu Arwa",
-					"Ajyad",
-					"Uhud",
-					"Al-Andalus",
-					"Al-Buhayrat",
-					"Al-Barabir",
-					"Al-Birka",
-					"Al-Biban",
-					"Al-Basatin",
-					"Other",
-				],
+		placeholder: translate(localization, {
+			en: "Enter residential district name",
+			ar: "أدخل اسم الحي السكني",
+		}),
 		required: true,
 	});
 
