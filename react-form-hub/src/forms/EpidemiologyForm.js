@@ -31,57 +31,16 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 
 		// Question 1: District
 	composer.slide({ pageProgress: "1/62" });
-	composer.selectBox("District", {
+	composer.textInput("District", {
 		question: translate(localization, {
 			en: "District",
 			ar: "أسم الحي",
 		}),
 		placeholder: translate(localization, {
-			en: "Name of District",
-			ar: "أسم الحي ",
-		}),
-		options: [
-			"أبو شعيب",
-			"أبو عروة",
-			"أجياد",
-			"أحد",
-			"الأندلس",
-			"البحيرات",
-			"البرابر",
-			"البركة",
-			"البيبان",
-			"البساتين",
-			"البيعة",
-			"التروية",
-			"التنعيم",
-			"الجامعة",
-			"الجميزة",
-			"الجودرية الجديد",
-			"الحجون",
-			"الحديبية",
-			"الحسينية",
-			"الحطيم",
-			"الحمراء",
-			"أخرى",
-		],
-		required: true,
-	});
-
-	// District - Other (conditional)
-	composer.textInput("district_other", {
-		question: translate(localization, {
-			en: "Specify District",
-			ar: "حدد الحي",
-		}),
-		placeholder: translate(localization, {
 			en: "Enter district name",
 			ar: "أدخل اسم الحي",
 		}),
-		required: false,
-		displayCondition: {
-			dependencies: ["District"],
-			condition: "District == 'أخرى'",
-		},
+		required: true,
 	});
 
 	// Question 2: investigation location
@@ -114,16 +73,27 @@ export function createEpidemiologyFormComposer(localization = "en", theme) {
 
 	// Question 4: Coordinates
 	composer.slide({ pageProgress: "4/62" });
+	composer.p(
+		translate(localization, {
+			en: "Enter coordinates in decimal degrees format (latitude, longitude). Use one of these formats:\n• With semicolon: 25.4445;37.3024\n• With comma and space: 26.2424, 36.4638\nThe first number is latitude (north-south), the second is longitude (east-west).",
+			ar: "أدخل الإحداثيات بصيغة الدرجات العشرية (خط العرض، خط الطول). استخدم الفاصلة المنقوطة (;) او الفاصلة العادية (:) مثال: 25.4445;37.3024 او 26.2424:36.4638 الرقم الأول هو خط العرض والثاني هو خط الطول.", 
+		}),
+	);
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
 			ar: "الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter coordinates",
-			ar: "أدخل الإحداثيات",
+			en: "Enter coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل الإحداثيات (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: true,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Question 5: Case Classification

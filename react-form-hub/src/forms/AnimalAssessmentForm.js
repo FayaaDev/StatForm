@@ -59,16 +59,27 @@ export function createAnimalAssessmentFormComposer(localization = "en", theme) {
 
 	// Question 3: Coordinates
 	composer.slide({ pageProgress: "3/54" });
+	composer.p(
+		translate(localization, {
+			en: "Enter coordinates in decimal degrees format (latitude, longitude). Use one of these formats:\n• With semicolon: 25.4445;37.3024\n• With comma and space: 26.2424, 36.4638\nThe first number is latitude (north-south), the second is longitude (east-west).",
+			ar: "أدخل الإحداثيات بصيغة الدرجات العشرية (خط العرض، خط الطول). استخدم الفاصلة المنقوطة (;) او الفاصلة العادية (:) مثال: 25.4445;37.3024 او 26.2424:36.4638 الرقم الأول هو خط العرض والثاني هو خط الطول.",
+		}),
+	);
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
 			ar: "الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter coordinates",
-			ar: "أدخل الإحداثيات",
+			en: "Enter coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل الإحداثيات (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: true,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Question 4: City

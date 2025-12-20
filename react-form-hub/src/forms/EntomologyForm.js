@@ -58,16 +58,27 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 
 	// Question 2: Coordinates
 	composer.slide({ pageProgress: "3/70" });
+	composer.p(
+		translate(localization, {
+			en: "Enter coordinates in decimal degrees format (latitude, longitude). Use one of these formats:\n• With semicolon: 25.4445;37.3024\n• With comma and space: 26.2424, 36.4638\nThe first number is latitude (north-south), the second is longitude (east-west).",
+			ar: "أدخل الإحداثيات بصيغة الدرجات العشرية (خط العرض، خط الطول). استخدم الفاصلة المنقوطة (;) او الفاصلة العادية (:) مثال: 25.4445;37.3024 او 26.2424:36.4638 الرقم الأول هو خط العرض والثاني هو خط الطول.",
+		}),
+	);
 	composer.textInput("coordinates", {
 		question: translate(localization, {
 			en: "Coordinates",
 			ar: "الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter coordinates",
-			ar: "أدخل الإحداثيات",
+			en: "Enter coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل الإحداثيات (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: true,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Question 3: Residential District Name
@@ -1088,10 +1099,15 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 			ar: "المصيدة 1 - الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter trap coordinates",
-			ar: "أدخل احداثيات المصيدة",
+			en: "Enter trap coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل احداثيات المصيدة (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: false,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Trap 2
@@ -1140,10 +1156,15 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 			ar: "المصيدة 2 - الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter trap coordinates",
-			ar: "أدخل احداثيات المصيدة",
+			en: "Enter trap coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل احداثيات المصيدة (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: false,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Trap 3
@@ -1192,10 +1213,15 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 			ar: "المصيدة 3 - الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter trap coordinates",
-			ar: "أدخل احداثيات المصيدة",
+			en: "Enter trap coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل احداثيات المصيدة (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: false,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Trap 4
@@ -1244,10 +1270,15 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 			ar: "المصيدة 4 - الاحداثيات",
 		}),
 		placeholder: translate(localization, {
-			en: "Enter trap coordinates",
-			ar: "أدخل احداثيات المصيدة",
+			en: "Enter trap coordinates (e.g., 25.4445;37.3024 or 26.2424, 36.4638)",
+			ar: "أدخل احداثيات المصيدة (مثال: 25.4445;37.3024 أو 26.2424, 36.4638)",
 		}),
 		required: false,
+		pattern: "^\\d+\\.\\d+[;,]\\s*\\d+\\.\\d+$",
+		patternError: translate(localization, {
+			en: "Please enter coordinates in format: 25.4445;37.3024 or 26.2424, 36.4638",
+			ar: "الرجاء إدخال الإحداثيات بالصيغة: 25.4445;37.3024 أو 26.2424, 36.4638",
+		}),
 	});
 
 	// Sample Information Section (starts at 50 = 37 + 12 trap slides + 1)
