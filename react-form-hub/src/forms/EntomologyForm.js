@@ -724,7 +724,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	composer.selectBox("control_type_2", {
 		question: translate(localization, {
 			en: "Type of Control (Secondary)",
-			ar: "نوع المكافحة (ثانوي)",
+			ar: "نوع المكافحة (البعوض البالغ)",
 		}),
 		options:
 			localization === "ar"
@@ -750,7 +750,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	composer.selectBox("pesticide_group_type_2", {
 		question: translate(localization, {
 			en: "Type of Pesticide Group (Secondary)",
-			ar: "نوع مجموعة المبيد (ثانوي)",
+			ar: "نوع مجموعة المبيد (البعوض البالغ)",
 		}),
 		options:
 			localization === "ar"
@@ -772,7 +772,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	composer.selectBox("control_type_3", {
 		question: translate(localization, {
 			en: "Type of Control (Tertiary)",
-			ar: "نوع المكافحة (ثالث)",
+			ar: "نوع المكافحة (القراد)",
 		}),
 		options:
 			localization === "ar"
@@ -806,7 +806,7 @@ export function createEntomologyFormComposer(localization = "en", theme) {
 	composer.selectBox("pesticide_group_type_3", {
 		question: translate(localization, {
 			en: "Type of Pesticide Group (Tertiary)",
-			ar: "نوع مجموعة المبيد (ثالث)",
+			ar: "نوع مجموعة المبيد (القراد)",
 		}),
 		options:
 			localization === "ar"
