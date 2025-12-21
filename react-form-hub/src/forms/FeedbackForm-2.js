@@ -8,10 +8,10 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	}
 
 	const composer = new window.Composer({
-		id: "tool1_operations",
+		id: "tool2_operations",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية",
+		postUrl: "https://script.google.com/macros/s/AKfycbzFcLXrZEPfbf7rGmP9WefLihZl_0bwQx8HBuO-IEOk4wA1XEH20fP0YldxnGat_ESeAw/exec",
+		postSheetName: "أداة تقييم أعمال المكافحة لنواقل حمى الوادي المتصدع",
 	});
 
 	// Welcome slide
@@ -391,7 +391,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter any additional notes",
 			ar: "أدخل أي ملاحظات إضافية",
 		}),
-		required: false,
+		required: true,
 	});
 
 	// Question 53: التوصيات والاقتراحات
@@ -405,7 +405,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter recommendations",
 			ar: "أدخل التوصيات",
 		}),
-		required: false,
+		required: true,
 	});
 
 	return composer;

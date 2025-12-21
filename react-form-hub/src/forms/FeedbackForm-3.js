@@ -10,8 +10,8 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "tool2_human_samples",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم أعمال جمع ونقل وحفظ العينات البشرية",
+		postUrl: "https://script.google.com/macros/s/AKfycbzFcLXrZEPfbf7rGmP9WefLihZl_0bwQx8HBuO-IEOk4wA1XEH20fP0YldxnGat_ESeAw/exec",
+		postSheetName: "تقييم أعمال جمع ونقل وحفظ العينات البشرية",
 	});
 
 	// Welcome slide
@@ -33,7 +33,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	composer.selectBox("simulation_day", {
 		question: translate(localization, { en: "Simulation Day", ar: "يوم المحاكاة" }),
 		options: localization === "ar" ? ["اليوم الأول", "اليوم الثاني", "اليوم الثالث"] : ["Day 1", "Day 2", "Day 3"],
-		required: true,
+		required: false,
 	});
 
 	composer.slide({ pageProgress: "2/40" });
@@ -42,14 +42,14 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		options: localization === "ar" 
 			? ["المستشفى", "المركز الصحي", "المختبر", "موقع ميداني", "أخرى"] 
 			: ["Hospital", "Health Center", "Laboratory", "Field Site", "Other"],
-		required: true,
+		required: false,
 	});
 
 	composer.slide({ pageProgress: "3/40" });
 	composer.textInput("evaluated_team", {
 		question: translate(localization, { en: "Team Being Evaluated", ar: "الفريق الذي تم تقييمه" }),
 		placeholder: translate(localization, { en: "Enter team name", ar: "أدخل اسم الفريق" }),
-		required: true,
+		required: false,
 	});
 
 	composer.slide({ pageProgress: "4/40" });
@@ -58,21 +58,21 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		options: localization === "ar"
 			? ["د. عبدالله قيسي", "د. محمد الحازمي", "أد.زكي منور", "د. خالد الشرواني", "د. خالد العنزي", "د. يزيد خليفة", "د. عمر دفع الله", "د. صديق نور الدين", "أ. احمد غزواني", "د. وحيد", "د. ثامر باخميس"]
 			: ["Dr. Abdullah Qaisi", "Dr. Mohammed Al-Hazmi", "Prof. Zaki Munawar", "Dr. Khaled Al-Sharawani", "Dr. Khaled Al-Anazi", "Dr. Yazeed Khalifa", "Dr. Omar Dafaallah", "Dr. Sadiq Noor Al-Din", "Mr. Ahmed Ghazwani", "Dr. Waheed", "Dr. Thamer Bakhamis"],
-		required: true,
+		required: false,
 	});
 
 	composer.slide({ pageProgress: "5/40" });
 	composer.textInput("evaluator_position", {
 		question: translate(localization, { en: "Evaluator Position", ar: "وظيفة المقيم" }),
 		placeholder: translate(localization, { en: "Enter position", ar: "أدخل الوظيفة" }),
-		required: true,
+		required: false,
 	});
 
 	composer.slide({ pageProgress: "6/40" });
 	composer.textInput("evaluator_organization", {
 		question: translate(localization, { en: "Evaluator Organization", ar: "جهة عمل المقيم" }),
 		placeholder: translate(localization, { en: "Enter organization", ar: "أدخل جهة العمل" }),
-		required: true,
+		required: false,
 	});
 
 	// Rating Questions (7-38)
@@ -246,7 +246,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		composer.ratingInput(q.id, {
 			question: translate(localization, { en: q.en, ar: q.ar }),
 			max: 5,
-			required: true,
+			required: false,
 		});
 	});
 
