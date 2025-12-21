@@ -16,6 +16,7 @@ export const formRegistry = [
 		id: "tool1_operations",
 		themes: ["pha"],
 		path: "tool1_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation Tool 1",
 			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
@@ -25,6 +26,7 @@ export const formRegistry = [
 		id: "tool2_operations",
 		themes: ["pha"],
 		path: "tool2_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation Tool 2",
 			ar: "أداة تقييم أعمال المكافحة لنواقل حمى الوادي المتصدع",
@@ -34,6 +36,7 @@ export const formRegistry = [
 		id: "tool3_operations",
 		themes: ["pha"],
 		path: "tool3_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Human Sample Collection, Transport, and Preservation for RVF",
 			ar: "تقييم أعمال جمع ونقل وحفظ العينات البشرية للكشف عن فيروس حمى الوادي المتصدع",
@@ -43,6 +46,7 @@ export const formRegistry = [
 		id: "tool4_operations",
 		themes: ["pha"],
 		path: "tool4_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Veterinary Sample Collection, Transport, and Preservation for RVF",
 			ar: "تقييم أعمال جمع ونقل وحفظ العينات البيطرية للكشف عن فيروس حمى الوادي المتصدع",
@@ -52,6 +56,7 @@ export const formRegistry = [
 		id: "tool5_operations",
 		themes: ["pha"],
 		path: "tool5_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Human Epidemiological Investigation for RVF",
 			ar: "تقييم أعمال التقصي الوبائي البشري للكشف عن فيروس حمى الوادي المتصدع",
@@ -61,6 +66,7 @@ export const formRegistry = [
 		id: "tool6_operations",
 		themes: ["pha"],
 		path: "tool6_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Entomological Surveillance for RVF Vectors",
 			ar: "تقييم أعمال التقصي الحشري لنواقل حمى الوادي المتصدع",
@@ -70,6 +76,7 @@ export const formRegistry = [
 		id: "tool7_operations",
 		themes: ["pha"],
 		path: "tool7_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Veterinary Case Investigation for RVF",
 			ar: "تقييم تقصي الحالة البيطري للكشف عن فيروس حمى الوادي المتصدع",
@@ -79,6 +86,7 @@ export const formRegistry = [
 		id: "tool8_operations",
 		themes: ["pha"],
 		path: "tool8_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Veterinary Visual and Clinical Examination for RVF",
 			ar: "تقييم الفحص الظاهري والسريري البيطري للكشف عن فيروس حمى الوادي المتصدع",
@@ -88,6 +96,7 @@ export const formRegistry = [
 		id: "tool9_operations",
 		themes: ["pha"],
 		path: "tool9_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Insect Sample Preservation and Transport (RVF)",
 			ar: "تقييم حفظ ونقل العينات الحشرية لنواقل حمى الوادي المتصدع",
@@ -97,6 +106,7 @@ export const formRegistry = [
 		id: "tool10_operations",
 		themes: ["pha"],
 		path: "tool10_operations",
+		category: "feedback",
 		title: {
 			en: "Evaluation of Health Education Activities (RVF)",
 			ar: "تقييم أعمال التثقيف الصحي حول فيروس حمى الوادي المتصدع",
@@ -106,6 +116,7 @@ export const formRegistry = [
 		id: "epidemiology-form",
 		themes: ["pha"],
 		path: "epidemiology-form",
+		category: "field-work",
 		title: {
 			en: "Epidemiology Form",
 			ar: "التقصي الوبائي للحالات",
@@ -115,6 +126,7 @@ export const formRegistry = [
 		id: "animal-assessment-form",
 		themes: ["pha"],
 		path: "animal-assessment-form",
+		category: "field-work",
 		title: {
 			en: "Animal Assessment Form",
 			ar: "التقصي الحيواني",
@@ -124,6 +136,7 @@ export const formRegistry = [
 		id: "entomology-form",
 		themes: ["pha"],
 		path: "entomology-form",
+		category: "field-work",
 		title: {
 			en: "Entomology Form",
 			ar: "الاستكشاف والمكافحة الحشرية",

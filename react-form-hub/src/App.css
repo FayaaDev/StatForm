@@ -1374,6 +1374,42 @@
 	font-family: var(--theme-font-family);
 }
 
+/* PHA Tabs */
+.pha-tabs {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 30px;
+	border-bottom: 2px solid rgba(9, 89, 92, 0.1);
+	padding: 0 20px;
+}
+
+.pha-tab {
+	padding: 15px 30px;
+	background: transparent;
+	color: var(--theme-text);
+	border: none;
+	border-bottom: 3px solid transparent;
+	font-size: 1rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-family: var(--theme-font-family);
+	position: relative;
+	bottom: -2px;
+	white-space: nowrap;
+}
+
+.pha-tab:hover {
+	color: var(--theme-primary);
+	background: rgba(9, 89, 92, 0.05);
+}
+
+.pha-tab.active {
+	color: var(--theme-primary);
+	border-bottom-color: var(--theme-primary);
+	background: rgba(9, 89, 92, 0.08);
+}
+
 .pha-forms-section {
 	background: white;
 	border-radius: 16px;
@@ -1515,6 +1551,18 @@
 
 	.pha-subtitle {
 		font-size: 1rem;
+	}
+
+	.pha-tabs {
+		padding: 0 10px;
+		gap: 5px;
+		overflow-x: auto;
+	}
+
+	.pha-tab {
+		padding: 12px 20px;
+		font-size: 0.9rem;
+		white-space: nowrap;
 	}
 
 	.pha-forms-section {

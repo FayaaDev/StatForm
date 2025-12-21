@@ -18,7 +18,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation of Human Epidemiological Investigation for RVF",
-			ar: "تقييم أعمال التقصي الوبائي البشري postSheetName",
+			ar: "تقييم أعمال التقصي الوبائي البشري",
 		}),
 	);
 	composer.p(
