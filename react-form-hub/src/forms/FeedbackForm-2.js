@@ -39,7 +39,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			localization === "ar"
 				? ["اليوم الأول", "اليوم الثاني", "اليوم الثالث"]
 				: ["Day 1", "Day 2", "Day 3"],
-		required: true,
+		required: false,
 	});
 
 	// Question 2: موقع التقييم
@@ -63,7 +63,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 					"Potential Hazard Site 4", "Potential Hazard Site 5", "Potential Hazard Site 6",
 					"Potential Hazard Site 7", "Potential Hazard Site 8", "Pen X", "Pen Y"
 				],
-		required: true,
+		required: false,
 	});
 
 	// Question 3: الفريق الذي تم تقييمه
@@ -77,7 +77,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter team name",
 			ar: "أدخل اسم الفريق",
 		}),
-		required: true,
+		required: false,
 	});
 
 	// Question 4: اسم المقيم
@@ -99,7 +99,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 					"Dr. Khaled Al-Anazi", "Dr. Yazeed Khalifa", "Dr. Omar Dafaallah", "Dr. Sadiq Noor Al-Din",
 					"Mr. Ahmed Ghazwani", "Dr. Waheed", "Dr. Thamer Bakhamis"
 				],
-		required: true,
+		required: false,
 	});
 
 	// Question 5: وظيفة المقيم
@@ -113,7 +113,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter position",
 			ar: "أدخل الوظيفة",
 		}),
-		required: true,
+		required: false,
 	});
 
 	// Question 6: جهة عمل المقيم
@@ -127,18 +127,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter organization",
 			ar: "أدخل جهة العمل",
 		}),
-		required: true,
-	});
-
-	// Question 7: التنسيق والتكامل مع فرق العمل المختلفة
-	composer.slide({ pageProgress: "7/53" });
-	composer.ratingInput("coordination_integration", {
-		question: translate(localization, {
-			en: "Coordination and Integration with Different Work Teams",
-			ar: "التنسيق والتكامل مع فرق العمل المختلفة",
-		}),
-		max: 5,
-		required: true,
+		required: false,
 	});
 
 	// --- NEW RATING QUESTIONS ---
@@ -376,7 +365,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 				ar: q.ar,
 			}),
 			max: 5,
-			required: true,
+			required: false,
 		});
 	});
 
@@ -391,7 +380,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter any additional notes",
 			ar: "أدخل أي ملاحظات إضافية",
 		}),
-		required: true,
+		required: false,
 	});
 
 	// Question 53: التوصيات والاقتراحات
@@ -405,7 +394,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Enter recommendations",
 			ar: "أدخل التوصيات",
 		}),
-		required: true,
+		required: false,
 	});
 
 	return composer;

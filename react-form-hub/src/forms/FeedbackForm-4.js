@@ -11,7 +11,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 		id: "tool3_vet_samples",
 		...getSharedFormConfig(localization, theme),
 		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم أعمال جمع ونقل وحفظ العينات البيطرية",
+		postSheetName: "تقييم أعمال جمع ونقل وحفظ العينات البيطرية",
 	});
 
 	// شريحة الترحيب
