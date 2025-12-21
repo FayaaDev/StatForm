@@ -18,7 +18,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation of Veterinary Visual and Clinical Examination for RVF",
-			ar: "تقييم الفحص الظاهري والسريري البيطري postSheetName",
+			ar: "تقييم الفحص الظاهري والسريري البيطري ",
 		}),
 	);
 	composer.p(
