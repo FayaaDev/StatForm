@@ -12,15 +12,96 @@ export const formRegistry = [
 	// 		ar: "النموذج التجريبي",
 	// 	},
 	// },
-	// {
-	// 	id: "tool1_operations",
-	// 	themes: ["pha"],
-	// 	path: "tool1_operations",
-	// 	title: {
-	// 		en: "Evaluation Tool 1",
-	// 		ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
-	// 	},
-	// },
+	{
+		id: "tool1_operations",
+		themes: ["pha"],
+		path: "tool1_operations",
+		title: {
+			en: "Evaluation Tool 1",
+			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
+		},
+	},
+	{
+		id: "tool2_operations",
+		themes: ["pha"],
+		path: "tool2_operations",
+		title: {
+			en: "Evaluation Tool 2",
+			ar: "أداة تقييم أعمال المكافحة لنواقل حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool3_operations",
+		themes: ["pha"],
+		path: "tool3_operations",
+		title: {
+			en: "Evaluation of Human Sample Collection, Transport, and Preservation for RVF",
+			ar: "تقييم أعمال جمع ونقل وحفظ العينات البشرية للكشف عن فيروس حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool4_operations",
+		themes: ["pha"],
+		path: "tool4_operations",
+		title: {
+			en: "Evaluation of Veterinary Sample Collection, Transport, and Preservation for RVF",
+			ar: "تقييم أعمال جمع ونقل وحفظ العينات البيطرية للكشف عن فيروس حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool5_operations",
+		themes: ["pha"],
+		path: "tool5_operations",
+		title: {
+			en: "Evaluation of Human Epidemiological Investigation for RVF",
+			ar: "تقييم أعمال التقصي الوبائي البشري للكشف عن فيروس حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool6_operations",
+		themes: ["pha"],
+		path: "tool6_operations",
+		title: {
+			en: "Evaluation of Entomological Surveillance for RVF Vectors",
+			ar: "تقييم أعمال التقصي الحشري لنواقل حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool7_operations",
+		themes: ["pha"],
+		path: "tool7_operations",
+		title: {
+			en: "Evaluation of Veterinary Case Investigation for RVF",
+			ar: "تقييم تقصي الحالة البيطري للكشف عن فيروس حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool8_operations",
+		themes: ["pha"],
+		path: "tool8_operations",
+		title: {
+			en: "Evaluation of Veterinary Visual and Clinical Examination for RVF",
+			ar: "تقييم الفحص الظاهري والسريري البيطري للكشف عن فيروس حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool9_operations",
+		themes: ["pha"],
+		path: "tool9_operations",
+		title: {
+			en: "Evaluation of Insect Sample Preservation and Transport (RVF)",
+			ar: "تقييم حفظ ونقل العينات الحشرية لنواقل حمى الوادي المتصدع",
+		},
+	},
+	{
+		id: "tool10_operations",
+		themes: ["pha"],
+		path: "tool10_operations",
+		title: {
+			en: "Evaluation of Health Education Activities (RVF)",
+			ar: "تقييم أعمال التثقيف الصحي حول فيروس حمى الوادي المتصدع",
+		},
+	},
 	{
 		id: "epidemiology-form",
 		themes: ["pha"],
