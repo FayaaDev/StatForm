@@ -10,15 +10,15 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "tool6_vet_case_investigation",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم تقصي الحالة البيطري",
+		postUrl: "https://script.google.com/macros/s/AKfycbzFcLXrZEPfbf7rGmP9WefLihZl_0bwQx8HBuO-IEOk4wA1XEH20fP0YldxnGat_ESeAw/exec",
+		postSheetName: "تقييم تقصي الحالة البيطري",
 	});
 
 	// شريحة الترحيب
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation of Veterinary Case Investigation for RVF",
-			ar: "تقييم تقصي الحالة البيطري للكشف عن فيروس حمى الوادي المتصدع",
+			ar: "تقييم تقصي الحالة البيطري postSheetName",
 		}),
 	);
 	composer.p(

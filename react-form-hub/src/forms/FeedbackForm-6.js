@@ -10,8 +10,8 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "tool5_entomological_surveillance",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم أعمال التقصي الحشري",
+		postUrl: "https://script.google.com/macros/s/AKfycbzFcLXrZEPfbf7rGmP9WefLihZl_0bwQx8HBuO-IEOk4wA1XEH20fP0YldxnGat_ESeAw/exec",
+		postSheetName: "تقييم أعمال التقصي الحشري",
 	});
 
 	// شريحة الترحيب

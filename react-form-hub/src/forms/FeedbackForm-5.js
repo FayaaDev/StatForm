@@ -10,15 +10,15 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	const composer = new window.Composer({
 		id: "tool4_human_epidemiology",
 		...getSharedFormConfig(localization, theme),
-		postUrl: "https://script.google.com/macros/s/AKfycbzweSCIAqKiXJyhw46Swt3bSyB3Fe0-xWMwTDklGAjlvkMSHOsNSr1HWZiWOJ1ZzV4fMw/exec",
-		_sheetName: "تقييم أعمال التقصي الوبائي البشري",
+		postUrl: "https://script.google.com/macros/s/AKfycbzFcLXrZEPfbf7rGmP9WefLihZl_0bwQx8HBuO-IEOk4wA1XEH20fP0YldxnGat_ESeAw/exec",
+		postSheetName: "تقييم أعمال التقصي الوبائي البشري",
 	});
 
 	// شريحة الترحيب
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation of Human Epidemiological Investigation for RVF",
-			ar: "تقييم أعمال التقصي الوبائي البشري للكشف عن فيروس حمى الوادي المتصدع",
+			ar: "تقييم أعمال التقصي الوبائي البشري postSheetName",
 		}),
 	);
 	composer.p(
