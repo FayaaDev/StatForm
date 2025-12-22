@@ -18,7 +18,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation Tool 1",
-			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية ",
+			ar: "اداة تقييم الاشراف و التنسيق للعمليات التشغيلية",
 		}),
 	);
 	composer.p(
@@ -261,7 +261,6 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Notes and Details",
 			ar: "الملاحظات والتفاصيل",
 		}),
-		max: 5,
 		required: true,
 	});
 
@@ -272,7 +271,6 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 			en: "Recommendations and Suggestions - What Can Be Improved",
 			ar: "التوصيات والاقتراحات ماذا يمكن تحسينه",
 		}),
-		max: 5,
 		required: true,
 	});
 

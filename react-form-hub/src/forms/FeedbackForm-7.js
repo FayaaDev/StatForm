@@ -18,7 +18,7 @@ export function createFeedbackFormComposer(localization = "en", theme) {
 	composer.h1(
 		translate(localization, {
 			en: "Evaluation of Veterinary Case Investigation for RVF",
-			ar: "تقييم تقصي الحالة البيطري postSheetName",
+			ar: "تقييم تقصي الحالة البيطري",
 		}),
 	);
 	composer.p(
